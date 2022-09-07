@@ -15,7 +15,11 @@ void Enemy::Initialize()
 	Sprite::LoadTexture(5, L"Resources/animal_pig_buta.png");
 	pig = Sprite::CreateSprite(5, pigPos);
 	Sprite::LoadTexture(10, L"Resources/card_joker.png");
-	spCard = Sprite::CreateSprite(10, { 100,100 });
+	for (int i = 0; i < 9; i++)
+	{
+		spCard[i] = Sprite::CreateSprite(10, dropPos[i]);
+	}
+	
 	
 }
 
@@ -26,8 +30,13 @@ void Enemy::Init()
 void Enemy::Update()
 {
 	spEnemy->SetSize({ 200, 200 });
-	spCard->SetSize({ 91, 133 });
+	for (int i = 0; i < 9; i++)
+	{
+		spCard[i]->SetSize({91, 133});
+	}
+	
 	Roll();
+	Drop();
 }
 
 void Enemy::Move()
@@ -54,6 +63,12 @@ void Enemy::Grow()
 
 void Enemy::Drop()
 {
+	for (int i = 0; i < 9; i++)
+	{
+		dropPos[i].x = lane[i];
+		spCard[i]->SetPosition(dropPos[i]);
+	}
+	
 }
 
 void Enemy::Attack()
@@ -63,6 +78,9 @@ void Enemy::Attack()
 void Enemy::Draw()
 {
 	spEnemy->Draw();
-	spCard->Draw();
+	for (int i = 0; i < 9; i++)
+	{
+		spCard[i]->Draw();
+	}
 	pig->Draw();
 }
