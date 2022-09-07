@@ -15,8 +15,7 @@
 #include "FbxObject.h"
 #include"LightGroup.h"
 #include"player.h"
-#include"GameObject.h"
-#include"stageObject.h"
+
 class CollisionManager;
 class TouchableObject;
 class GameScene
@@ -72,7 +71,7 @@ private: // メンバ変数
 	Object3d* object3d3 = nullptr;
 	Model* model3 = nullptr;
 
-	TouchableObject* object3d4 = nullptr;
+	Object3d* object3d4 = nullptr;
 	Model* model4 = nullptr;
 
 	LightGroup* lightGroup = nullptr;
@@ -80,8 +79,7 @@ private: // メンバ変数
 	CollisionManager* colMan = nullptr;
 
 	Player* player;
-	GameObject* gameObject;
-	StageObject* stageObj;
+
 
 	const int debugTextTexNumber = 0;
 

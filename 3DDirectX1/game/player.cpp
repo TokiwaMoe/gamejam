@@ -13,77 +13,89 @@ Player::~Player()
 }
 void Player::Initialize()
 {
-	/*Sprite::LoadTexture(1, L"Resources/back.png");
-	spPlayer = Sprite::CreateSprite(1, { 0,0 });*/
+	Sprite::LoadTexture(2, L"Resources/character2.png");
+	//Sprite::LoadTexture(3, L"Resources/UI/sizeUI.png");
+	playerSprite = Sprite::CreateSprite(2, { 0,100 });
+	//sizeSprite = Sprite::CreateSprite(3, { 100,100 });
+
+
 }
 
 void Player::Init()
 {
-	
+
+	playerPos={ 50,100 };
 }
 
 
 void Player::Move()
 {
-	if (Input::GetInstance()->PushKey(DIK_W))
-	{
-		position.y += 1.0f;
-	}
-	if (Input::GetInstance()->PushKey(DIK_S))
-	{
-		position.y -= 1.0f;
-	}
+
 	if (Input::GetInstance()->PushKey(DIK_D))
 	{
-		position.x += 1.0f;
+		playerPos.x += 2;
+		playerFlag = false;
 	}
 	if (Input::GetInstance()->PushKey(DIK_A))
 	{
-		position.x -= 1.0f;
+		playerPos.x -= 2;
+		playerFlag = true;
 	}
 }
 
-void Player::Ball()
-{
-
-}
 
 void Player::Jump()
 {
-	if (Input::GetInstance()->PushKey(DIK_SPACE) && jumpFlag == false)
-	{
-		jumpFlag = true;
-	}
-
-	if (jumpFlag)
-	{
-		position.y += gravity / 60.0f;
-		if (position.y >= 4)
+	if (jumpFlag == false) {
+		if (Input::GetInstance()->PushKey(DIK_SPACE))
 		{
-			gravityFlag = true;
+			jumpFlag = true;
+			gFlag = false;
+			jSpeed = 0;
+		}
+	}
+	else if (jumpFlag == true) {
+		if (gFlag == false) {
+			if (playerPos.y > 50)
+			{
+				playerPos.y-=jSpeed;
+				jSpeed += g;
+			}
+			if (playerPos.y <= 50) { gFlag = true; }
+		}
+		else if (gFlag == true) {
+			if (playerPos.y < 100) 
+			{
+				playerPos.y+=jSpeed;
+				jSpeed += g;
+			}
+			if (playerPos.y >= 100) { jumpFlag = false; playerPos.y = 100; }
 		}
 	}
 
-	if (gravityFlag)
-	{
-		jumpFlag = false;
-		position.y -= gravity / 60.0f;
-
-		if (position.y < 0)
-		{
-			gravityFlag = false;
-		}
-	}
 }
+
+
 
 void Player::Update()
 {
-	
+	Move();
+	Jump();
+	playerSprite->SetAnchorPoint({ 0.5, 0.5 });
+	playerSprite->SetPosition(playerPos);
+	playerSprite->SetIsFlipX(playerFlag);
 }
+
+
 
 
 void Player::Draw()
 {
-	//spPlayer->Draw();
-	
+
+}
+
+void Player::DrawSprite()
+{
+	playerSprite->Draw();
+
 }

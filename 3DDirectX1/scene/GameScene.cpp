@@ -58,7 +58,7 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 	lightGroup->SetDirLightDir(2, XMVECTOR{ 1,0,0,0 });
 	//lightGroup->SetPointLightActive(0, true);
 	//lightGroup->SetSpotLightActive(0, true);
-	lightGroup->SetCircleShadowActive(0, true);
+	lightGroup->SetCircleShadowActive(0, false);
 
 	FbxObject3d::SetCamera(camera);
 	FbxObject3d::CreateGraphicsPipeline(L"Resources/shaders/FBXPS.hlsl", L"Resources/shaders/FBXVS.hlsl");
@@ -69,7 +69,7 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 	model3 = Model::Create("skydome", true);
 	model4 = Model::Create("ground", false);
 	object3d3 = Object3d::Create(model3);
-	object3d4 = TouchableObject::Create(model4);
+	object3d4 = Object3d::Create(model4);
 	model = Model::Create("bullet", false);
 	model2 = FbxLoader::GetInstance()->LoadModelFromFile("boneTest");
 	object3d = Object3d::Create(model);
@@ -103,27 +103,19 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 
 
 	sound1 = Audio::SoundLoadWave("Resources/ショット.wav");
-	sound2 = Audio::SoundLoadWave("Resources/World_Heritage.wav");
+
 	//audio->SoundPlayWave(sound1);
-	//audio->SoundPlayWave(sound2);
+
 	//audio->SetBGMVolume(0.5f);
 	// カメラ注視点をセット
 	camera->SetTarget({ 0, 0.0f, 0 });
 	camera->SetEye({ 0, 0, -10 });
 	player = new Player;//newすればエラー吐かない
 	player->Initialize();
-	gameObject = new GameObject;//newすればエラー吐かない
-	gameObject->Initialize();
-	stageObj = new StageObject;//newすればエラー吐かない
-	stageObj->Initialize();
 	player->Init();
-	gameObject->Init();
-	stageObj->Init();
-	distance = 20.0f;
-	for (int i = 0; i < 3; i++) {
-		IsHit[i] = false;
-		Alive[i] = true;
-	}
+
+
+
 }
 
 void GameScene::Init()
@@ -140,72 +132,42 @@ void GameScene::Update()
 	//static XMVECTOR lightDir = { 0, 4, 0, 0 };
 
 
-	//if (Input::GetInstance()->TriggerKey(DIK_SPACE) || Input::GetInstance()->IsButtonDown(ButtonA)) {
-	//	object3d2->PlayAnimation();
-	//}
+	if (Input::GetInstance()->TriggerKey(DIK_SPACE) || Input::GetInstance()->IsButtonDown(ButtonA)) {
+		object3d2->PlayAnimation();
+	}
 
-	//lightGroup->SetCircleShadowDir(0, XMVECTOR({ 0,-1,0,0 }));
-	//lightGroup->SetCircleShadowCasterPos(0, player->GetSpherePos());
-	//lightGroup->SetCircleShadowAtten(0, XMFLOAT3(0.5, 0.6, 0));
-	//lightGroup->SetCircleShadowFactorAngle(0, XMFLOAT2(0, 0.5));
+	lightGroup->SetCircleShadowDir(0, XMVECTOR({ 0,-1,0,0 }));
+	lightGroup->SetCircleShadowCasterPos(0, {0,0,0});
+	lightGroup->SetCircleShadowAtten(0, XMFLOAT3(0.5, 0.6, 0));
+	lightGroup->SetCircleShadowFactorAngle(0, XMFLOAT2(0, 0.5));
 
-	//for (int i = 0; i < 3; i++) {
-	//	IsHit[i] = false;
 
-	//	if (Alive[i] == true) {
-	//		if (Collision::CheckSphere2Sphere(player->GetSphere(), gameObject->GetCSphere(i))) {
-	//			IsHit[i] = true;
-	//			HitCount++;
-	//			DebugText::GetInstance()->Printf(100, 60, 3.0f, "Hit");
-	//			Alive[i] = false;
-	//		}
-	//		if (IsHit[i] == true) {
-	//			gameObject->GetObject(i)->SetParent(player->GetObject());
-	//		}
-	//		if (HitCount == 1) {
-	//			gameObject->GetObject(i)->transformParent();
-	//			HitCount = 0;
-	//			IsHit[i] = false;
-	//			Tsize++;
 
-	//		}
-	//	}
+	//object3d->SetRotation({ a,0,b });
+	//TouchableObjectのobjは	playerの前に書かないとエラー起こるよ
 
-	//}
 
-	//object3d3->SetScale({ 2,2,2 });
-	//object3d4->SetScale({ 2,2,2 });
-	//object3d4->SetPosition({ 0,0,0 });
-	////object3d->SetRotation({ a,0,b });
-	////TouchableObjectのobjは	playerの前に書かないとエラー起こるよ
-	//object3d4->SetRotation({ 0,0,0 });
-	//object3d4->Quaternion();
-	//object3d4->Update();
-	//stageObj->Update();
-	////player->SetTsize(Tsize);
-	//player->Update();
+	//player->SetTsize(Tsize);
+	player->Update();
 
-	//camera->FollowCamera(player->GetPlayerPos(), XMFLOAT3{ 0,2,-distance }, 0, player->GetPlayerAngle().m128_f32[1]);
+	camera->FollowCamera({0,0,0}, XMFLOAT3{0,2,-distance}, 0, 0);
 
-	////camera->SetEye(cameraPos);
-	////camera->SetTarget(player->GetSpherePos());
-	//camera->Update();
+	//camera->SetEye(cameraPos);
+	//camera->SetTarget(player->GetSpherePos());
+	camera->Update();
 
-	//gameObject->Update();
 
-	//particleMan->Update();
-	//object3d2->SetPosition(playerPosition);
-	//object3d2->SetRotation({ 0,90,0 });
 
-	////object3d->Update();
-	//object3d2->Update();
-	//object3d3->Update();
+	particleMan->Update();
+	object3d2->SetPosition(playerPosition);
+	object3d2->SetRotation({ 0,90,0 });
 
-	//lightGroup->Update();
-	////for (int i = 0; i < 2; i++) {
-	////	colMan->ColSphere(gameObject->GetObject(i)->collider, player->GetObject()->collider);
-	////}
-	//colMan->CheckAllCollisions();
+	object3d2->Update();
+
+
+	lightGroup->Update();
+
+	colMan->CheckAllCollisions();
 }
 
 void GameScene::DrawBG()
@@ -223,14 +185,11 @@ void GameScene::Draw()
 	Object3d::PreDraw(dxCommon->GetCmdList());
 	FbxObject3d::PreDraw(dxCommon->GetCmdList());
 
-	object3d3->Draw();
-	object3d4->Draw();
 
 	//object3d->Draw();
 	//object3d2->Draw();
-	player->Draw();
-	gameObject->Draw();
-	stageObj->Draw();
+	//player->Draw();
+
 
 	Object3d::PostDraw();
 	FbxObject3d::PostDraw();
@@ -241,13 +200,11 @@ void GameScene::DrawFront()
 	//前景
 	sprite->PreDraw(dxCommon->GetCmdList());
 	//sprite->Draw();
-	//player->DrawSprite();
-	//DebugText::GetInstance()->Printf(100, 20, 3.0f, "%d", player->GetOnGround());
-	DebugText::GetInstance()->Printf(100, 40, 3.0f, "%f",Tsize);
+	player->DrawSprite();
+	DebugText::GetInstance()->Printf(100, 20, 3.0f, "%f", player->GetPlayerPos().y);
 	//DebugText::GetInstance()->Printf(100, 80, 3.0f, "%d", Alive[1]);
 	DebugText::GetInstance()->Printf(100, 200, 3.0f, "WASD:MOVE");
-	DebugText::GetInstance()->Printf(100, 240, 3.0f, "LRARROW:ANGLE");
-	DebugText::GetInstance()->Printf(100, 280, 3.0f, "UPARROW:DASH");
+
 	DebugText::GetInstance()->DrawAll(dxCommon->GetCmdList());
 	sprite->PostDraw();
 }

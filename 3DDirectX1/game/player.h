@@ -24,18 +24,25 @@ public:
 	void Initialize();//一回だけの初期化
 	void Init();//シーンチェンジ時にもする初期化
 	void Update();
+	void OnCollision(const CollisionInfo& info);
 	void Draw();
+	void DrawSprite();
+
 	//Getter
-	
+	XMFLOAT2 GetPlayerPos() { return playerPos; }
+
 private://プレイヤーの動き系
 	void Move();//移動
-	void Ball();//ボール関係
 	void Jump();//ジャンプ
-private://変数
-	Sprite* spPlayer = nullptr;
-	XMFLOAT2 position = { 0,0 };
-	//ジャンプ関連の変数
+
+
+	Sprite* playerSprite=nullptr;
+	Sprite* sizeSprite=nullptr;
+	//位置サイズ角度
+	XMFLOAT2 playerPos = { 0,0 };
+	bool playerFlag = false;
 	bool jumpFlag = false;
-	const float gravity = 9.8;
-	bool gravityFlag = false;
+	bool gFlag = false;
+	float g = 9.8f / 60;
+	float jSpeed;
 };
