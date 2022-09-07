@@ -8,6 +8,11 @@ struct Sphere
 	//îºåa
 	float radius = 1.0f;
 };
+struct Circle
+{
+	DirectX::XMFLOAT2 center = { 0,0 };
+	float radius = 1.0f;
+};
 struct Box
 {
 	//ç≈è¨íl

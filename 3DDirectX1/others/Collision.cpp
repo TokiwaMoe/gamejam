@@ -441,6 +441,23 @@ bool Collision::CheackSphere2Plane(const Sphere& sphere, const Plane& plane, Dir
 		return fr1 + fr2 + fr3;
 	}
 
+	bool Collision::CheckCircle2Circle(const Circle& circleA, const Circle& circleB)
+	{
+		float ax = (circleB.center.x - circleA.center.x) * (circleB.center.x - circleA.center.x);
+		float ay = (circleB.center.y - circleA.center.y) * (circleB.center.y - circleA.center.y);
+		float ar = (circleA.radius + circleB.radius) * (circleA.radius + circleB.radius);
+		if (ax + ay <= ar)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
+
 
 
 	
