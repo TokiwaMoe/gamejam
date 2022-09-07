@@ -21,17 +21,17 @@ public:
 	void Initialize();//一回だけの初期化
 	void Init();//シーンチェンジ時にもする初期化
 	void Update();
-	void Move();
+
+	void Draw();
+	//Getter
+
+private:
+	void Move();//移動
 	void Golf();
 	void Roll();
 	void Grow();
 	void Drop();
 	void Attack();
-	void Draw();
-	//Getter
-
-private://プレイヤーの動き系
-	void Move();//移動
 private://変数
 	Sprite* spEnemy = nullptr;
 	XMFLOAT2 position = { 0,0 };

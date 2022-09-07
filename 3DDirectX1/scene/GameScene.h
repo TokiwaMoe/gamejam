@@ -15,6 +15,7 @@
 #include "FbxObject.h"
 #include"LightGroup.h"
 #include"player.h"
+#include"Enemy.h"
 
 class CollisionManager;
 class TouchableObject;
@@ -79,7 +80,7 @@ private: // メンバ変数
 	CollisionManager* colMan = nullptr;
 
 	Player* player;
-
+	Enemy* enemy;
 
 	const int debugTextTexNumber = 0;
 
