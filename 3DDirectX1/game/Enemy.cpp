@@ -26,7 +26,7 @@ void Enemy::Initialize()
 void Enemy::Init()
 {
 	circle.center = pigPos;
-	circle.radius = 3;
+	circle.radius = 10;
 }
 
 void Enemy::Update()
@@ -41,7 +41,7 @@ void Enemy::Update()
 	Drop();
 
 	circle.center = pigPos;
-	circle.radius = 3;
+	circle.radius = 60;
 }
 
 void Enemy::Move()
