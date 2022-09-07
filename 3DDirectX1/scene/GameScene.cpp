@@ -210,6 +210,10 @@ void GameScene::DrawFront()
 	DebugText::GetInstance()->Printf(100,100, 3.0f, "WASD:MOVE");
 	DebugText::GetInstance()->Printf(100, 160, 3.0f, "rand : %f", enemy->GetRand());
 	DebugText::GetInstance()->Printf(100, 200, 3.0f, "time : %f", enemy->GetTime());
+	DebugText::GetInstance()->Printf(100, 240, 3.0f, "endTime : %f", enemy->GetEndTime());
+	DebugText::GetInstance()->Printf(100, 280, 3.0f, "gravity : %f", enemy->GetGravity());
+	DebugText::GetInstance()->Printf(100, 320, 3.0f, "pos : %f", enemy->GetDropPos().y);
+	
 
 	DebugText::GetInstance()->DrawAll(dxCommon->GetCmdList());
 	sprite->PostDraw();

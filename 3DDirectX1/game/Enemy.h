@@ -25,7 +25,14 @@ public:
 	void Draw();
 	//Getter
 	float GetRand() { return dropRand; }
+<<<<<<< HEAD
 	float GetTime() { return timer; }
+=======
+	float GetTime() { return time; }
+	float GetEndTime() { return endTime; }
+	float GetGravity() { return gravity; }
+	XMFLOAT2 GetDropPos() { return dropPos[0]; }
+>>>>>>> ä½œæ¥­
 	Circle GetCircle() { return circle; }
 	int GetAttackNo() { return AttackNo; }
 private:
@@ -34,6 +41,7 @@ private:
 	void Roll();
 	void Grow();
 	void Drop();
+	void DropRand();
 	void Attack();
 private://•Ï”
 	Sprite* spEnemy = nullptr;
@@ -46,12 +54,18 @@ private://•Ï”
 	XMFLOAT2 dropPos[9];
 	float lane[10] = { 0,lane_Width,lane_Width * 2,lane_Width * 3,lane_Width * 4, lane_Width * 5,lane_Width * 6,lane_Width * 7,lane_Width * 8,lane_Width * 9 };
 	float dropRand;
+	bool randFlag = false;
 	bool dropFlag = false;
 	float timer = 0;
 	float endTime = 0;
+	float gravity = 0;
 	//ƒ[ƒ‹ŠÖ”
 	XMFLOAT2 pigPos = { 2000,500 };
 	float pigRot = 0;
 	Circle circle;
 	int AttackNo;
+	//Grow•Ï”
+	Sprite* spGrow[3];
+	XMFLOAT2 growPos[3];
+
 };
