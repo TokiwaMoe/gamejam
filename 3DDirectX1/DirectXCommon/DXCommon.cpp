@@ -175,7 +175,7 @@ void DXCommon::InitializeDevice()
 		}
 	}
 
-#ifdef _DEBUG
+#ifdef _DEBUG	//windows11のバグの対処
 	ComPtr<ID3D12InfoQueue> infoQueue;
 	if (SUCCEEDED(dev->QueryInterface(IID_PPV_ARGS(&infoQueue)))) {
 		// 抑制するエラー
