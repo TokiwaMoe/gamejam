@@ -179,3 +179,73 @@ const XMFLOAT3 Eas::easeOutQuad(const XMFLOAT3& start, const XMFLOAT3& end, floa
 
 	return num;
 }
+
+const XMFLOAT2 Eas::easeOutBounce(const XMFLOAT2& start, const XMFLOAT2& end, float t, float d)
+{
+	XMFLOAT2 num;
+	const float n1 = 7.5625;
+	const float d1 = 2.75;
+	float v;
+	float x = t / d;
+	if (x < 1 / d1) {
+		v = n1 * x * x;
+		num.x = (end.x - start.x) * v + start.x;
+		num.y = (end.y - start.y) * v + start.y;
+		return num;
+	}
+	else if (x < 2 / d1) {
+		v = n1 * (x -= 1.5 / d1) * x + 0.75;
+		num.x = (end.x - start.x) * v + start.x;
+		num.y = (end.y - start.y) * v + start.y;
+		return num;
+	}
+	else if (x < 2.5 / d1) {
+		v = n1 * (x -= 2.25 / d1) * x + 0.9375;
+		num.x = (end.x - start.x) * v + start.x;
+		num.y = (end.y - start.y) * v + start.y;
+		return num;
+	}
+	else {
+		v = n1 * (x -= 2.625 / d1) * x + 0.984375;
+		num.x = (end.x - start.x) * v + start.x;
+		num.y = (end.y - start.y) * v + start.y;
+		return num;
+	}
+}
+
+const XMFLOAT3 Eas::easeOutBounce(const XMFLOAT3& start, const XMFLOAT3& end, float t, float d)
+{
+	XMFLOAT3 num;
+	const float n1 = 7.5625;
+	const float d1 = 2.75;
+	float v;
+	float x = t / d;
+	if (x < 1 / d1) {
+		v = n1 * x * x;
+		num.x = (end.x - start.x) * v + start.x;
+		num.y = (end.y - start.y) * v + start.y;
+		num.z = (end.z - start.z) * v + start.z;
+		return num;
+	}
+	else if (x < 2 / d1) {
+		v = n1 * (x -= 1.5 / d1) * x + 0.75;
+		num.x = (end.x - start.x) * v + start.x;
+		num.y = (end.y - start.y) * v + start.y;
+		num.z = (end.z - start.z) * v + start.z;
+		return num;
+	}
+	else if (x < 2.5 / d1) {
+		v = n1 * (x -= 2.25 / d1) * x + 0.9375;
+		num.x = (end.x - start.x) * v + start.x;
+		num.y = (end.y - start.y) * v + start.y;
+		num.z = (end.z - start.z) * v + start.z;
+		return num;
+	}
+	else {
+		v = n1 * (x -= 2.625 / d1) * x + 0.984375;
+		num.x = (end.x - start.x) * v + start.x;
+		num.y = (end.y - start.y) * v + start.y;
+		num.z = (end.z - start.z) * v + start.z;
+		return num;
+	}
+}

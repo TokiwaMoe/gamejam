@@ -40,6 +40,9 @@ public:
 
 	static const XMFLOAT2 easeOutQuad(const XMFLOAT2& start, const XMFLOAT2& end, float t, float d);
 	static const XMFLOAT3 easeOutQuad(const XMFLOAT3& start, const XMFLOAT3& end, float t, float d);
+	
+	static const XMFLOAT2 easeOutBounce(const XMFLOAT2& start, const XMFLOAT2& end, float t, float d);
+	static const XMFLOAT3 easeOutBounce(const XMFLOAT3& start, const XMFLOAT3& end, float t, float d);
 
 };
 
