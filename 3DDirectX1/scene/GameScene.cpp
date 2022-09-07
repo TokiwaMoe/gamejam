@@ -114,7 +114,9 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 	player->Initialize();
 	player->Init();
 
-
+	enemy = new Enemy;//newすればエラー吐かない
+	enemy->Initialize();
+	enemy->Init();
 
 }
 
@@ -148,7 +150,7 @@ void GameScene::Update()
 
 	//player->SetTsize(Tsize);
 	player->Update();
-
+	enemy->Update();
 	camera->FollowCamera({0,0,0}, XMFLOAT3{0,2,-distance}, 0, 0);
 
 	//camera->SetEye(cameraPos);
@@ -200,6 +202,7 @@ void GameScene::DrawFront()
 	sprite->PreDraw(dxCommon->GetCmdList());
 	//sprite->Draw();
 	player->DrawSprite();
+	enemy->Draw();
 	DebugText::GetInstance()->Printf(100, 20, 3.0f, "%f", player->GetPlayerPos().y);
 	//DebugText::GetInstance()->Printf(100, 80, 3.0f, "%d", Alive[1]);
 	DebugText::GetInstance()->Printf(100, 200, 3.0f, "WASD:MOVE");

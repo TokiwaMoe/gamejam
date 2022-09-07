@@ -184,7 +184,7 @@
     <ClCompile Include="others\TouchableObject.cpp">
       <Filter>Library\others\collision</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
+    <ClCompile Include="game\Enemy.cpp">
       <Filter>Game\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
@@ -410,7 +410,7 @@
       <Filter>Library\others\collision</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Enemy.h">
+    <ClInclude Include="game\Enemy.h">
       <Filter>Game\Enemy</Filter>
     </ClInclude>
   </ItemGroup>

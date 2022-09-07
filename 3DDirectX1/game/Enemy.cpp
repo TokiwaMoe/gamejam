@@ -1,9 +1,17 @@
 #include "Enemy.h"
 
+Enemy::Enemy()
+{
+}
+
+Enemy::~Enemy()
+{
+}
+
 void Enemy::Initialize()
 {
-	/*Sprite::LoadTexture(1, L"Resources/back.png");
-	spEnemy = Sprite::CreateSprite(1, { 0,0 });*/
+	Sprite::LoadTexture(4, L"Resources/fantasy_maou_devil.png");
+	spEnemy = Sprite::CreateSprite(4, { 700,500 });
 }
 
 void Enemy::Init()
@@ -12,6 +20,7 @@ void Enemy::Init()
 
 void Enemy::Update()
 {
+	spEnemy->SetSize({ 200, 200 });
 }
 
 void Enemy::Move()
@@ -40,5 +49,5 @@ void Enemy::Attack()
 
 void Enemy::Draw()
 {
-	//spEnemy->Draw();
+	spEnemy->Draw();
 }
