@@ -49,8 +49,13 @@ void Enemy::Golf()
 
 void Enemy::Roll()
 {
-	pigPos.x-=10;
-	pigRot-=30;
+	if (pigPos.x > 0) {
+		pigPos.x -= 10;
+		pigRot -= 30;
+	}
+	else {
+		pigPos.x = 2000;
+	}
 	pig->SetSize({ 100, 100 });
 	pig->SetAnchorPoint({ 0.5,0.5 });
 	pig->SetPosition(pigPos);

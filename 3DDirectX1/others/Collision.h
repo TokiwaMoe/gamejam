@@ -25,4 +25,5 @@ public:
 	static bool CheckOBB2OBB(OBB& obbA, OBB& obbB);
 	static float LenSegOnSeparateAxis(DirectX::XMVECTOR* Sep, DirectX::XMVECTOR* e1, DirectX::XMVECTOR* e2, DirectX::XMVECTOR* e3 = 0);
 
+	static bool CheckCircle2Circle(const Circle&circleA,const Circle&circleB);
 };
