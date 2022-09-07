@@ -34,5 +34,8 @@ private:
 	void Attack();
 private://ïœêî
 	Sprite* spEnemy = nullptr;
+	Sprite* pig = nullptr;
 	XMFLOAT2 position = { 0,0 };
+	XMFLOAT2 pigPos = { 2000,500 };
+	float pigRot = 0;
 };
