@@ -75,7 +75,8 @@ void Enemy::Drop()
 {
 	if (dropFlag)
 	{
-		dropRand = rand() % 10;
+		endTime += 0.5;
+		
 		for (int i = 0; i < 9; i++)
 		{
 			dropPos[i].x = lane[i];
@@ -86,13 +87,20 @@ void Enemy::Drop()
 			}
 			spCard[i]->SetPosition(dropPos[i]);
 		}
-		time = 0;
+
+		if (endTime >= 50)
+		{
+			time = 0;
+			dropFlag = false;
+		}
+		
 	}
 	else {
 		time += 0.5;
 		if (time >= 50.0f)
 		{
 			dropFlag = true;
+			dropRand = rand() % 10;
 		}
 	}
 

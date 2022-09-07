@@ -47,6 +47,7 @@ private://•Ï”
 	float dropRand;
 	bool dropFlag = false;
 	float time = 0;
+	float endTime = 0;
 	//ƒ[ƒ‹ŠÖ”
 	XMFLOAT2 pigPos = { 2000,500 };
 	float pigRot = 0;
