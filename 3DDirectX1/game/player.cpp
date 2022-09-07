@@ -40,7 +40,7 @@ void Player::Move()
 		playerPos.x -= 2;
 		playerFlag = true;
 	}
-	/*if (Input::GetInstance()->PushKey(DIK_W))
+	if (Input::GetInstance()->PushKey(DIK_W))
 	{
 		playerPos.y -= 2;
 		playerFlag = false;
@@ -49,7 +49,7 @@ void Player::Move()
 	{
 		playerPos.y += 2;
 		playerFlag = false;
-	}*/
+	}
 }
 
 
