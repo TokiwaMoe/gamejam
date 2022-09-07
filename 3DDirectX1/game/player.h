@@ -36,8 +36,8 @@ private://プレイヤーの動き系
 	void Jump();//ジャンプ
 
 
-	Sprite* playerSprite=nullptr;
-	Sprite* sizeSprite=nullptr;
+	Sprite* playerSprite = nullptr;
+	Sprite* sizeSprite = nullptr;
 	//位置サイズ角度
 	XMFLOAT2 playerPos = { 0,0 };
 	bool playerFlag = false;

@@ -20,5 +20,5 @@ void Enemy::Draw()
 
 void Enemy::Move()
 {
-	spEnemy->Draw();
+	//spEnemy->Draw();
 }
