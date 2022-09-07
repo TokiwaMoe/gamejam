@@ -27,6 +27,7 @@ void Enemy::Initialize()
 void Enemy::Init()
 {
 	circle.center = pigPos;
+	AttackNo = rand() % 2;
 	circle.radius = 10;
 	srand(time(NULL));
 }
