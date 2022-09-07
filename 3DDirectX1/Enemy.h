@@ -35,4 +35,10 @@ private://ƒvƒŒƒCƒ„[‚Ì“®‚«Œn
 private://•Ï”
 	Sprite* spEnemy = nullptr;
 	XMFLOAT2 position = { 0,0 };
+
+	//drop•Ï”
+	XMFLOAT2 dropPos[9];
+	char lane[10] = { 0,0,0,0,0,0,0,0,0,0 };
+	int rand;
+
 };
