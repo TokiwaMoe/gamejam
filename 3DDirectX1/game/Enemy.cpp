@@ -42,6 +42,7 @@ void Enemy::Update()
 		Roll();
 		break;
 	case 1:
+		DropRand();
 		Drop();
 		break;
 	}
@@ -83,40 +84,66 @@ void Enemy::Grow()
 
 void Enemy::Drop()
 {
-	if (dropFlag)
+	for (int i = 0; i < 9; i++)
 	{
-		endTime += 0.5;
-
-		for (int i = 0; i < 9; i++)
+		if (dropFlag)
 		{
-			dropPos[i].x = lane[i];
-
-			if (dropRand <= i)
+			gravity += 9.8f / 60.0f;
+			dropPos[i].y += gravity;
+			if (dropPos[i].y >= 730)
 			{
-				dropPos[i].x = lane[i + 1];
+				AttackNo = rand() % 2;
+				dropFlag = false;
+				randFlag = false;
+				gravity = 0;
 			}
-			spCard[i]->SetPosition(dropPos[i]);
 		}
 
-		if (endTime >= 50)
-		{
-			time = 0;
-			dropFlag = false;
-			AttackNo = rand() % 2;
-		}
-
+		spCard[i]->SetPosition(dropPos[i]);
 	}
-	else {
-		time += 0.5;
-		if (time >= 50.0f)
+	
+}
+
+void Enemy::DropRand()
+{
+	for (int i = 0; i < 9; i++)
+	{
+		if (randFlag)
 		{
-			dropFlag = true;
-			dropRand = rand() % 10;
+			endTime += 0.05;
+
+			for (int i = 0; i < 9; i++)
+			{
+				dropPos[i].x = lane[i];
+
+				if (dropRand <= i)
+				{
+					dropPos[i].x = lane[i + 1];
+				}
+			}
+
+			if (endTime >= 50)
+			{
+				
+				endTime = 0;
+				dropFlag = true;
+			}
+
 		}
+		else {
+			dropPos[i].y = 0;
+			time += 0.05;
+			if (time >= 50.0f)
+			{
+				randFlag = true;
+				dropRand = rand() % 10;
+				time = 0;
+			}
+		}
+
+		spCard[i]->SetPosition(dropPos[i]);
 	}
-
-
-
+	
 }
 
 void Enemy::Attack()
@@ -126,7 +153,7 @@ void Enemy::Attack()
 void Enemy::Draw()
 {
 	spEnemy->Draw();
-	if (AttackNo == 1) {
+	if (AttackNo == 1 && randFlag) {
 		for (int i = 0; i < 9; i++)
 		{
 			spCard[i]->Draw();
