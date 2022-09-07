@@ -25,7 +25,7 @@ public:
 	void Draw();
 	//Getter
 	float GetRand() { return dropRand; }
-	float GetTime() { return time; }
+	float GetTime() { return timer; }
 	Circle GetCircle() { return circle; }
 	int GetAttackNo() { return AttackNo; }
 private:
@@ -47,7 +47,7 @@ private://•Ï”
 	float lane[10] = { 0,lane_Width,lane_Width * 2,lane_Width * 3,lane_Width * 4, lane_Width * 5,lane_Width * 6,lane_Width * 7,lane_Width * 8,lane_Width * 9 };
 	float dropRand;
 	bool dropFlag = false;
-	float time = 0;
+	float timer = 0;
 	float endTime = 0;
 	//ƒ[ƒ‹ŠÖ”
 	XMFLOAT2 pigPos = { 2000,500 };

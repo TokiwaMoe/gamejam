@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include<time.h>
 
 Enemy::Enemy()
 {
@@ -27,6 +28,7 @@ void Enemy::Init()
 {
 	circle.center = pigPos;
 	circle.radius = 10;
+	srand(time(NULL));
 }
 
 void Enemy::Update()
@@ -100,15 +102,15 @@ void Enemy::Drop()
 
 		if (endTime >= 50)
 		{
-			time = 0;
+			timer = 0;
 			dropFlag = false;
 			AttackNo = rand() % 2;
 		}
 
 	}
 	else {
-		time += 0.5;
-		if (time >= 50.0f)
+		timer += 0.5;
+		if (timer >= 50.0f)
 		{
 			dropFlag = true;
 			dropRand = rand() % 10;
