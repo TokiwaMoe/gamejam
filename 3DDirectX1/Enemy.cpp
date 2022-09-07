@@ -14,6 +14,26 @@ void Enemy::Update()
 {
 }
 
+void Enemy::Golf()
+{
+}
+
+void Enemy::Roll()
+{
+}
+
+void Enemy::Grow()
+{
+}
+
+void Enemy::Drop()
+{
+}
+
+void Enemy::Attack()
+{
+}
+
 void Enemy::Draw()
 {
 }
