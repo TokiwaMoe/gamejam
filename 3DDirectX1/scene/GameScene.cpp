@@ -159,7 +159,7 @@ void GameScene::Update()
 
 	if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetCircle())) {
 
-		DebugText::GetInstance()->Printf(100, 60, 3.0f, "Hit");
+		DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 	}
 	particleMan->Update();
 	object3d2->SetPosition(playerPosition);
@@ -207,9 +207,9 @@ void GameScene::DrawFront()
 	enemy->Draw();
 	DebugText::GetInstance()->Printf(100, 20, 3.0f, "%f", player->GetCircle().center.y);
 	//DebugText::GetInstance()->Printf(100, 80, 3.0f, "%d", Alive[1]);
-	DebugText::GetInstance()->Printf(100, 200, 3.0f, "WASD:MOVE");
-	DebugText::GetInstance()->Printf(100, 230, 2.0f, "rand : %f", enemy->GetRand());
-	DebugText::GetInstance()->Printf(100, 230, 2.0f, "time : %f", enemy->GetTime());
+	DebugText::GetInstance()->Printf(100,100, 3.0f, "WASD:MOVE");
+	DebugText::GetInstance()->Printf(100, 160, 3.0f, "rand : %f", enemy->GetRand());
+	DebugText::GetInstance()->Printf(100, 200, 3.0f, "time : %f", enemy->GetTime());
 
 	DebugText::GetInstance()->DrawAll(dxCommon->GetCmdList());
 	sprite->PostDraw();
