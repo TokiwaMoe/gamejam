@@ -27,6 +27,7 @@ public:
 	float GetRand() { return dropRand; }
 	float GetTime() { return time; }
 	Circle GetCircle() { return circle; }
+	int GetAttackNo() { return AttackNo; }
 private:
 	void Move();//ˆÚ“®
 	void Golf();
@@ -52,4 +53,5 @@ private://•Ï”
 	XMFLOAT2 pigPos = { 2000,500 };
 	float pigRot = 0;
 	Circle circle;
+	int AttackNo;
 };

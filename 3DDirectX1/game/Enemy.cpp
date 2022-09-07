@@ -19,8 +19,8 @@ void Enemy::Initialize()
 	{
 		spCard[i] = Sprite::CreateSprite(10, dropPos[i]);
 	}
-	
-	
+
+
 }
 
 void Enemy::Init()
@@ -34,11 +34,19 @@ void Enemy::Update()
 	spEnemy->SetSize({ 200, 200 });
 	for (int i = 0; i < 9; i++)
 	{
-		spCard[i]->SetSize({91, 133});
+		spCard[i]->SetSize({ 91, 133 });
 	}
-	
-	Roll();
-	Drop();
+	switch (AttackNo)
+	{
+	case 0:
+		Roll();
+		break;
+	case 1:
+		Drop();
+		break;
+	}
+
+
 
 	circle.center = pigPos;
 	circle.radius = 60;
@@ -60,11 +68,13 @@ void Enemy::Roll()
 	}
 	else {
 		pigPos.x = 2000;
+		AttackNo = rand() % 2;
 	}
 	pig->SetSize({ 100, 100 });
 	pig->SetAnchorPoint({ 0.5,0.5 });
 	pig->SetPosition(pigPos);
 	pig->SetRotation(pigRot);
+
 }
 
 void Enemy::Grow()
@@ -76,7 +86,7 @@ void Enemy::Drop()
 	if (dropFlag)
 	{
 		endTime += 0.5;
-		
+
 		for (int i = 0; i < 9; i++)
 		{
 			dropPos[i].x = lane[i];
@@ -92,8 +102,9 @@ void Enemy::Drop()
 		{
 			time = 0;
 			dropFlag = false;
+			AttackNo = rand() % 2;
 		}
-		
+
 	}
 	else {
 		time += 0.5;
@@ -104,8 +115,8 @@ void Enemy::Drop()
 		}
 	}
 
-	
-	
+
+
 }
 
 void Enemy::Attack()
@@ -115,9 +126,13 @@ void Enemy::Attack()
 void Enemy::Draw()
 {
 	spEnemy->Draw();
-	for (int i = 0; i < 9; i++)
-	{
-		spCard[i]->Draw();
+	if (AttackNo == 1) {
+		for (int i = 0; i < 9; i++)
+		{
+			spCard[i]->Draw();
+		}
 	}
-	pig->Draw();
+	if (AttackNo == 0) {
+		pig->Draw();
+	}
 }
