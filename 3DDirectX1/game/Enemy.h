@@ -25,14 +25,10 @@ public:
 	void Draw();
 	//Getter
 	float GetRand() { return dropRand; }
-<<<<<<< HEAD
 	float GetTime() { return timer; }
-=======
-	float GetTime() { return time; }
 	float GetEndTime() { return endTime; }
 	float GetGravity() { return gravity; }
 	XMFLOAT2 GetDropPos() { return dropPos[0]; }
->>>>>>> 作業
 	Circle GetCircle() { return circle; }
 	int GetAttackNo() { return AttackNo; }
 private:

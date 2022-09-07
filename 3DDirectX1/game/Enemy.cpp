@@ -112,6 +112,7 @@ void Enemy::Drop()
 
 		spCard[i]->SetPosition(dropPos[i]);
 	}
+}
 
 void Enemy::DropRand()
 {
@@ -133,7 +134,7 @@ void Enemy::DropRand()
 
 			if (endTime >= 50)
 			{
-				
+
 				endTime = 0;
 				dropFlag = true;
 			}
@@ -141,18 +142,17 @@ void Enemy::DropRand()
 		}
 		else {
 			dropPos[i].y = 0;
-			time += 0.05;
-			if (time >= 50.0f)
+			timer += 0.05;
+			if (timer >= 50.0f)
 			{
 				randFlag = true;
 				dropRand = rand() % 10;
-				time = 0;
+				timer = 0;
 			}
 		}
 
 		spCard[i]->SetPosition(dropPos[i]);
 	}
-	
 }
 
 void Enemy::Attack()
