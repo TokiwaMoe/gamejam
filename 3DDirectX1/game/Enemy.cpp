@@ -68,11 +68,30 @@ void Enemy::Grow()
 
 void Enemy::Drop()
 {
-	for (int i = 0; i < 9; i++)
+	if (dropFlag)
 	{
-		dropPos[i].x = lane[i];
-		spCard[i]->SetPosition(dropPos[i]);
+		dropRand = rand() % 10;
+		for (int i = 0; i < 9; i++)
+		{
+			dropPos[i].x = lane[i];
+
+			if (dropRand <= i)
+			{
+				dropPos[i].x = lane[i + 1];
+			}
+			spCard[i]->SetPosition(dropPos[i]);
+		}
+		time = 0;
 	}
+	else {
+		time += 0.5;
+		if (time >= 50.0f)
+		{
+			dropFlag = true;
+		}
+	}
+
+	
 	
 }
 

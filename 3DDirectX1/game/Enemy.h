@@ -24,6 +24,8 @@ public:
 
 	void Draw();
 	//Getter
+	float GetRand() { return dropRand; }
+	float GetTime() { return time; }
 
 private:
 	void Move();//ˆÚ“®
@@ -42,7 +44,9 @@ private://•Ï”
 	Sprite* spCard[9];
 	XMFLOAT2 dropPos[9];
 	float lane[10] = { 0,lane_Width,lane_Width * 2,lane_Width * 3,lane_Width * 4, lane_Width * 5,lane_Width * 6,lane_Width * 7,lane_Width * 8,lane_Width * 9 };
-	int rand;
+	float dropRand;
+	bool dropFlag = true;
+	float time = 50;
 	//ƒ[ƒ‹ŠÖ”
 	XMFLOAT2 pigPos = { 2000,500 };
 	float pigRot = 0;
