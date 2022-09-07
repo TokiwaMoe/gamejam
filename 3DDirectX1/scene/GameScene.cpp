@@ -157,8 +157,10 @@ void GameScene::Update()
 	//camera->SetTarget(player->GetSpherePos());
 	camera->Update();
 
+	if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetCircle())) {
 
-
+		DebugText::GetInstance()->Printf(100, 60, 3.0f, "Hit");
+	}
 	particleMan->Update();
 	object3d2->SetPosition(playerPosition);
 	object3d2->SetRotation({ 0,90,0 });
@@ -203,7 +205,7 @@ void GameScene::DrawFront()
 	//sprite->Draw();
 	player->DrawSprite();
 	enemy->Draw();
-	DebugText::GetInstance()->Printf(100, 20, 3.0f, "%f", player->GetPlayerPos().y);
+	DebugText::GetInstance()->Printf(100, 20, 3.0f, "%f", player->GetCircle().center.y);
 	//DebugText::GetInstance()->Printf(100, 80, 3.0f, "%d", Alive[1]);
 	DebugText::GetInstance()->Printf(100, 200, 3.0f, "WASD:MOVE");
 	DebugText::GetInstance()->Printf(100, 230, 2.0f, "rand : %f", enemy->GetRand());
