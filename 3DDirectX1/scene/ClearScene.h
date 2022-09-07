@@ -13,7 +13,6 @@
 #include "FbxObject.h"
 #include"LightGroup.h"
 #include"player.h"
-#include"GameObject.h"
 /// <summary>
 /// ÉNÉäÉA
 /// </summary>

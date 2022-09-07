@@ -120,8 +120,7 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 
 void GameScene::Init()
 {
-	//player->Init();
-	//gameObject->Init();
+
 }
 
 void GameScene::Update()
