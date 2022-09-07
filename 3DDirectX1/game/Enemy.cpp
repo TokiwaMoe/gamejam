@@ -18,12 +18,16 @@ void Enemy::Initialize()
 
 void Enemy::Init()
 {
+	circle.center = pigPos;
+	circle.radius = 3;
 }
 
 void Enemy::Update()
 {
 	spEnemy->SetSize({ 200, 200 });
 	Roll();
+	circle.center = pigPos;
+	circle.radius = 3;
 }
 
 void Enemy::Move()
