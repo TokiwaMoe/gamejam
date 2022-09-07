@@ -14,6 +14,10 @@ void Enemy::Update()
 {
 }
 
+void Enemy::Move()
+{
+}
+
 void Enemy::Golf()
 {
 }
@@ -35,10 +39,6 @@ void Enemy::Attack()
 }
 
 void Enemy::Draw()
-{
-}
-
-void Enemy::Move()
 {
 	//spEnemy->Draw();
 }

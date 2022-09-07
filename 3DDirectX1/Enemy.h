@@ -21,6 +21,7 @@ public:
 	void Initialize();//一回だけの初期化
 	void Init();//シーンチェンジ時にもする初期化
 	void Update();
+	void Move();
 	void Golf();
 	void Roll();
 	void Grow();
