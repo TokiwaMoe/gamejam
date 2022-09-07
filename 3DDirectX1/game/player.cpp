@@ -23,8 +23,10 @@ void Player::Initialize()
 
 void Player::Init()
 {
-
+	circle.center = playerPos;
+	circle.radius = 2;
 	playerPos={ 50,100 };
+
 }
 
 
@@ -50,6 +52,8 @@ void Player::Move()
 		playerPos.y += 2;
 		playerFlag = false;
 	}
+	circle.center = playerPos;
+	circle.radius = 2;
 }
 
 

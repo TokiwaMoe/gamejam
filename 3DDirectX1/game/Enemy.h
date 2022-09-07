@@ -1,6 +1,6 @@
 #pragma once
 #include"Sprite.h"
-
+#include"Collision.h"
 /// <summary>
 /// プレイヤー関連のクラス
 /// </summary>
@@ -24,7 +24,7 @@ public:
 
 	void Draw();
 	//Getter
-
+	Circle GetCircle() { return circle; }
 private:
 	void Move();//移動
 	void Golf();
@@ -46,4 +46,5 @@ private://変数
 	//ロール関数
 	XMFLOAT2 pigPos = { 2000,500 };
 	float pigRot = 0;
+	Circle circle;
 };

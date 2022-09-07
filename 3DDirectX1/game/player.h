@@ -30,7 +30,7 @@ public:
 
 	//Getter
 	XMFLOAT2 GetPlayerPos() { return playerPos; }
-
+	Circle GetCircle() { return circle; }
 private://プレイヤーの動き系
 	void Move();//移動
 	void Jump();//ジャンプ
@@ -45,4 +45,5 @@ private://プレイヤーの動き系
 	bool gFlag = false;
 	float g = 9.8f / 60;
 	float jSpeed;
+	Circle circle;
 };
