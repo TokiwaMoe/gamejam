@@ -1,6 +1,6 @@
 #include "Enemy.h"
 #include<time.h>
-
+#include"Input.h"
 Enemy::Enemy()
 {
 }
@@ -15,6 +15,8 @@ void Enemy::Initialize()
 	spEnemy = Sprite::CreateSprite(4, { 700,500 });
 	Sprite::LoadTexture(5, L"Resources/animal_pig_buta.png");
 	pig = Sprite::CreateSprite(5, pigPos);
+	Sprite::LoadTexture(6, L"Resources/animal_harinezumi.png");
+	golf = Sprite::CreateSprite(6, GolfPos);
 	Sprite::LoadTexture(10, L"Resources/card_joker.png");
 	for (int i = 0; i < 9; i++)
 	{
@@ -50,7 +52,7 @@ void Enemy::Update()
 		break;
 	}
 
-
+	Golf();
 
 	circle.center = pigPos;
 	circle.radius = 60;
@@ -62,6 +64,34 @@ void Enemy::Move()
 
 void Enemy::Golf()
 {
+	if (Input::GetInstance()->TriggerKey(DIK_B)) {
+
+		Mflag = true;
+		v2 = { 0.0f,0.0f };
+		g = 9.8f / 60.0f;
+		v2.x = v * cos(60 * PI / 180.0);
+		v2.y = v * sin(60 * PI / 180.0);
+
+		GolfPos = { 800,400 };
+	}
+
+
+	if (Mflag) {
+
+		if (GolfPos.y <= 500) {
+			GolfPos.x -= v2.x;
+			GolfPos.y -= v2.y;
+
+			v2.y = -g + v2.y;
+			g = k * v / m;
+		}
+		if (GolfPos.y > 500) {
+			Mflag = false;
+
+		}
+	}
+	golf->SetSize({200,200});
+	golf->SetPosition(GolfPos);
 }
 
 void Enemy::Roll()
@@ -171,4 +201,5 @@ void Enemy::Draw()
 	if (AttackNo == 0) {
 		pig->Draw();
 	}
+	golf->Draw();
 }

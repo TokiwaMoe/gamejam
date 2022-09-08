@@ -41,7 +41,6 @@ private:
 	void Attack();
 private://•Ï”
 	Sprite* spEnemy = nullptr;
-	Sprite* pig = nullptr;
 	XMFLOAT2 position = { 0,0 };
 
 	//drop•Ï”
@@ -55,13 +54,32 @@ private://•Ï”
 	float timer = 0;
 	float endTime = 0;
 	float gravity = 0;
-	//ƒ[ƒ‹ŠÖ”
+	//ƒ[ƒ‹•Ï”
+	Sprite* pig = nullptr;
 	XMFLOAT2 pigPos = { 2000,500 };
 	float pigRot = 0;
 	Circle circle;
+	//UŒ‚‚Ìí—Ş‚ğŒˆ‚ß‚é‚½‚ß‚Ì‚à‚Ì
 	int AttackNo;
 	//Grow•Ï”
 	Sprite* spGrow[3];
 	XMFLOAT2 growPos[3];
+	//Golf•Ï”
+	Sprite* golf = nullptr;
+	XMFLOAT2 GolfPos = { 800,400 };
+	bool Mflag = false;
+	XMFLOAT2 v2 = { 0.0f,0.0f };
 
+
+
+	float f = 10.0f;
+	float v = 40.0f;
+	float k = 1.0f;
+	float a = 0.f;
+	float g = 9.8f / 60.0f;
+	float fx1 = 1.0f;
+	float m = 15.0f;
+	float t = 0.0f;
+	//Mt4_‰Û‘è2
+	float PI = 3.141592;
 };
