@@ -1,7 +1,7 @@
 #include "Enemy.h"
 #include<time.h>
 #include"Input.h"
-#include"Ease.h"
+
 Enemy::Enemy()
 {
 }
