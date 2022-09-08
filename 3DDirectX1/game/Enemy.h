@@ -1,6 +1,7 @@
 #pragma once
 #include"Sprite.h"
 #include"Collision.h"
+#include"Ease.h"
 /// <summary>
 /// プレイヤー関連のクラス
 /// </summary>
@@ -31,6 +32,7 @@ public:
 	XMFLOAT2 GetDropPos() { return dropPos[0]; }
 	Circle GetCircle() { return circle; }
 	int GetAttackNo() { return AttackNo; }
+	XMFLOAT2 GetGolfPos() { return GolfPos; }
 private:
 	void Move();//移動
 	void Golf();
@@ -65,13 +67,11 @@ private://変数
 	Sprite* spGrow[3];
 	XMFLOAT2 growPos[3];
 	//Golf変数
+	Eas* eas;
 	Sprite* golf = nullptr;
 	XMFLOAT2 GolfPos = { 800,400 };
 	bool Mflag = false;
 	XMFLOAT2 v2 = { 0.0f,0.0f };
-
-
-
 	float f = 10.0f;
 	float v = 40.0f;
 	float k = 1.0f;
@@ -80,6 +80,6 @@ private://変数
 	float fx1 = 1.0f;
 	float m = 10.0f;
 	float t = 0.0f;
-	//Mt4_課題2
 	float PI = 3.141592;
+	float easeTimer = 0;
 };

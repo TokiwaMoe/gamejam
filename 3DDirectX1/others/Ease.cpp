@@ -84,168 +84,74 @@ const XMFLOAT3 Eas::easeInOut(const XMFLOAT3& start, const XMFLOAT3& end, const 
 	return num;
 }
 
-const XMFLOAT2 Eas::easeInCubic(const XMFLOAT2& start, const XMFLOAT2& end, float t, float d)
+float Eas::easeInCubic(float x)
 {
-	XMFLOAT2 num;
-	float x = t / d;
-	float v = x * x * x;
-	num.x = (end.x - start.x) * v + start.x;
-	num.y = (end.y - start.y) * v + start.y;
-
-
-	return num;
+	return x * x * x;
 }
 
-const XMFLOAT3 Eas::easeInCubic(const XMFLOAT3& start, const XMFLOAT3& end, float t, float d)
+float Eas::easeOutCubic(float x)
 {
-	XMFLOAT3 num;
-	float x = t / d;
-	float v = x * x * x;
-	num.x = (end.x - start.x) * v + start.x;
-	num.y = (end.y - start.y) * v + start.y;
-	num.z = (end.z - start.z) * v + start.z;
-
-	return num;
+	return 1 - pow(1 - x, 3);
 }
 
-const XMFLOAT2 Eas::easeOutCubic(const XMFLOAT2& start, const XMFLOAT2& end, float t, float d)
+float Eas::easeInQuad(float x)
 {
-	XMFLOAT2 num;
-	float x = t / d;
-	float v = 1 - pow(1 - x, 3);
-	num.x = (end.x - start.x) * v + start.x;
-	num.y = (end.y - start.y) * v + start.y;
-
-
-	return num;
+	return x * x;
 }
 
-const XMFLOAT3 Eas::easeOutCubic(const XMFLOAT3& start, const XMFLOAT3& end, float t, float d)
+float Eas::easeOutQuad(float x)
 {
-	XMFLOAT3 num;
-	float x = t / d;
-	float v = 1 - pow(1 - x, 3);
-	num.x = (end.x - start.x) * v + start.x;
-	num.y = (end.y - start.y) * v + start.y;
-	num.z = (end.z - start.z) * v + start.z;
-
-	return num;
+	return 1 - (1 - x) * (1 - x);
 }
 
-const XMFLOAT2 Eas::easeInQuad(const XMFLOAT2& start, const XMFLOAT2& end, float t, float d)
+float Eas::easeOutBounce(float x)
 {
-	XMFLOAT2 num;
-	float x = t / d;
-	float v = x * x;
-	num.x = (end.x - start.x) * v + start.x;
-	num.y = (end.y - start.y) * v + start.y;
-
-
-	return num;
-}
-
-const XMFLOAT3 Eas::easeInQuad(const XMFLOAT3& start, const XMFLOAT3& end, float t, float d)
-{
-	XMFLOAT3 num;
-	float x = t / d;
-	float v = x * x;
-	num.x = (end.x - start.x) * v + start.x;
-	num.y = (end.y - start.y) * v + start.y;
-	num.z = (end.z - start.z) * v + start.z;
-
-	return num;
-}
-
-const XMFLOAT2 Eas::easeOutQuad(const XMFLOAT2& start, const XMFLOAT2& end, float t, float d)
-{
-	XMFLOAT2 num;
-	float x = t / d;
-	float v = 1 - (1 - x) * (1 - x);
-	num.x = (end.x - start.x) * v + start.x;
-	num.y = (end.y - start.y) * v + start.y;
-
-
-	return num;
-}
-
-const XMFLOAT3 Eas::easeOutQuad(const XMFLOAT3& start, const XMFLOAT3& end, float t, float d)
-{
-	XMFLOAT3 num;
-	float x = t / d;
-	float v = 1 - (1 - x) * (1 - x);
-	num.x = (end.x - start.x) * v + start.x;
-	num.y = (end.y - start.y) * v + start.y;
-	num.z = (end.z - start.z) * v + start.z;
-
-	return num;
-}
-
-const XMFLOAT2 Eas::easeOutBounce(const XMFLOAT2& start, const XMFLOAT2& end, float t, float d)
-{
-	XMFLOAT2 num;
 	const float n1 = 7.5625;
 	const float d1 = 2.75;
-	float v;
-	float x = t / d;
+
 	if (x < 1 / d1) {
-		v = n1 * x * x;
-		num.x = (end.x - start.x) * v + start.x;
-		num.y = (end.y - start.y) * v + start.y;
-		return num;
+		return n1 * x * x;
 	}
 	else if (x < 2 / d1) {
-		v = n1 * (x -= 1.5 / d1) * x + 0.75;
-		num.x = (end.x - start.x) * v + start.x;
-		num.y = (end.y - start.y) * v + start.y;
-		return num;
+		return n1 * (x -= 1.5 / d1) * x + 0.75;
 	}
 	else if (x < 2.5 / d1) {
-		v = n1 * (x -= 2.25 / d1) * x + 0.9375;
-		num.x = (end.x - start.x) * v + start.x;
-		num.y = (end.y - start.y) * v + start.y;
-		return num;
+		return n1 * (x -= 2.25 / d1) * x + 0.9375;
 	}
 	else {
-		v = n1 * (x -= 2.625 / d1) * x + 0.984375;
-		num.x = (end.x - start.x) * v + start.x;
-		num.y = (end.y - start.y) * v + start.y;
-		return num;
+		return n1 * (x -= 2.625 / d1) * x + 0.984375;
 	}
 }
 
-const XMFLOAT3 Eas::easeOutBounce(const XMFLOAT3& start, const XMFLOAT3& end, float t, float d)
+XMFLOAT2 Eas::ease(const XMFLOAT2& start, const XMFLOAT2& end, float t,float d, int i)
 {
-	XMFLOAT3 num;
-	const float n1 = 7.5625;
-	const float d1 = 2.75;
-	float v;
 	float x = t / d;
-	if (x < 1 / d1) {
-		v = n1 * x * x;
-		num.x = (end.x - start.x) * v + start.x;
-		num.y = (end.y - start.y) * v + start.y;
-		num.z = (end.z - start.z) * v + start.z;
-		return num;
-	}
-	else if (x < 2 / d1) {
-		v = n1 * (x -= 1.5 / d1) * x + 0.75;
-		num.x = (end.x - start.x) * v + start.x;
-		num.y = (end.y - start.y) * v + start.y;
-		num.z = (end.z - start.z) * v + start.z;
-		return num;
-	}
-	else if (x < 2.5 / d1) {
-		v = n1 * (x -= 2.25 / d1) * x + 0.9375;
-		num.x = (end.x - start.x) * v + start.x;
-		num.y = (end.y - start.y) * v + start.y;
-		num.z = (end.z - start.z) * v + start.z;
-		return num;
-	}
-	else {
-		v = n1 * (x -= 2.625 / d1) * x + 0.984375;
-		num.x = (end.x - start.x) * v + start.x;
-		num.y = (end.y - start.y) * v + start.y;
-		num.z = (end.z - start.z) * v + start.z;
-		return num;
-	}
+	XMFLOAT2 subtraction = { end.x - start.x,end.y - start.y };
+	XMFLOAT2 num{};
+	float v=0;
+	if (i == 1) { v = easeInCubic(x); }
+	if (i == 2) { v = easeOutCubic(x); }
+	if (i == 3) { v = easeInQuad(x); }
+	if (i == 4) { v = easeOutQuad(x); }
+	if (i == 5) { v = easeOutBounce(x); }
+	num.x = subtraction.x * v + start.x;
+	num.y = subtraction.y * v + start.y;
+	return num;
+}
+
+XMFLOAT3 Eas::ease(const XMFLOAT3& start, const XMFLOAT3& end, float t,float d, int i)
+{
+	float x = t / d;
+	XMFLOAT3 subtraction = { end.x - start.x,end.y - start.y,end.z - start.z };
+	XMFLOAT3 num{};
+	float v=0;
+	if (i == 1) { v = easeInCubic(x); }
+	if (i == 2) { v = easeOutCubic(x); }
+	if (i == 3) { v = easeInQuad(x); }
+	if (i == 4) { v = easeOutQuad(x); }
+	if (i == 5) { v = easeOutBounce(x); }
+	num.x = subtraction.x * v + start.x;
+	num.y = subtraction.y * v + start.y;
+	num.z = subtraction.z * v + start.z;
+	return num;
 }

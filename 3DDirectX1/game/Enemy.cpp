@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include<time.h>
 #include"Input.h"
+#include"Ease.h"
 Enemy::Enemy()
 {
 }
@@ -71,7 +72,7 @@ void Enemy::Golf()
 		g = 9.8f / 60.0f;
 		v2.x = v * cos(60 * PI / 180.0);
 		v2.y = v * sin(60 * PI / 180.0);
-
+		easeTimer = 0;
 		GolfPos = { 800,400 };
 	}
 
@@ -86,7 +87,12 @@ void Enemy::Golf()
 			g = k * v / m;
 		}
 		if (GolfPos.y > 500) {
-			Mflag = false;
+			//Mflag = false;
+			
+			if (easeTimer < 0.2) {
+				easeTimer += 0.1 / 60;
+			}
+			GolfPos = eas->ease(GolfPos, { 0,GolfPos.y }, easeTimer, 0.2, 5);
 
 		}
 	}
