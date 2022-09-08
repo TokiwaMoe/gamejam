@@ -78,7 +78,7 @@ private://•Ï”
 	float a = 0.f;
 	float g = 9.8f / 60.0f;
 	float fx1 = 1.0f;
-	float m = 15.0f;
+	float m = 10.0f;
 	float t = 0.0f;
 	//Mt4_‰Û‘è2
 	float PI = 3.141592;
