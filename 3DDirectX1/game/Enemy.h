@@ -38,6 +38,9 @@ public:
 
 	float GetGrowTime() { return growTime; }
 
+	int GetGrowRandX() { return growRandX; }
+	int GetGrowRandY() { return growRandY; }
+
 private:
 	void Move();//ˆÚ“®
 	void Golf();
@@ -73,9 +76,9 @@ private://•Ï”
 	int AttackNo;
 	//Grow•Ï”
 	Sprite* spGrow[3];
-	float x = 320;
+	float x = 177;
 	float y = 240;
-	float growPosX[4] = { x,x * 2,x * 3,x * 4 };
+	float growPosX[4] = { 0,x,x * 2,x * 3 };
 	float growPosY[3] = { 0,y * 2,y };
 	int growRandX = 0;
 	int growRandY = 0;

@@ -87,22 +87,23 @@ void Enemy::Golf()
 
 	if (Mflag) {
 
-		if (GolfPos.y <= 500) {
-			GolfPos.x -= v2.x;
-			GolfPos.y -= v2.y;
+		//if (GolfPos.y <= 500) {
+		//	GolfPos.x -= v2.x;
+		//	GolfPos.y -= v2.y;
 
-			v2.y = -g + v2.y;
-			g = k * v / m;
-		}
-		if (GolfPos.y > 500) {
-			//Mflag = false;
-			
-			if (easeTimer < 1.0) {
-				easeTimer += 0.01;
-			}
-			GolfPos = eas->ease(GolfPos, { 0,500 }, easeTimer, 1.0, 5);
+		//	v2.y = -g + v2.y;
+		//	g = k * v / m;
+		//}
+		//if (GolfPos.y > 500) {
+		//	//Mflag = false;
+		//	
+		//	if (easeTimer <= 1.0) {
+		//		
+		//	}
+		easeTimer += 0.01;
+		GolfPos = eas->ease(GolfPos, { 0,500 }, easeTimer, 1.0f, 5);
 
-		}
+		//}
 	}
 	golf->SetSize({200,200});
 	golf->SetPosition(GolfPos);
@@ -129,7 +130,7 @@ void Enemy::Grow()
 {
 	
 
-	if (growTime >= 50)
+	if (growTime >= 10)
 	{
 		growFlag = true;
 		growRandX = rand() % 4;
@@ -153,6 +154,7 @@ void Enemy::Grow()
 	}
 	else {
 		growTime += 0.05f;
+		//growPos[0] = { 0,0 };
 	}
 
 	spGrow[0]->SetPosition(growPos[0]);
@@ -249,7 +251,7 @@ void Enemy::Draw()
 
 	for (int i = 0; i < 3; i++)
 	{
-		spGrow[i]->Draw();
+		spGrow[0]->Draw();
 	}
 
 }
