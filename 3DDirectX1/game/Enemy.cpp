@@ -23,7 +23,12 @@ void Enemy::Initialize()
 	{
 		spCard[i] = Sprite::CreateSprite(10, dropPos[i]);
 	}
-
+	Sprite::LoadTexture(11, L"Resources/flower_hachiue1_red.png");
+	for (int i = 0; i < 3; i++)
+	{
+		spGrow[i]= Sprite::CreateSprite(11, growPos[i]);
+	}
+	
 
 }
 
@@ -53,7 +58,10 @@ void Enemy::Update()
 		break;
 	}
 
+
 	Golf();
+
+	Grow();
 
 	circle.center = pigPos;
 	circle.radius = 60;
@@ -119,6 +127,35 @@ void Enemy::Roll()
 
 void Enemy::Grow()
 {
+	
+
+	if (growTime >= 50)
+	{
+		growFlag = true;
+		growRandX = rand() % 4;
+
+		if (growRandX == 1 || growRandX == 2)
+		{
+			growRandY = rand() % 2;
+		}
+		else if (growRandX == 0 || growRandX == 3)
+		{
+			growRandY = rand() % 3;
+		}
+		
+	}
+
+	if (growFlag)
+	{
+		growPos[0] = { growPosX[growRandX], growPosY[growRandY] };
+		growTime = 0;
+		growFlag = false;
+	}
+	else {
+		growTime += 0.05f;
+	}
+
+	spGrow[0]->SetPosition(growPos[0]);
 }
 
 void Enemy::Drop()
@@ -207,5 +244,12 @@ void Enemy::Draw()
 	if (AttackNo == 0) {
 		pig->Draw();
 	}
+
 	golf->Draw();
+
+	for (int i = 0; i < 3; i++)
+	{
+		spGrow[i]->Draw();
+	}
+
 }

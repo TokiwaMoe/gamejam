@@ -32,8 +32,12 @@ public:
 	XMFLOAT2 GetDropPos() { return dropPos[0]; }
 	Circle GetCircle() { return circle; }
 	int GetAttackNo() { return AttackNo; }
+
 	XMFLOAT2 GetGolfPos() { return GolfPos; }
 	float GetEaseTimer() { return easeTimer; }
+
+	float GetGrowTime() { return growTime; }
+
 private:
 	void Move();//ˆÚ“®
 	void Golf();
@@ -59,6 +63,9 @@ private://•Ï”
 	float gravity = 0;
 	//ƒ[ƒ‹•Ï”
 	Sprite* pig = nullptr;
+
+	//roll•Ï”
+
 	XMFLOAT2 pigPos = { 2000,500 };
 	float pigRot = 0;
 	Circle circle;
@@ -66,6 +73,14 @@ private://•Ï”
 	int AttackNo;
 	//Grow•Ï”
 	Sprite* spGrow[3];
+	float x = 320;
+	float y = 240;
+	float growPosX[4] = { x,x * 2,x * 3,x * 4 };
+	float growPosY[3] = { 0,y * 2,y };
+	int growRandX = 0;
+	int growRandY = 0;
+	float growTime = 0;
+	bool growFlag = false;
 	XMFLOAT2 growPos[3];
 	//Golf•Ï”
 	Eas* eas;
