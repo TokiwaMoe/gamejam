@@ -129,11 +129,20 @@ void Enemy::Roll()
 
 void Enemy::Grow()
 {
-
-
-	if (growTime >= 50)
+	growTime += 0.05f;
+	if (growTime >= 30)
 	{
-		growFlag = true;
+
+	}
+}
+
+void Enemy::GrowRand()
+{
+
+
+	if (growRandTime >= 50)
+	{
+		growRandFlag = true;
 		growRandX = rand() % 4;
 
 		if (growRandX == 1 || growRandX == 2)
@@ -147,14 +156,14 @@ void Enemy::Grow()
 
 	}
 
-	if (growFlag)
+	if (growRandFlag)
 	{
 		growPos[0] = { growPosX[growRandX], growPosY[growRandY] };
-		growTime = 0;
-		growFlag = false;
+		growRandTime = 0;
+		growRandFlag = false;
 	}
 	else {
-		growTime += 0.05f;
+		growRandTime += 0.05f;
 	}
 
 	spGrow[0]->SetPosition(growPos[0]);
