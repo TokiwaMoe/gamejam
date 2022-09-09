@@ -36,16 +36,18 @@ public:
 	XMFLOAT2 GetGolfPos() { return GolfPos; }
 	float GetEaseTimer() { return easeTimer; }
 
-	float GetGrowTime() { return growTime; }
+	float GetGrowTime() { return behindTime; }
 
 	int GetGrowRandX() { return growRandX; }
 	int GetGrowRandY() { return growRandY; }
+	XMFLOAT2 GetGrowPos() { return growPos[0]; }
 
 private:
 	void Move();//ˆÚ“®
 	void Golf();
 	void Roll();
 	void Grow();
+	void GrowRand();
 	void Drop();
 	void DropRand();
 	void Attack();
@@ -64,6 +66,8 @@ private://•Ï”
 	float timer = 0;
 	float endTime = 0;
 	float gravity = 0;
+	bool behindFlag = false;
+	float behindTime = 0;
 	//ƒ[ƒ‹•Ï”
 	Sprite* pig = nullptr;
 
@@ -82,9 +86,11 @@ private://•Ï”
 	float growPosY[3] = { 0,y * 2,y };
 	int growRandX = 0;
 	int growRandY = 0;
-	float growTime = 0;
-	bool growFlag = false;
+	float growRandTime = 0;
+	bool growRandFlag = false;
 	XMFLOAT2 growPos[3];
+	bool growFlag = false;
+	float growTime = 0;
 	//Golf•Ï”
 	Eas* eas;
 	Sprite* golf = nullptr;
