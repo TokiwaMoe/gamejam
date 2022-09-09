@@ -74,26 +74,6 @@ void Enemy::Move()
 void Enemy::Golf()
 {
 	if (GolfFlag) {
-
-<<<<<<< HEAD
-		//if (GolfPos.y <= 500) {
-		//	GolfPos.x -= v2.x;
-		//	GolfPos.y -= v2.y;
-
-		//	v2.y = -g + v2.y;
-		//	g = k * v / m;
-		//}
-		//if (GolfPos.y > 500) {
-		//	//Mflag = false;
-		//	
-		//	if (easeTimer <= 1.0) {
-		//		
-		//	}
-		easeTimer += 0.01;
-		GolfPos = eas->ease(GolfPos, { 0,500 }, easeTimer, 1.0f, 5);
-
-		//}
-=======
 		if (GolfPos.y <= 500) {
 			GolfPos.x -= v2.x;
 			GolfPos.y -= v2.y;
@@ -114,7 +94,6 @@ void Enemy::Golf()
 			GolfFlag = false;
 			AttackNo = rand() % 3;
 		}
->>>>>>> master
 	}
 	else if (!GolfFlag) {
 
@@ -149,8 +128,8 @@ void Enemy::Roll()
 
 void Enemy::Grow()
 {
-	growTime += 0.05f;
-	if (growTime >= 30)
+	growRandTime += 0.05f;
+	if (growRandTime >= 30)
 	{
 
 	}
@@ -158,13 +137,7 @@ void Enemy::Grow()
 
 void Enemy::GrowRand()
 {
-
-<<<<<<< HEAD
-	if (growTime >= 10)
-=======
-
-	if (growRandTime >= 50)
->>>>>>> master
+	if (growRandTime >= 10)
 	{
 		growRandFlag = true;
 		growRandX = rand() % 4;
@@ -187,12 +160,7 @@ void Enemy::GrowRand()
 		growRandFlag = false;
 	}
 	else {
-<<<<<<< HEAD
-		growTime += 0.05f;
-		//growPos[0] = { 0,0 };
-=======
 		growRandTime += 0.05f;
->>>>>>> master
 	}
 
 	spGrow[0]->SetPosition(growPos[0]);
