@@ -34,7 +34,7 @@ public:
 	float easeInQuad(float x);//3
 	float easeOutQuad(float x);//4
 	float easeOutBounce(float x);//5
-
+	float easeInBounce(float x);//6
 	float ease(const float& start, const float& end, float t, float d, int i);
 	XMFLOAT2 ease(const XMFLOAT2& start, const XMFLOAT2& end, float t,float d, int i);
 	XMFLOAT3 ease(const XMFLOAT3& start, const XMFLOAT3& end, float t,float d, int i);
