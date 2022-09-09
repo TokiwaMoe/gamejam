@@ -123,6 +123,21 @@ float Eas::easeOutBounce(float x)
 	}
 }
 
+float Eas::ease(const float& start, const float& end, float t, float d, int i)
+{
+	float x = t / d;
+	float subtraction =  end - start;
+	float num{};
+	float v = 0;
+	if (i == 1) { v = easeInCubic(x); }
+	if (i == 2) { v = easeOutCubic(x); }
+	if (i == 3) { v = easeInQuad(x); }
+	if (i == 4) { v = easeOutQuad(x); }
+	if (i == 5) { v = easeOutBounce(x); }
+	num = subtraction * v + start;
+	return num;
+}
+
 XMFLOAT2 Eas::ease(const XMFLOAT2& start, const XMFLOAT2& end, float t,float d, int i)
 {
 	float x = t / d;

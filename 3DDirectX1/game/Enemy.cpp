@@ -30,9 +30,9 @@ void Enemy::Initialize()
 void Enemy::Init()
 {
 	circle.center = pigPos;
-	AttackNo = rand() % 2;
 	circle.radius = 10;
 	srand(time(NULL));
+	AttackNo = rand() % 2;
 }
 
 void Enemy::Update()
@@ -73,7 +73,7 @@ void Enemy::Golf()
 		v2.x = v * cos(60 * PI / 180.0);
 		v2.y = v * sin(60 * PI / 180.0);
 		easeTimer = 0;
-		GolfPos = { 800,400 };
+		GolfPos = { 1000,300 };
 	}
 
 
@@ -89,10 +89,10 @@ void Enemy::Golf()
 		if (GolfPos.y > 500) {
 			//Mflag = false;
 			
-			if (easeTimer < 0.2) {
-				easeTimer += 0.1 / 60;
+			if (easeTimer < 1.0) {
+				easeTimer += 0.01;
 			}
-			GolfPos = eas->ease(GolfPos, { 0,GolfPos.y }, easeTimer, 0.2, 5);
+			GolfPos = eas->ease(GolfPos, { 0,500 }, easeTimer, 1.0, 5);
 
 		}
 	}

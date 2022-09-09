@@ -33,6 +33,7 @@ public:
 	Circle GetCircle() { return circle; }
 	int GetAttackNo() { return AttackNo; }
 	XMFLOAT2 GetGolfPos() { return GolfPos; }
+	float GetEaseTimer() { return easeTimer; }
 private:
 	void Move();//ˆÚ“®
 	void Golf();
@@ -69,7 +70,7 @@ private://•Ï”
 	//Golf•Ï”
 	Eas* eas;
 	Sprite* golf = nullptr;
-	XMFLOAT2 GolfPos = { 800,400 };
+	XMFLOAT2 GolfPos = { 1000,200 };
 	bool Mflag = false;
 	XMFLOAT2 v2 = { 0.0f,0.0f };
 	float f = 10.0f;

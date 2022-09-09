@@ -205,7 +205,7 @@ void GameScene::DrawFront()
 	//sprite->Draw();
 	player->DrawSprite();
 	enemy->Draw();
-	DebugText::GetInstance()->Printf(100, 20, 3.0f, "%f", enemy->GetGolfPos().y);
+	DebugText::GetInstance()->Printf(100, 20, 3.0f, "%f", enemy->GetEaseTimer());
 	//DebugText::GetInstance()->Printf(100, 80, 3.0f, "%d", Alive[1]);
 	DebugText::GetInstance()->Printf(100,100, 3.0f, "WASD:MOVE");
 	DebugText::GetInstance()->Printf(100, 160, 3.0f, "rand : %f", enemy->GetRand());
