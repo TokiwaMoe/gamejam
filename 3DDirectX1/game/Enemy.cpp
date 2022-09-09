@@ -26,9 +26,9 @@ void Enemy::Initialize()
 	Sprite::LoadTexture(11, L"Resources/flower_hachiue1_red.png");
 	for (int i = 0; i < 3; i++)
 	{
-		spGrow[i]= Sprite::CreateSprite(11, growPos[i]);
+		spGrow[i] = Sprite::CreateSprite(11, growPos[i]);
 	}
-	
+
 
 }
 
@@ -37,7 +37,7 @@ void Enemy::Init()
 	circle.center = pigPos;
 	circle.radius = 10;
 	srand(time(NULL));
-	AttackNo = rand() % 2;
+	AttackNo = rand() % 3;
 }
 
 void Enemy::Update()
@@ -56,10 +56,10 @@ void Enemy::Update()
 		DropRand();
 		Drop();
 		break;
+	case 2:
+		Golf();
+		break;
 	}
-
-
-	Golf();
 
 	Grow();
 
@@ -73,19 +73,7 @@ void Enemy::Move()
 
 void Enemy::Golf()
 {
-	if (Input::GetInstance()->TriggerKey(DIK_B)) {
-
-		Mflag = true;
-		v2 = { 0.0f,0.0f };
-		g = 9.8f / 60.0f;
-		v2.x = v * cos(60 * PI / 180.0);
-		v2.y = v * sin(60 * PI / 180.0);
-		easeTimer = 0;
-		GolfPos = { 1000,300 };
-	}
-
-
-	if (Mflag) {
+	if (GolfFlag) {
 
 		if (GolfPos.y <= 500) {
 			GolfPos.x -= v2.x;
@@ -95,16 +83,30 @@ void Enemy::Golf()
 			g = k * v / m;
 		}
 		if (GolfPos.y > 500) {
-			//Mflag = false;
-			
-			if (easeTimer < 1.0) {
-				easeTimer += 0.01;
+
+
+			if (easeTimer < 0.2) {
+				easeTimer += 0.1 / 60;
 			}
-			GolfPos = eas->ease(GolfPos, { 0,500 }, easeTimer, 1.0, 5);
+			GolfPos = eas->ease(GolfPos, { 0,450 }, easeTimer, 0.2, 6);
 
 		}
+		if (GolfPos.x <= 0) {
+			GolfFlag = false;
+			AttackNo = rand() % 3;
+		}
 	}
-	golf->SetSize({200,200});
+	else if (!GolfFlag) {
+
+		v2 = { 0.0f,0.0f };
+		g = 9.8f / 60.0f;
+		v2.x = v * cos(60 * PI / 180.0);
+		v2.y = v * sin(60 * PI / 180.0);
+		easeTimer = 0;
+		GolfPos = { 1000,300 };
+		GolfFlag = true;
+	}
+	golf->SetSize({ 100,100 });
 	golf->SetPosition(GolfPos);
 }
 
@@ -116,7 +118,7 @@ void Enemy::Roll()
 	}
 	else {
 		pigPos.x = 2000;
-		AttackNo = rand() % 2;
+		AttackNo = rand() % 3;
 	}
 	pig->SetSize({ 100, 100 });
 	pig->SetAnchorPoint({ 0.5,0.5 });
@@ -127,7 +129,7 @@ void Enemy::Roll()
 
 void Enemy::Grow()
 {
-	
+
 
 	if (growTime >= 50)
 	{
@@ -142,7 +144,7 @@ void Enemy::Grow()
 		{
 			growRandY = rand() % 3;
 		}
-		
+
 	}
 
 	if (growFlag)
@@ -179,7 +181,7 @@ void Enemy::Drop()
 		{
 			timer = 0;
 			dropFlag = false;
-			AttackNo = rand() % 2;
+			AttackNo = rand() % 3;
 
 		}
 
@@ -244,12 +246,13 @@ void Enemy::Draw()
 	if (AttackNo == 0) {
 		pig->Draw();
 	}
-
-	golf->Draw();
-
+	if (AttackNo == 2) {
+		golf->Draw();
+	}
 	for (int i = 0; i < 3; i++)
 	{
 		spGrow[i]->Draw();
 	}
 
 }
+

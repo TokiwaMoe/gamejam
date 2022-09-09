@@ -86,7 +86,7 @@ private://ïœêî
 	Eas* eas;
 	Sprite* golf = nullptr;
 	XMFLOAT2 GolfPos = { 1000,200 };
-	bool Mflag = false;
+	bool GolfFlag = false;
 	XMFLOAT2 v2 = { 0.0f,0.0f };
 	float f = 10.0f;
 	float v = 40.0f;
