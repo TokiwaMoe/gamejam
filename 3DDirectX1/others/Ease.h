@@ -17,6 +17,7 @@ private:
 	using XMFLOAT4 = DirectX::XMFLOAT4;
 	using XMMATRIX = DirectX::XMMATRIX;
 public:
+	void Initialize();
 	static const XMFLOAT2 lerp(const XMFLOAT2& start, const XMFLOAT2& end, const float t);
 	static const XMFLOAT3 lerp(const XMFLOAT3& start, const XMFLOAT3& end, const float t);
 
@@ -39,8 +40,15 @@ public:
 	XMFLOAT2 ease(const XMFLOAT2& start, const XMFLOAT2& end, float t,float d, int i);
 	XMFLOAT3 ease(const XMFLOAT3& start, const XMFLOAT3& end, float t,float d, int i);
 
-public:
-	float x = 0;
+	XMFLOAT2 easeOut_Bounce(XMFLOAT2 start, XMFLOAT2 end, float flame);
 
+	float Bounce_out(float x);
+
+public:
+	XMFLOAT2 position = { 0,0 };
+	float time = 0;
+	const float maxflame = 10.0f;
+	const float PI = 3.141592;
+	XMFLOAT2 difference = { 0,0 };
 };
 

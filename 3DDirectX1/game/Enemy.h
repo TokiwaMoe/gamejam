@@ -47,7 +47,6 @@ private:
 	void Golf();
 	void Roll();
 	void Grow();
-	void GrowRand();
 	void Drop();
 	void DropRand();
 	void Attack();
