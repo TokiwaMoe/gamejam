@@ -209,6 +209,10 @@ void GameScene::DrawFront()
 	//DebugText::GetInstance()->Printf(100, 80, 3.0f, "%d", Alive[1]);
 	DebugText::GetInstance()->Printf(100,100, 3.0f, "WASD:MOVE");
 	DebugText::GetInstance()->Printf(100, 160, 3.0f, "time : %f", enemy->GetGrowTime());
+	DebugText::GetInstance()->Printf(100, 200, 3.0f, "x : %f", enemy->GetGrowPos().x);
+	DebugText::GetInstance()->Printf(100, 240, 3.0f, "RandX : %d", enemy->GetGrowRandX());
+	DebugText::GetInstance()->Printf(100, 280, 3.0f, "RandY : %d", enemy->GetGrowRandY());
+	DebugText::GetInstance()->Printf(100, 320, 3.0f, "%d", enemy->GetAttackNo());
 	
 
 	DebugText::GetInstance()->DrawAll(dxCommon->GetCmdList());

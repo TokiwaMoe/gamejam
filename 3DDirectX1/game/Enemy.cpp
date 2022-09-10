@@ -37,7 +37,7 @@ void Enemy::Init()
 	circle.center = pigPos;
 	circle.radius = 10;
 	srand(time(NULL));
-	AttackNo = rand() % 3;
+	AttackNo = rand() % 4;
 }
 
 void Enemy::Update()
@@ -59,9 +59,12 @@ void Enemy::Update()
 	case 2:
 		Golf();
 		break;
+	case 3:
+		Grow();
+		break;
 	}
 
-	Grow();
+	
 
 	circle.center = pigPos;
 	circle.radius = 60;
@@ -74,7 +77,6 @@ void Enemy::Move()
 void Enemy::Golf()
 {
 	if (GolfFlag) {
-
 		if (GolfPos.y <= 500) {
 			GolfPos.x -= v2.x;
 			GolfPos.y -= v2.y;
@@ -93,7 +95,7 @@ void Enemy::Golf()
 		}
 		if (GolfPos.x <= 0) {
 			GolfFlag = false;
-			AttackNo = rand() % 3;
+			AttackNo = rand() % 4;
 		}
 	}
 	else if (!GolfFlag) {
@@ -118,7 +120,7 @@ void Enemy::Roll()
 	}
 	else {
 		pigPos.x = 2000;
-		AttackNo = rand() % 3;
+		AttackNo = rand() % 4;
 	}
 	pig->SetSize({ 100, 100 });
 	pig->SetAnchorPoint({ 0.5,0.5 });
@@ -129,41 +131,41 @@ void Enemy::Roll()
 
 void Enemy::Grow()
 {
-	growTime += 0.05f;
-	if (growTime >= 30)
-	{
-
-	}
-}
-
-void Enemy::GrowRand()
-{
-
-
-	if (growRandTime >= 50)
-	{
+	if (AttackNo == 3 && growFlag == false) {
 		growRandFlag = true;
-		growRandX = rand() % 4;
-
-		if (growRandX == 1 || growRandX == 2)
-		{
-			growRandY = rand() % 2;
-		}
-		else if (growRandX == 0 || growRandX == 3)
-		{
-			growRandY = rand() % 3;
-		}
-
 	}
 
 	if (growRandFlag)
 	{
+		growRandY = rand() % 3;
 		growPos[0] = { growPosX[growRandX], growPosY[growRandY] };
-		growRandTime = 0;
-		growRandFlag = false;
+		growFlag = true;
 	}
-	else {
-		growRandTime += 0.05f;
+
+	if (growFlag)
+	{
+		growRandFlag = false;
+		if (20.0f <= growPos[0].x)
+		{
+			behindTime += 0.05f;
+			growPos[0].x = 20.0f;
+		}
+
+		if (behindTime >= 10.0f)
+		{
+			growPos[0].x -= 0.05f;
+
+			if (growPos[0].x <= 0.0f)
+			{
+				growFlag = false;
+				behindTime = 0;
+				growTime = 0;
+				AttackNo = rand() % 4;
+			}
+		}
+		else {
+			growPos[0].x += 0.05f;
+		}
 	}
 
 	spGrow[0]->SetPosition(growPos[0]);
@@ -179,7 +181,7 @@ void Enemy::Drop()
 			dropPos[i].y += gravity;
 			if (dropPos[i].y >= 730)
 			{
-				AttackNo = rand() % 2;
+				AttackNo = rand() % 4;
 				dropFlag = false;
 				randFlag = false;
 				gravity = 0;
@@ -190,7 +192,7 @@ void Enemy::Drop()
 		{
 			timer = 0;
 			dropFlag = false;
-			AttackNo = rand() % 3;
+			AttackNo = rand() % 4;
 
 		}
 
@@ -260,7 +262,7 @@ void Enemy::Draw()
 	}
 	for (int i = 0; i < 3; i++)
 	{
-		spGrow[i]->Draw();
+		spGrow[0]->Draw();
 	}
 
 }

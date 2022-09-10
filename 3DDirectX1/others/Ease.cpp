@@ -155,8 +155,7 @@ XMFLOAT2 Eas::ease(const XMFLOAT2& start, const XMFLOAT2& end, float t, float d,
 	if (i == 3) { v = easeInQuad(x); }
 	if (i == 4) { v = easeOutQuad(x); }
 	if (i == 5) { v = easeOutBounce(x); }
-	if (i == 6) { v = easeInBounce(x); }
-	num.x = subtraction.x * v + start.x;
+	num.x = subtraction.x * t + start.x;
 	num.y = subtraction.y * v + start.y;
 	return num;
 }

@@ -39,5 +39,8 @@ public:
 	XMFLOAT2 ease(const XMFLOAT2& start, const XMFLOAT2& end, float t,float d, int i);
 	XMFLOAT3 ease(const XMFLOAT3& start, const XMFLOAT3& end, float t,float d, int i);
 
+public:
+	float x = 0;
+
 };
 
