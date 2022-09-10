@@ -37,7 +37,10 @@ void Enemy::Init()
 	circle.center = pigPos;
 	circle.radius = 10;
 	srand(time(NULL));
-	AttackNo = rand() % 4;
+	AttackNo = 2;
+	//AttackNo = rand() % 4;
+	eas = new Eas();
+	eas->Initialize();
 }
 
 void Enemy::Update()
@@ -76,7 +79,29 @@ void Enemy::Move()
 
 void Enemy::Golf()
 {
-	if (GolfFlag) {
+	if (AttackNo == 2 && GolfFlag == false)
+	{
+		GolfFlag = true;
+		easeTimer = 0;
+	}
+
+	if (GolfFlag)
+	{
+		easeTimer += 0.1f;
+		GolfPos = eas->easeOut_Bounce({1000,200}, {0,450}, easeTimer);
+
+		if (easeTimer >= eas->maxflame)
+		{
+			GolfFlag = false;
+			AttackNo = 2;
+			GolfPos = { 1000,200 };
+			//AttackNo = rand() % 4;
+		}
+	}
+
+	
+	
+	/*if (GolfFlag) {
 		if (GolfPos.y <= 500) {
 			GolfPos.x -= v2.x;
 			GolfPos.y -= v2.y;
@@ -107,7 +132,7 @@ void Enemy::Golf()
 		easeTimer = 0;
 		GolfPos = { 1000,300 };
 		GolfFlag = true;
-	}
+	}*/
 	golf->SetSize({ 100,100 });
 	golf->SetPosition(GolfPos);
 }
@@ -120,7 +145,8 @@ void Enemy::Roll()
 	}
 	else {
 		pigPos.x = 2000;
-		AttackNo = rand() % 4;
+		AttackNo = 2;
+		//AttackNo = rand() % 4;
 	}
 	pig->SetSize({ 100, 100 });
 	pig->SetAnchorPoint({ 0.5,0.5 });
@@ -160,7 +186,8 @@ void Enemy::Grow()
 				growFlag = false;
 				behindTime = 0;
 				growTime = 0;
-				AttackNo = rand() % 4;
+				AttackNo = 2;
+				//AttackNo = rand() % 4;
 			}
 		}
 		else {
@@ -181,7 +208,8 @@ void Enemy::Drop()
 			dropPos[i].y += gravity;
 			if (dropPos[i].y >= 730)
 			{
-				AttackNo = rand() % 4;
+				AttackNo = 2;
+				//AttackNo = rand() % 4;
 				dropFlag = false;
 				randFlag = false;
 				gravity = 0;
@@ -192,7 +220,8 @@ void Enemy::Drop()
 		{
 			timer = 0;
 			dropFlag = false;
-			AttackNo = rand() % 4;
+			AttackNo = 2;
+			//AttackNo = rand() % 4;
 
 		}
 

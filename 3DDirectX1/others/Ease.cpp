@@ -3,6 +3,11 @@ using namespace DirectX;
 
 //tÇÕéûä‘Ç≈ÇÕÇ»Ç≠éûä‘ÇÃäÑçá
 
+void Eas::Initialize()
+{
+	time = 0;
+}
+
 const XMFLOAT2 Eas::lerp(const XMFLOAT2& start, const XMFLOAT2& end, const float t)
 {
 	XMFLOAT2 num;
@@ -176,4 +181,33 @@ XMFLOAT3 Eas::ease(const XMFLOAT3& start, const XMFLOAT3& end, float t, float d,
 	num.y = subtraction.y * v + start.y;
 	num.z = subtraction.z * v + start.z;
 	return num;
+}
+
+XMFLOAT2 Eas::easeOut_Bounce(XMFLOAT2 start, XMFLOAT2 end, float flame)
+{
+	difference = { end.x - start.x, end.y - start.y };
+	time = flame / maxflame;
+	float v = Bounce_out(time);
+	position.x = difference.x * time + start.x;
+	position.y = difference.y * v + start.y;
+	return position;
+}
+
+float Eas::Bounce_out(float x)
+{
+	const float n1 = 7.5625;
+	const float d1 = 2.75;
+
+	if (x < 1 / d1) {
+		return n1 * x * x;
+	}
+	else if (x < 2 / d1) {
+		return n1 * (x -= 1.5 / d1) * x + 0.75;
+	}
+	else if (x < 2.5 / d1) {
+		return n1 * (x -= 2.25 / d1) * x + 0.9375;
+	}
+	else {
+		return n1 * (x -= 2.625 / d1) * x + 0.984375;
+	}
 }
