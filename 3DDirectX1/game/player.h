@@ -4,6 +4,9 @@
 #include"Collision.h"
 #include"Sprite.h"
 #include"SafeDelete.h"
+#include"PlayerBullet.h"
+#include<memory>
+#include<list>
 /// <summary>
 /// プレイヤー関連のクラス
 /// </summary>
@@ -25,6 +28,7 @@ public:
 	void Init();//シーンチェンジ時にもする初期化
 	void Update();
 	void OnCollision(const CollisionInfo& info);
+	void Attack();
 	void Draw();
 	void DrawSprite();
 
@@ -47,4 +51,8 @@ private://プレイヤーの動き系
 	float g = 9.8f / 60;
 	float jSpeed;
 	Circle circle;
+
+	bool isRight = true;
+public:
+	std::list<std::unique_ptr<PlayerBullet>> bullets_;
 };

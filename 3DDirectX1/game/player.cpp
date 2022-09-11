@@ -36,11 +36,13 @@ void Player::Move()
 	{
 		playerPos.x += 2;
 		playerFlag = false;
+		isRight = true;
 	}
 	if (Input::GetInstance()->PushKey(DIK_A))
 	{
 		playerPos.x -= 2;
 		playerFlag = true;
+		isRight = false;
 	}
 	if (Input::GetInstance()->PushKey(DIK_W))
 	{
@@ -94,6 +96,11 @@ void Player::Update()
 {
 	Move();
 	Jump();
+	Attack();
+	for (std::unique_ptr<PlayerBullet>& bullet : bullets_)
+	{
+		bullet->Update();
+	}
 	playerSprite->SetAnchorPoint({ 0.5, 0.5 });
 	playerSprite->SetPosition(playerPos);
 	playerSprite->SetIsFlipX(playerFlag);
@@ -101,6 +108,29 @@ void Player::Update()
 
 
 
+
+void Player::Attack()
+{
+	
+	XMFLOAT2 oldPosition = playerPos;
+
+	const float kBulletSpeed = 3.0f;
+	XMFLOAT2 velocity;
+
+	if (isRight == false)
+	{
+		velocity = { -kBulletSpeed, 0 };
+	}
+	else {
+		velocity = { kBulletSpeed, 0 };
+	}
+	std::unique_ptr<PlayerBullet> newBullet = std::make_unique<PlayerBullet>();
+	newBullet->Initialize();
+	newBullet->Init(oldPosition, velocity);
+
+	//’e‚ð“o˜^‚·‚é
+	bullets_.push_back(std::move(newBullet));
+}
 
 void Player::Draw()
 {
@@ -110,5 +140,9 @@ void Player::Draw()
 void Player::DrawSprite()
 {
 	playerSprite->Draw();
-
+	for (std::unique_ptr<PlayerBullet>& bullet : bullets_)
+	{
+		bullet->Draw();
+	}
+	
 }

@@ -177,6 +177,7 @@
     <ClCompile Include="game\Enemy.cpp" />
     <ClCompile Include="game\MapChip.cpp" />
     <ClCompile Include="game\player.cpp" />
+    <ClCompile Include="game\PlayerBullet.cpp" />
     <ClCompile Include="input\input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="others\Collision.cpp" />
@@ -358,6 +359,7 @@
     <ClInclude Include="game\Enemy.h" />
     <ClInclude Include="game\MapChip.h" />
     <ClInclude Include="game\player.h" />
+    <ClInclude Include="game\PlayerBullet.h" />
     <ClInclude Include="input\input.h" />
     <ClInclude Include="others\BaseCollider.h" />
     <ClInclude Include="others\Collision.h" />
