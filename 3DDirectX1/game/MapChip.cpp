@@ -1,5 +1,9 @@
 #include "MapChip.h"
 
+void MapChip::Initialize()
+{
+}
+
 void MapChip::Init()
 {
 }
