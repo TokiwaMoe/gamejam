@@ -175,12 +175,14 @@
     <ClCompile Include="DirectXCommon\NMGame.cpp" />
     <ClCompile Include="DirectXCommon\WinApp.cpp" />
     <ClCompile Include="game\Enemy.cpp" />
+    <ClCompile Include="game\MapChip.cpp" />
     <ClCompile Include="game\player.cpp" />
     <ClCompile Include="input\input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="others\Collision.cpp" />
     <ClCompile Include="others\CollisionManager.cpp" />
     <ClCompile Include="others\CollisionPrimitive.cpp" />
+    <ClCompile Include="others\CSV.cpp" />
     <ClCompile Include="others\Ease.cpp" />
     <ClCompile Include="others\MeshCollider.cpp" />
     <ClCompile Include="others\SphereCollider.cpp" />
@@ -354,6 +356,7 @@
     <ClInclude Include="DirectXCommon\SafeDelete.h" />
     <ClInclude Include="DirectXCommon\WinApp.h" />
     <ClInclude Include="game\Enemy.h" />
+    <ClInclude Include="game\MapChip.h" />
     <ClInclude Include="game\player.h" />
     <ClInclude Include="input\input.h" />
     <ClInclude Include="others\BaseCollider.h" />
@@ -363,6 +366,7 @@
     <ClInclude Include="others\CollisionManager.h" />
     <ClInclude Include="others\CollisionPrimitive.h" />
     <ClInclude Include="others\CollisionType.h" />
+    <ClInclude Include="others\CSV.h" />
     <ClInclude Include="others\Ease.h" />
     <ClInclude Include="others\MeshCollider.h" />
     <ClInclude Include="others\RaycastHit.h" />
@@ -374,12 +378,6 @@
     <ClInclude Include="scene\SceneManager.h" />
     <ClInclude Include="scene\SelectScene.h" />
     <ClInclude Include="scene\TitleScene.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="DirectXEngine.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Resources\engine.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
