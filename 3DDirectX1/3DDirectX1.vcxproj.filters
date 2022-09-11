@@ -4,10 +4,6 @@
     <Filter Include="HLSL">
       <UniqueIdentifier>{38cedc2e-1f11-455e-8a50-db8e3fa0dc2d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="HLSL\3d">
       <UniqueIdentifier>{20852dec-bc3c-4e93-aeda-227cda28e057}</UniqueIdentifier>
     </Filter>
@@ -76,6 +72,9 @@
     </Filter>
     <Filter Include="Game\Enemy">
       <UniqueIdentifier>{d59c4c7c-5aef-4c8d-b453-0a5f4b7d32b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\mapchip">
+      <UniqueIdentifier>{9745d10a-2a65-4bc8-952c-11e031bbf1cd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +185,12 @@
     </ClCompile>
     <ClCompile Include="game\Enemy.cpp">
       <Filter>Game\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="game\MapChip.cpp">
+      <Filter>Game\mapchip</Filter>
+    </ClCompile>
+    <ClCompile Include="others\CSV.cpp">
+      <Filter>Library\others</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -409,19 +414,15 @@
     <ClInclude Include="others\CollisionAttribute.h">
       <Filter>Library\others\collision</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="game\Enemy.h">
       <Filter>Game\Enemy</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="DirectXEngine.rc">
-      <Filter>リソース ファイル</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Resources\engine.ico">
-      <Filter>リソース ファイル</Filter>
-    </Image>
+    <ClInclude Include="game\MapChip.h">
+      <Filter>Game\mapchip</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="others\CSV.h">
+      <Filter>Library\others</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -37,8 +37,8 @@ void Enemy::Init()
 	circle.center = pigPos;
 	circle.radius = 10;
 	srand(time(NULL));
-	AttackNo = 2;
-	//AttackNo = rand() % 4;
+	//AttackNo = 2;
+	AttackNo = rand() % 4;
 	eas = new Eas();
 	eas->Initialize();
 }
@@ -95,44 +95,9 @@ void Enemy::Golf()
 			GolfFlag = false;
 			AttackNo = 2;
 			GolfPos = { 1000,200 };
-			//AttackNo = rand() % 4;
-		}
-	}
-
-	
-	
-	/*if (GolfFlag) {
-		if (GolfPos.y <= 500) {
-			GolfPos.x -= v2.x;
-			GolfPos.y -= v2.y;
-
-			v2.y = -g + v2.y;
-			g = k * v / m;
-		}
-		if (GolfPos.y > 500) {
-
-
-			if (easeTimer < 0.2) {
-				easeTimer += 0.1 / 60;
-			}
-			GolfPos = eas->ease(GolfPos, { 0,450 }, easeTimer, 0.2, 6);
-
-		}
-		if (GolfPos.x <= 0) {
-			GolfFlag = false;
 			AttackNo = rand() % 4;
 		}
 	}
-	else if (!GolfFlag) {
-
-		v2 = { 0.0f,0.0f };
-		g = 9.8f / 60.0f;
-		v2.x = v * cos(60 * PI / 180.0);
-		v2.y = v * sin(60 * PI / 180.0);
-		easeTimer = 0;
-		GolfPos = { 1000,300 };
-		GolfFlag = true;
-	}*/
 	golf->SetSize({ 100,100 });
 	golf->SetPosition(GolfPos);
 }

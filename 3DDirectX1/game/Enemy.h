@@ -53,7 +53,7 @@ private:
 private://•Ï”
 	Sprite* spEnemy = nullptr;
 	XMFLOAT2 position = { 0,0 };
-
+	int HP = 5;
 	//drop•Ï”
 	float lane_Width = 128;
 	Sprite* spCard[9];
@@ -95,15 +95,5 @@ private://•Ï”
 	Sprite* golf = nullptr;
 	XMFLOAT2 GolfPos = { 1000,200 };
 	bool GolfFlag = false;
-	XMFLOAT2 v2 = { 0.0f,0.0f };
-	float f = 10.0f;
-	float v = 40.0f;
-	float k = 1.0f;
-	float a = 0.f;
-	float g = 9.8f / 60.0f;
-	float fx1 = 1.0f;
-	float m = 10.0f;
-	float t = 0.0f;
-	float PI = 3.141592;
 	float easeTimer = 0;
 };
