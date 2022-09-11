@@ -187,6 +187,9 @@
     <ClCompile Include="game\Enemy.cpp">
       <Filter>Game\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="game\PlayerBullet.cpp">
+      <Filter>Game\player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shaders\FBX.hlsli">
@@ -412,6 +415,9 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="game\Enemy.h">
       <Filter>Game\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="game\PlayerBullet.h">
+      <Filter>Game\player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
