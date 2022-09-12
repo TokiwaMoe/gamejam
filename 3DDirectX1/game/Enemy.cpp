@@ -53,7 +53,11 @@ void Enemy::Initialize()
 	spGrow_X = Sprite::CreateSprite(15, growPos);
 	spGrow_X->SetTextureRect({ 0,0 }, { 144,144 });
 	spGrow_X->SetSize({ 400, 400 });
-	
+
+	Sprite::LoadTexture(16, L"Resources/hedgehog/hedgehog.png");
+	backGolf = Sprite::CreateSprite(16, GolfPos);
+	backGolf->SetTextureRect({ 0,0 }, {100, 64});
+	backGolf->SetSize({ 200, 128 });
 }
 
 void Enemy::Init()
@@ -122,7 +126,22 @@ void Enemy::Golf()
 	{
 		if (easeTimer >= eas->maxflame)
 		{
+			isBackAnime = true;
 			GolfPos.x += 3.0f;
+
+			//アニメーション
+			backAnime += 1.5f;
+
+			if (backAnime >= 8)
+			{
+				backNo++;
+				backAnime = 0;
+
+				if (backNo == 2)
+				{
+					backNo = 0;
+				}
+			}
 			
 			if (GolfPos.x >= 1300)
 			{
@@ -133,12 +152,16 @@ void Enemy::Golf()
 		}
 		else
 		{
+			isBackAnime = false;
 			easeTimer += 0.1f;
 			GolfPos = eas->easeOut_Bounce({ 1000,200 }, { 0,450 }, easeTimer);
 		}
 	}
 	golf->SetSize({ 100,100 });
 	golf->SetPosition(GolfPos);
+	backGolf->SetTextureRect({ 100 * backNo,0 }, { 100,64 });
+	backGolf->SetSize({ 200, 128 });
+	backGolf->SetPosition(GolfPos);
 }
 
 void Enemy::Roll()
@@ -224,8 +247,8 @@ void Enemy::Grow()
 		}
 	}
 
-	spGrow_X->SetTextureRect({ 0 + 144 * growNo,0 }, { 144,144 });
-	spGrow_Y->SetTextureRect({ 0 + 144 * growNo,0 }, { 144,144 });
+	spGrow_X->SetTextureRect({ 144 * growNo,0 }, { 144,144 });
+	spGrow_Y->SetTextureRect({ 144 * growNo,0 }, { 144,144 });
 }
 
 void Enemy::Drop()
@@ -317,7 +340,15 @@ void Enemy::Draw()
 		pig->Draw();
 	}
 	if (AttackNo == 2) {
-		golf->Draw();
+		if (isBackAnime)
+		{
+			backGolf->Draw();
+		}
+		else
+		{
+			golf->Draw();
+		}
+		
 	}
 	for (int i = 0; i < 3; i++)
 	{

@@ -150,7 +150,7 @@ void Player::Update()
 
 void Player::Attack()
 {
-	bulletTime += 0.1f;
+	bulletTime += 0.3f;
 
 	if (bulletTime >= maxBulletTime)
 	{

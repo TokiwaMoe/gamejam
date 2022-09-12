@@ -101,9 +101,14 @@ private://•Ï”
 	Circle growCircle[3];
 	//Golf•Ï”
 	Eas* eas;
+	Sprite* backGolf = nullptr;
 	Sprite* golf = nullptr;
 	XMFLOAT2 GolfPos = { 1000,200 };
 	bool GolfFlag = false;
 	float easeTimer = 0;
 	Circle golfCircle;
+
+	float backAnime = 0;
+	bool isBackAnime = false;
+	float backNo = 0;
 };
