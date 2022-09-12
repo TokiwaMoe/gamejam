@@ -32,7 +32,7 @@ void Player::Init()
 {
 	circle.center = playerPos;
 	circle.radius = 5;
-	playerPos={ 50,100 };
+	playerPos = { 50,100 };
 
 }
 
@@ -59,7 +59,7 @@ void Player::Move()
 
 	if (Input::GetInstance()->PushKey(DIK_UPARROW))
 	{
-		eye--;
+		playerPos.y += 2;
 	}
 	circle.center = playerPos;
 	circle.radius = 50;
@@ -80,15 +80,15 @@ void Player::Jump()
 		if (gFlag == false) {
 			if (playerPos.y > 50)
 			{
-				playerPos.y-=jSpeed;
+				playerPos.y -= jSpeed;
 				jSpeed += g;
 			}
 			if (playerPos.y <= 50) { gFlag = true; }
 		}
 		else if (gFlag == true) {
-			if (playerPos.y < 100) 
+			if (playerPos.y < 100)
 			{
-				playerPos.y+=jSpeed;
+				playerPos.y += jSpeed;
 				jSpeed += g;
 			}
 			if (playerPos.y >= 100) { jumpFlag = false; playerPos.y = 100; }
@@ -155,7 +155,8 @@ void Player::Attack()
 	if (bulletTime >= maxBulletTime)
 	{
 		XMFLOAT2 oldPosition = playerPos;
-
+		bulletCircle.center = oldPosition;
+		bulletCircle.radius = 20;
 		const float kBulletSpeed = 3.0f;
 		XMFLOAT2 velocity;
 
@@ -175,7 +176,7 @@ void Player::Attack()
 
 		bulletTime = 0;
 	}
-	
+
 }
 
 void Player::Draw()
@@ -197,5 +198,6 @@ void Player::DrawSprite()
 	else {
 		playerSprite_Stay->Draw();
 	}
-	
+
 }
+

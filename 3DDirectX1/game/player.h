@@ -35,6 +35,7 @@ public:
 	//Getter
 	XMFLOAT2 GetPlayerPos() { return playerPos; }
 	Circle GetCircle() { return circle; }
+	Circle GetBulletCircle() { return bulletCircle; };
 	int SetHP(int hp) { return this->HP = hp; }
 private://プレイヤーの動き系
 	void Move();//移動
@@ -54,7 +55,7 @@ private://プレイヤーの動き系
 	float g = 9.8f / 60;
 	float jSpeed;
 	Circle circle;
-
+	Circle bulletCircle;
 	float bulletTime = 10;
 	float maxBulletTime = 10;
 	bool isRight = true;

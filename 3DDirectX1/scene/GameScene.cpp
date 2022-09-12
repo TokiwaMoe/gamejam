@@ -159,23 +159,27 @@ void GameScene::Update()
 
 	if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetCircle())) {
 
-		DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
+		//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 	}
 	for (int i = 0; i < 9; i++)
 	{
 		if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetDropCircle(i))) {
 
-			DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
+			//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 		}
 	}
 	for (int i = 0; i < 3; i++)
 	{
 		if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGrowCircle(i))) {
 
-			DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
+			//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 		}
 	}
 	if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGolfCircle())) {
+
+		//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
+	}
+	if (Collision::CheckCircle2Circle(player->GetBulletCircle(), enemy->GetEnemyCircle())) {
 
 		DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 	}

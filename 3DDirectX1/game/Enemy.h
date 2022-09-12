@@ -43,13 +43,11 @@ public:
 
 	int GetGrowRandX() { return growRandX; }
 	int GetGrowRandY() { return growRandY; }
-<<<<<<< HEAD
-	XMFLOAT2 GetGrowPos() { return growPos[0]; }
+
 	int SetHP(int hp) { return this->HP = hp; }
 
-=======
 	XMFLOAT2 GetGrowPos() { return growPos; }
->>>>>>> master
+	Circle GetEnemyCircle() { return enemyCircle; }
 
 private:
 	void Move();//ˆÚ“®
@@ -63,6 +61,7 @@ private://•Ï”
 	Sprite* spEnemy = nullptr;
 	XMFLOAT2 position = { 0,0 };
 	int HP = 5;
+	Circle enemyCircle;
 	//drop•Ï”
 	float lane_Width = 128;
 	Sprite* spCard[6];
