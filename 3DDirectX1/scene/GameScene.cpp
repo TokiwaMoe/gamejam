@@ -151,13 +151,31 @@ void GameScene::Update()
 	//player->SetTsize(Tsize);
 	player->Update();
 	enemy->Update();
-	camera->FollowCamera({0,0,0}, XMFLOAT3{0,2,-distance}, 0, 0);
+	//camera->FollowCamera({0,0,0}, XMFLOAT3{0,2,-distance}, 0, 0);
 
 	//camera->SetEye(cameraPos);
 	//camera->SetTarget(player->GetSpherePos());
 	camera->Update();
 
 	if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetCircle())) {
+
+		DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
+	}
+	for (int i = 0; i < 9; i++)
+	{
+		if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetDropCircle(i))) {
+
+			DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
+		}
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGrowCircle(i))) {
+
+			DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
+		}
+	}
+	if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGolfCircle())) {
 
 		DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 	}

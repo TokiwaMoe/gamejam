@@ -54,6 +54,10 @@ void Player::Move()
 		playerPos.y += 2;
 		playerFlag = false;
 	}
+	if (Input::GetInstance()->PushKey(DIK_UPARROW))
+	{
+		eye--;
+	}
 	circle.center = playerPos;
 	circle.radius = 50;
 }
@@ -103,6 +107,7 @@ void Player::Update()
 	}
 	playerSprite->SetAnchorPoint({ 0.5, 0.5 });
 	playerSprite->SetPosition(playerPos);
+	playerSprite->SetEye({ 0,0,eye });
 	playerSprite->SetIsFlipX(playerFlag);
 }
 

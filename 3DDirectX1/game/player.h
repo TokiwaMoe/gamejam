@@ -42,6 +42,7 @@ private://プレイヤーの動き系
 
 	Sprite* playerSprite = nullptr;
 	Sprite* sizeSprite = nullptr;
+	float eye;
 	int HP = 3;
 	//位置サイズ角度
 	XMFLOAT2 playerPos = { 0,0 };
