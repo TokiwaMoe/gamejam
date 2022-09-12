@@ -52,6 +52,8 @@ private://ƒvƒŒƒCƒ„[‚Ì“®‚«Œn
 	float jSpeed;
 	Circle circle;
 
+	float bulletTime = 10;
+	float maxBulletTime = 10;
 	bool isRight = true;
 public:
 	std::list<std::unique_ptr<PlayerBullet>> bullets_;

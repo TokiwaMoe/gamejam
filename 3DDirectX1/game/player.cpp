@@ -111,25 +111,32 @@ void Player::Update()
 
 void Player::Attack()
 {
-	
-	XMFLOAT2 oldPosition = playerPos;
+	bulletTime += 0.1f;
 
-	const float kBulletSpeed = 3.0f;
-	XMFLOAT2 velocity;
-
-	if (isRight == false)
+	if (bulletTime >= maxBulletTime)
 	{
-		velocity = { -kBulletSpeed, 0 };
-	}
-	else {
-		velocity = { kBulletSpeed, 0 };
-	}
-	std::unique_ptr<PlayerBullet> newBullet = std::make_unique<PlayerBullet>();
-	newBullet->Initialize();
-	newBullet->Init(oldPosition, velocity);
+		XMFLOAT2 oldPosition = playerPos;
 
-	//’e‚ð“o˜^‚·‚é
-	bullets_.push_back(std::move(newBullet));
+		const float kBulletSpeed = 3.0f;
+		XMFLOAT2 velocity;
+
+		if (isRight == false)
+		{
+			velocity = { -kBulletSpeed, 0 };
+		}
+		else {
+			velocity = { kBulletSpeed, 0 };
+		}
+		std::unique_ptr<PlayerBullet> newBullet = std::make_unique<PlayerBullet>();
+		newBullet->Initialize();
+		newBullet->Init(oldPosition, velocity);
+
+		//’e‚ð“o˜^‚·‚é
+		bullets_.push_back(std::move(newBullet));
+
+		bulletTime = 0;
+	}
+	
 }
 
 void Player::Draw()
