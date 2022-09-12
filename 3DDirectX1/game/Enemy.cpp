@@ -13,7 +13,7 @@ Enemy::~Enemy()
 void Enemy::Initialize()
 {
 	Sprite::LoadTexture(4, L"Resources/fantasy_maou_devil.png");
-	spEnemy = Sprite::CreateSprite(4, { 700,500 });
+	spEnemy = Sprite::CreateSprite(4, position);
 	Sprite::LoadTexture(5, L"Resources/animal_pig_buta.png");
 	pig = Sprite::CreateSprite(5, pigPos);
 	Sprite::LoadTexture(6, L"Resources/hedgehog/golf.png");
@@ -342,6 +342,16 @@ void Enemy::DropRand()
 
 void Enemy::Attack()
 {
+}
+
+void Enemy::OnCollision()
+{
+	HP -= 1;
+
+	if (HP <= 0)
+	{
+		isAlive = true;
+	}
 }
 
 void Enemy::Draw()

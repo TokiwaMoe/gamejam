@@ -16,6 +16,9 @@
 #include"LightGroup.h"
 #include"player.h"
 #include"Enemy.h"
+#include"PlayerBullet.h"
+#include<memory>
+#include<list>
 
 class CollisionManager;
 class TouchableObject;
@@ -50,6 +53,8 @@ public: // メンバ関数
 	void DrawFront();
 	//パーティクル
 	void CreateParticles();
+	//衝突判定と応答
+	void CheckAllCollision();
 private: // メンバ変数
 	DXCommon* dxCommon = nullptr;
 
@@ -81,6 +86,8 @@ private: // メンバ変数
 
 	Player* player;
 	Enemy* enemy;
+	std::list<std::unique_ptr<PlayerBullet>> playerBullet;
+	std::unique_ptr<PlayerBullet> newBullet;
 
 	const int debugTextTexNumber = 0;
 

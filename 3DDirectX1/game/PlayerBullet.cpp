@@ -6,6 +6,7 @@ PlayerBullet::PlayerBullet()
 
 PlayerBullet::~PlayerBullet()
 {
+	safe_delete(playerBulletSprite);
 }
 
 void PlayerBullet::Initialize()
@@ -27,9 +28,18 @@ void PlayerBullet::Update()
 	playerBulletPos.x += bulletSpeed.x;
 	playerBulletSprite->SetPosition(playerBulletPos);
 	playerBulletSprite->SetAnchorPoint({ 0.5, 0.5 });
+	
 }
 
 void PlayerBullet::Draw()
 {
-	playerBulletSprite->Draw();
+	if (isAlive == false)
+	{
+		playerBulletSprite->Draw();
+	}
+}
+
+void PlayerBullet::OnCollision()
+{
+	isAlive = true;
 }

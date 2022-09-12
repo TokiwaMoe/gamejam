@@ -192,6 +192,9 @@
     <ClCompile Include="others\CSV.cpp">
       <Filter>Library\others</Filter>
     </ClCompile>
+    <ClCompile Include="game\PlayerBullet.cpp">
+      <Filter>Game\player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shaders\FBX.hlsli">
@@ -423,6 +426,9 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="others\CSV.h">
       <Filter>Library\others</Filter>
+    </ClInclude>
+    <ClInclude Include="game\PlayerBullet.h">
+      <Filter>Game\player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

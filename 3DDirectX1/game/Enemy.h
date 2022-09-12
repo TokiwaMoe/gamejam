@@ -22,7 +22,7 @@ public:
 	void Initialize();//一回だけの初期化
 	void Init();//シーンチェンジ時にもする初期化
 	void Update();
-
+	void OnCollision();
 	void Draw();
 	//Getter
 	float GetRand() { return dropRand; }
@@ -49,6 +49,8 @@ public:
 	XMFLOAT2 GetGrowPos() { return growPos; }
 	Circle GetEnemyCircle() { return enemyCircle; }
 
+	const XMFLOAT2 GetPosition() { return position; }
+
 private:
 	void Move();//移動
 	void Golf();
@@ -57,9 +59,10 @@ private:
 	void Drop();
 	void DropRand();
 	void Attack();
+	
 private://変数
 	Sprite* spEnemy = nullptr;
-	XMFLOAT2 position = { 0,0 };
+	XMFLOAT2 position = { 700,500 };
 	int HP = 5;
 	Circle enemyCircle;
 	//drop変数
@@ -116,4 +119,6 @@ private://変数
 	float backAnime = 0;
 	bool isBackAnime = false;
 	float backNo = 0;
+
+	bool isAlive = false;
 };

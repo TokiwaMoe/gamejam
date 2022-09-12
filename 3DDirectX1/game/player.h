@@ -37,6 +37,10 @@ public:
 	Circle GetCircle() { return circle; }
 	Circle GetBulletCircle() { return bulletCircle; };
 	int SetHP(int hp) { return this->HP = hp; }
+	XMFLOAT2 GetOldPos() { return oldPosition; }
+	XMFLOAT2 GetVelocity() { return velocity; }
+	//弾リストを取得
+	const std::list < std::unique_ptr<PlayerBullet>>& GetBullets() { return bullets_; }
 private://プレイヤーの動き系
 	void Move();//移動
 	void Jump();//ジャンプ
@@ -65,6 +69,8 @@ private://プレイヤーの動き系
 	float stayAnima = 0;
 	float stayNo = 0;
 	bool isWalk = false;
+	XMFLOAT2 oldPosition = { 0,0 };
+	XMFLOAT2 velocity = { 0,0 };
 public:
 	std::list<std::unique_ptr<PlayerBullet>> bullets_;
 };

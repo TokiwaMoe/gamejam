@@ -25,6 +25,7 @@ public:
 	void Init(XMFLOAT2 position, XMFLOAT2 speed);//シーンチェンジ時にもする初期化
 	void Update();
 	void Draw();
+	void OnCollision();
 
 	//Getter
 	XMFLOAT2 GetPlayerBulletPos() { return playerBulletPos; }
@@ -36,4 +37,6 @@ private:
 	//位置サイズ角度
 	XMFLOAT2 playerBulletPos = { 0,0 };
 	XMFLOAT2 bulletSpeed = { 0,0 };
+	//当たり判定
+	bool isAlive = false;
 };

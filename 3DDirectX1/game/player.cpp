@@ -10,6 +10,7 @@ Player::Player()
 }
 Player::~Player()
 {
+	delete& bullets_;
 }
 void Player::Initialize()
 {
@@ -150,15 +151,15 @@ void Player::Update()
 
 void Player::Attack()
 {
+	std::unique_ptr<PlayerBullet> newBullet = std::make_unique<PlayerBullet>();
 	bulletTime += 0.3f;
-
+	bulletCircle.radius = 10;
+	bulletCircle.center = newBullet->GetPlayerBulletPos();
 	if (bulletTime >= maxBulletTime)
 	{
-		XMFLOAT2 oldPosition = playerPos;
-		bulletCircle.center = oldPosition;
-		bulletCircle.radius = 10;
+		oldPosition = playerPos;
+		
 		const float kBulletSpeed = 3.0f;
-		XMFLOAT2 velocity;
 
 		if (isRight == false)
 		{
@@ -167,9 +168,10 @@ void Player::Attack()
 		else {
 			velocity = { kBulletSpeed, 0 };
 		}
-		std::unique_ptr<PlayerBullet> newBullet = std::make_unique<PlayerBullet>();
+		
 		newBullet->Initialize();
 		newBullet->Init(oldPosition, velocity);
+		bulletCircle.center = newBullet->GetPlayerBulletPos();
 
 		//’e‚ð“o˜^‚·‚é
 		bullets_.push_back(std::move(newBullet));

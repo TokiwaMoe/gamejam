@@ -117,7 +117,7 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 	enemy = new Enemy;//newすればエラー吐かない
 	enemy->Initialize();
 	enemy->Init();
-
+	
 }
 
 void GameScene::Init()
@@ -181,7 +181,7 @@ void GameScene::Update()
 	}
 	if (Collision::CheckCircle2Circle(player->GetBulletCircle(), enemy->GetEnemyCircle())) {
 
-		DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
+		//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 	}
 	particleMan->Update();
 	object3d2->SetPosition(playerPosition);
@@ -193,6 +193,16 @@ void GameScene::Update()
 	lightGroup->Update();
 
 	colMan->CheckAllCollisions();
+
+	newBullet = std::make_unique<PlayerBullet>();
+	newBullet->Initialize();
+	newBullet->Init(player->GetOldPos(), player->GetVelocity());
+	CheckAllCollision();
+	playerBullet.push_back(std::move(newBullet));
+	for (std::unique_ptr<PlayerBullet>& bullet : playerBullet)
+	{
+		bullet->Update();
+	}
 }
 
 void GameScene::DrawBG()
@@ -261,5 +271,34 @@ void GameScene::CreateParticles()
 
 		// 追加
 		particleMan->Add(60, pos, vel, acc, 1.0f, 0.0f);
+	}
+}
+
+void GameScene::CheckAllCollision()
+{
+	XMFLOAT2 posA, posB;
+
+	//自弾リストの取得
+	const std::list<std::unique_ptr<PlayerBullet>>& playerBullets = player->GetBullets();
+
+	posA = enemy->GetPosition();
+
+	for (const std::unique_ptr<PlayerBullet>& bullet : playerBullets)
+	{
+		posB = bullet->GetPlayerBulletPos();
+
+		float enemy2BulletX = (posA.x + 255) - posB.x;
+		float enemy2BulletY = (posA.y + 32) - posB.y;
+		float enemy2Bullet = sqrtf(pow(enemy2BulletX, 2) + pow(enemy2BulletY, 2));
+		DebugText::GetInstance()->Printf(100, 300, 3.0f, "%f : 263", enemy2Bullet);
+		DebugText::GetInstance()->Printf(100, 340, 2.5f, "en : %f %f pb : %f %f", posA.x, posA.y, posB.x, posB.y);
+		if (enemy2Bullet <= 255 + 8)
+		{
+			enemy->OnCollision();
+			bullet->OnCollision();
+			DebugText::GetInstance()->Printf(100, 380, 3.0f, "Hit");
+		}
+
+		
 	}
 }
