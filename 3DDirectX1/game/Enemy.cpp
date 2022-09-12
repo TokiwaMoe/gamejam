@@ -63,7 +63,22 @@ void Enemy::Initialize()
 void Enemy::Init()
 {
 	circle.center = pigPos;
-	circle.radius = 10;
+	circle.radius = 60;
+	for (int i = 0; i < 6; i++)
+	{
+		dropCircle[i].center = dropPos[i];
+		dropCircle[i].radius = 60;
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		growCircle[i].center = growPos;
+		growCircle[i].center = growPos2;
+		growCircle[i].radius = 150;
+	}
+	golfCircle.center = GolfPos;
+	golfCircle.radius = 60;
+	enemyCircle.center = position;
+	enemyCircle.radius = 100;
 	srand(time(NULL));
 	//AttackNo = 2;
 	AttackNo = rand() % 4;
@@ -107,6 +122,8 @@ void Enemy::Update()
 	}
 	golfCircle.center = GolfPos;
 	golfCircle.radius = 60;
+	enemyCircle.center = position;
+	enemyCircle.radius = 100;
 }
 
 void Enemy::Move()
