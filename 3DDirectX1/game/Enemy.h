@@ -59,9 +59,9 @@ private://•Ï”
 	int HP = 5;
 	//drop•Ï”
 	float lane_Width = 128;
-	Sprite* spCard[9];
-	XMFLOAT2 dropPos[9];
-	float lane[10] = { 0,lane_Width,lane_Width * 2,lane_Width * 3,lane_Width * 4, lane_Width * 5,lane_Width * 6,lane_Width * 7,lane_Width * 8,lane_Width * 9 };
+	Sprite* spCard[6];
+	XMFLOAT2 dropPos[6];
+	float lane[7] = { 0,lane_Width,lane_Width * 2,lane_Width * 3,lane_Width * 4, lane_Width * 5,lane_Width * 6 };
 	float dropRand;
 	bool randFlag = false;
 	bool dropFlag = false;
@@ -70,7 +70,7 @@ private://•Ï”
 	float gravity = 0;
 	bool behindFlag = false;
 	float behindTime = 0;
-	Circle dropCircle[9];
+	Circle dropCircle[6];
 	//ƒ[ƒ‹•Ï”
 	Sprite* pig = nullptr;
 

@@ -19,9 +19,10 @@ void Enemy::Initialize()
 	Sprite::LoadTexture(6, L"Resources/animal_harinezumi.png");
 	golf = Sprite::CreateSprite(6, GolfPos);
 	Sprite::LoadTexture(10, L"Resources/card_joker.png");
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		spCard[i] = Sprite::CreateSprite(10, dropPos[i]);
+		spCard[i]->SetSize({ 91, 133 });
 	}
 
 	Sprite::LoadTexture(11, L"Resources/flower/flower_1.png");
@@ -51,10 +52,7 @@ void Enemy::Init()
 void Enemy::Update()
 {
 	spEnemy->SetSize({ 200, 200 });
-	for (int i = 0; i < 9; i++)
-	{
-		spCard[i]->SetSize({ 91, 133 });
-	}
+	
 	switch (AttackNo)
 	{
 	case 0:
@@ -74,7 +72,7 @@ void Enemy::Update()
 
 	circle.center = pigPos;
 	circle.radius = 60;
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		dropCircle[i].center = dropPos[i];
 		dropCircle[i].radius = 60;
@@ -82,7 +80,8 @@ void Enemy::Update()
 	for (int i = 0; i < 3; i++)
 	{
 		growCircle[i].center = growPos;
-		growCircle[i].radius = 60;
+		growCircle[i].center = growPos2;
+		growCircle[i].radius = 150;
 	}
 	golfCircle.center = GolfPos;
 	golfCircle.radius = 60;
@@ -207,7 +206,7 @@ void Enemy::Grow()
 
 void Enemy::Drop()
 {
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		if (dropFlag)
 		{
@@ -238,13 +237,13 @@ void Enemy::Drop()
 
 void Enemy::DropRand()
 {
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		if (randFlag)
 		{
 			endTime += 0.05;
 
-			for (int i = 0; i < 9; i++)
+			for (int i = 0; i < 7; i++)
 			{
 				dropPos[i].x = lane[i];
 
@@ -268,7 +267,7 @@ void Enemy::DropRand()
 			if (timer >= 50.0f)
 			{
 				randFlag = true;
-				dropRand = rand() % 10;
+				dropRand = rand() % 7;
 				timer = 0;
 			}
 		}
@@ -285,7 +284,7 @@ void Enemy::Draw()
 {
 	spEnemy->Draw();
 	if (AttackNo == 1 && randFlag) {
-		for (int i = 0; i < 9; i++)
+		for (int i = 0; i < 6; i++)
 		{
 			spCard[i]->Draw();
 		}
