@@ -120,15 +120,21 @@ void Enemy::Golf()
 
 	if (GolfFlag)
 	{
-		easeTimer += 0.1f;
-		GolfPos = eas->easeOut_Bounce({1000,200}, {0,450}, easeTimer);
-
 		if (easeTimer >= eas->maxflame)
 		{
-			GolfFlag = false;
-			AttackNo = 2;
-			GolfPos = { 1000,200 };
-			AttackNo = rand() % 4;
+			GolfPos.x += 3.0f;
+			
+			if (GolfPos.x >= 1300)
+			{
+				GolfFlag = false;
+				GolfPos = { 1000,200 };
+				AttackNo = rand() % 4;
+			}
+		}
+		else
+		{
+			easeTimer += 0.1f;
+			GolfPos = eas->easeOut_Bounce({ 1000,200 }, { 0,450 }, easeTimer);
 		}
 	}
 	golf->SetSize({ 100,100 });
