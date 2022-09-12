@@ -18,21 +18,39 @@ void Enemy::Initialize()
 	pig = Sprite::CreateSprite(5, pigPos);
 	Sprite::LoadTexture(6, L"Resources/animal_harinezumi.png");
 	golf = Sprite::CreateSprite(6, GolfPos);
-	Sprite::LoadTexture(10, L"Resources/card_joker.png");
+	Sprite::LoadTexture(10, L"Resources/card/JOKER.png");
+	Sprite::LoadTexture(11, L"Resources/card/heart.png");
+	Sprite::LoadTexture(12, L"Resources/card/dia.png");
+	Sprite::LoadTexture(13, L"Resources/card/card_hedgehog.png");
 	for (int i = 0; i < 6; i++)
 	{
-		spCard[i] = Sprite::CreateSprite(10, dropPos[i]);
+		if (i == 0 || i == 5)
+		{
+			spCard[i] = Sprite::CreateSprite(11, dropPos[i]);
+		}
+		else if (i == 1 || i == 3)
+		{
+			spCard[i] = Sprite::CreateSprite(12, dropPos[i]);
+		}
+		else if (i == 2)
+		{
+			spCard[i] = Sprite::CreateSprite(10, dropPos[i]);
+		}
+		else if (i == 4)
+		{
+			spCard[i] = Sprite::CreateSprite(13, dropPos[i]);
+		}
 		spCard[i]->SetSize({ 91, 133 });
 	}
 
-	Sprite::LoadTexture(11, L"Resources/flower/flower_1.png");
-	spGrow_Y = Sprite::CreateSprite(11, growPos);
+	Sprite::LoadTexture(14, L"Resources/flower/flower_1.png");
+	spGrow_Y = Sprite::CreateSprite(14, growPos);
 	spGrow_Y->SetTextureRect({ 0,0 }, { 144,144 });
 	spGrow_Y->SetSize({ 400, 400 });
 	spGrow_Y->SetRotation(70);
 
-	Sprite::LoadTexture(12, L"Resources/flower/flower_2.png");
-	spGrow_X = Sprite::CreateSprite(12, growPos);
+	Sprite::LoadTexture(15, L"Resources/flower/flower_2.png");
+	spGrow_X = Sprite::CreateSprite(15, growPos);
 	spGrow_X->SetTextureRect({ 0,0 }, { 144,144 });
 	spGrow_X->SetSize({ 400, 400 });
 	
