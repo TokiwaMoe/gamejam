@@ -23,13 +23,18 @@ void Enemy::Initialize()
 	{
 		spCard[i] = Sprite::CreateSprite(10, dropPos[i]);
 	}
-	Sprite::LoadTexture(11, L"Resources/flower_hachiue1_red.png");
-	for (int i = 0; i < 3; i++)
-	{
-		spGrow[i] = Sprite::CreateSprite(11, growPos[i]);
-	}
 
+	Sprite::LoadTexture(11, L"Resources/flower/flower_1.png");
+	spGrow_Y = Sprite::CreateSprite(11, growPos);
+	spGrow_Y->SetTextureRect({ 0,0 }, { 144,144 });
+	spGrow_Y->SetSize({ 400, 400 });
+	spGrow_Y->SetRotation(70);
 
+	Sprite::LoadTexture(12, L"Resources/flower/flower_2.png");
+	spGrow_X = Sprite::CreateSprite(12, growPos);
+	spGrow_X->SetTextureRect({ 0,0 }, { 144,144 });
+	spGrow_X->SetSize({ 400, 400 });
+	
 }
 
 void Enemy::Init()
@@ -67,8 +72,6 @@ void Enemy::Update()
 		break;
 	}
 
-	
-
 	circle.center = pigPos;
 	circle.radius = 60;
 }
@@ -79,6 +82,7 @@ void Enemy::Move()
 
 void Enemy::Golf()
 {
+
 	if (AttackNo == 2 && GolfFlag == false)
 	{
 		GolfFlag = true;
@@ -122,45 +126,70 @@ void Enemy::Roll()
 
 void Enemy::Grow()
 {
-	if (AttackNo == 3 && growFlag == false) {
-		growRandFlag = true;
-	}
-
-	if (growRandFlag)
+	for (int i = 0; i < 3; i++)
 	{
-		growRandY = rand() % 3;
-		growPos[0] = { growPosX[growRandX], growPosY[growRandY] };
-		growFlag = true;
-	}
-
-	if (growFlag)
-	{
-		growRandFlag = false;
-		if (20.0f <= growPos[0].x)
-		{
-			behindTime += 0.05f;
-			growPos[0].x = 20.0f;
+		if (AttackNo == 3 && growFlag == false) {
+			growRandFlag = true;
 		}
 
-		if (behindTime >= 10.0f)
+		if (growRandFlag)
 		{
-			growPos[0].x -= 0.05f;
+			growRandY = rand() % 3;
+			growRandX = rand() % 3;
+			growPos = { 0, growPosY[growRandY] };
+			growPos2 = { growPosX[growRandX], 720 };
+			growFlag = true;
+		}
 
-			if (growPos[0].x <= 0.0f)
+		if (growFlag)
+		{
+			growRandFlag = false;
+			if (300.0f <= growPos.x && growPos2.y <= 420.0f)
 			{
-				growFlag = false;
-				behindTime = 0;
-				growTime = 0;
-				AttackNo = 2;
-				//AttackNo = rand() % 4;
+				behindTime += 0.05f;
+				growPos.x = 300.0f;
+				growPos2.y = 420.0f;
+			}
+
+			if (behindTime >= 30.0f)
+			{
+				growPos.x -= 3.0f;
+				growPos2.y += 3.0f;
+
+				if (growPos.x <= 0.0f && growPos2.y >= 720.0f)
+				{
+					growFlag = false;
+					behindTime = 0;
+					growTime = 0;
+					AttackNo = 2;
+					//AttackNo = rand() % 4;
+				}
+			}
+			else {
+				growPos.x += 2.0f;
+				growPos2.y -= 2.0f;
 			}
 		}
-		else {
-			growPos[0].x += 0.05f;
+
+		spGrow_Y->SetPosition(growPos);
+		spGrow_X->SetPosition(growPos2);
+	}
+
+	growAnimation += 0.5f;
+
+	if (growAnimation >= 8)
+	{
+		growNo++;
+		growAnimation = 0;
+
+		if (growNo == 3)
+		{
+			growNo = 0;
 		}
 	}
 
-	spGrow[0]->SetPosition(growPos[0]);
+	spGrow_X->SetTextureRect({ 0 + 144 * growNo,0 }, { 144,144 });
+	spGrow_Y->SetTextureRect({ 0 + 144 * growNo,0 }, { 144,144 });
 }
 
 void Enemy::Drop()
@@ -256,8 +285,12 @@ void Enemy::Draw()
 	}
 	for (int i = 0; i < 3; i++)
 	{
-		spGrow[0]->Draw();
+		if (AttackNo == 3)
+		{
+			spGrow_Y->Draw();
+			spGrow_X->Draw();
+		}
 	}
-
+	
 }
 

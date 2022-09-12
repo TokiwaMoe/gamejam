@@ -435,6 +435,9 @@ void Sprite::SetTextureRect(XMFLOAT2 texBase, XMFLOAT2 texSize)
 
 void Sprite::Draw()
 {
+	// 頂点バッファへのデータ転送
+	TransferVertices();
+
 	// ワールド行列の更新
 	this->matWorld = XMMatrixIdentity();
 	this->matWorld *= XMMatrixRotationZ(XMConvertToRadians(rotation));

@@ -36,11 +36,11 @@ public:
 	XMFLOAT2 GetGolfPos() { return GolfPos; }
 	float GetEaseTimer() { return easeTimer; }
 
-	float GetGrowTime() { return growTime; }
+	float GetGrowTime() { return growAnimation; }
 
 	int GetGrowRandX() { return growRandX; }
 	int GetGrowRandY() { return growRandY; }
-	XMFLOAT2 GetGrowPos() { return growPos[0]; }
+	XMFLOAT2 GetGrowPos() { return growPos; }
 
 private:
 	void Move();//ˆÚ“®
@@ -78,18 +78,22 @@ private://•Ï”
 	//UŒ‚‚Ìí—Ş‚ğŒˆ‚ß‚é‚½‚ß‚Ì‚à‚Ì
 	int AttackNo;
 	//Grow•Ï”
-	Sprite* spGrow[3];
-	float x = 177;
-	float y = 240;
-	float growPosX[4] = { 0,x,x * 2 };
+	Sprite* spGrow_Y;
+	Sprite* spGrow_X;
+	float x = 230;
+	float y = 150;
+	float growPosX[3] = { x,x * 2,x * 3 };
 	float growPosY[3] = { 0,y * 2,y };
 	int growRandX = 0;
 	int growRandY = 0;
 	float growRandTime = 0;
 	bool growRandFlag = false;
-	XMFLOAT2 growPos[3];
+	XMFLOAT2 growPos;
+	XMFLOAT2 growPos2 = { 0,720 };
 	bool growFlag = false;
 	float growTime = 0;
+	float growAnimation = 0;
+	float growNo = 0;
 	//Golf•Ï”
 	Eas* eas;
 	Sprite* golf = nullptr;

@@ -40,7 +40,8 @@ private://プレイヤーの動き系
 	void Jump();//ジャンプ
 
 
-	Sprite* playerSprite = nullptr;
+	Sprite* playerSprite_Walk = nullptr;
+	Sprite* playerSprite_Stay = nullptr;
 	Sprite* sizeSprite = nullptr;
 	int HP = 3;
 	//位置サイズ角度
@@ -55,6 +56,12 @@ private://プレイヤーの動き系
 	float bulletTime = 10;
 	float maxBulletTime = 10;
 	bool isRight = true;
+
+	float walkAnima = 0;
+	float walkNo = 0;
+	float stayAnima = 0;
+	float stayNo = 0;
+	bool isWalk = false;
 public:
 	std::list<std::unique_ptr<PlayerBullet>> bullets_;
 };
