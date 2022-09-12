@@ -35,6 +35,7 @@ public:
 	//Getter
 	XMFLOAT2 GetPlayerPos() { return playerPos; }
 	Circle GetCircle() { return circle; }
+	int SetHP(int hp) { return this->HP = hp; }
 private://プレイヤーの動き系
 	void Move();//移動
 	void Jump();//ジャンプ

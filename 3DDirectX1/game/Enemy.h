@@ -44,6 +44,8 @@ public:
 	int GetGrowRandX() { return growRandX; }
 	int GetGrowRandY() { return growRandY; }
 	XMFLOAT2 GetGrowPos() { return growPos[0]; }
+	int SetHP(int hp) { return this->HP = hp; }
+
 
 private:
 	void Move();//ˆÚ“®
