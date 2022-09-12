@@ -15,6 +15,10 @@ ID3D12GraphicsCommandList* Sprite::cmdList = nullptr;
 ComPtr<ID3D12RootSignature> Sprite::rootSignature;
 ComPtr<ID3D12PipelineState> Sprite::pipelineState;
 XMMATRIX Sprite::matProjection;
+XMMATRIX Sprite::matView;
+XMFLOAT3 Sprite::eye = { 0,0,-10 };
+XMFLOAT3 Sprite::target = { 0,0,0 };
+XMFLOAT3 Sprite::up = { 0,1,0 };
 ComPtr<ID3D12DescriptorHeap> Sprite::descHeap;
 ComPtr<ID3D12Resource> Sprite::texBuff[spriteSRVCount];
 
@@ -182,7 +186,7 @@ bool Sprite::StaticInitialize(ID3D12Device* dev, int window_width, int window_he
 		0.0f, (float)window_width,
 		(float)window_height, 0.0f,
 		0.0f, 1.0f);
-
+	matView = XMMatrixLookAtLH(XMLoadFloat3(&eye), XMLoadFloat3(&target), XMLoadFloat3(&up));
 	// デスクリプタヒープを生成	
 	D3D12_DESCRIPTOR_HEAP_DESC descHeapDesc = {};
 	descHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
@@ -366,7 +370,7 @@ bool Sprite::Initialize()
 		ConstBufferData* constMap = nullptr;
 		result = constBuff->Map(0, nullptr, (void**)&constMap);
 		constMap->color = color; // 色指定（RGBA）
-		constMap->mat = matProjection;
+		constMap->mat = matView * matProjection;
 		constBuff->Unmap(0, nullptr);
 	}
 	// 初期化した、新しいスプライトを返す
@@ -446,6 +450,7 @@ void Sprite::Draw()
 	// 定数バッファにデータ転送
 	ConstBufferData* constMap = nullptr;
 	HRESULT result = this->constBuff->Map(0, nullptr, (void**)&constMap);
+
 	if (SUCCEEDED(result))
 	{
 		constMap->color = this->color;

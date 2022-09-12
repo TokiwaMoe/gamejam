@@ -67,6 +67,7 @@ public:
 	void SetTextureRect(XMFLOAT2 texBase, XMFLOAT2 texSize);
 	//描画
 	void Draw();
+	XMFLOAT3 SetEye(XMFLOAT3 eye) { return this->eye = eye; }
 protected:
 
 
@@ -94,7 +95,10 @@ protected:
 	static ComPtr<ID3D12Resource> texBuff[spriteSRVCount];
 	//射影行列
 	static XMMATRIX matProjection;
-
+	static XMMATRIX matView;
+	static XMFLOAT3 eye;
+	static XMFLOAT3 target;
+	static XMFLOAT3 up;
 	//メンバ変数
 	//頂点バッファ
 	ComPtr<ID3D12Resource> vertBuff;

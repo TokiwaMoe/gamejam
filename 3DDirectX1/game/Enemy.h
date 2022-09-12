@@ -31,6 +31,9 @@ public:
 	float GetGravity() { return gravity; }
 	XMFLOAT2 GetDropPos() { return dropPos[0]; }
 	Circle GetCircle() { return circle; }
+	Circle GetDropCircle(int i) { return dropCircle[i]; }
+	Circle GetGrowCircle(int i) { return growCircle[i]; }
+	Circle GetGolfCircle() { return golfCircle; }
 	int GetAttackNo() { return AttackNo; }
 
 	XMFLOAT2 GetGolfPos() { return GolfPos; }
@@ -67,6 +70,7 @@ private://•Ï”
 	float gravity = 0;
 	bool behindFlag = false;
 	float behindTime = 0;
+	Circle dropCircle[9];
 	//ƒ[ƒ‹•Ï”
 	Sprite* pig = nullptr;
 
@@ -94,10 +98,12 @@ private://•Ï”
 	float growTime = 0;
 	float growAnimation = 0;
 	float growNo = 0;
+	Circle growCircle[3];
 	//Golf•Ï”
 	Eas* eas;
 	Sprite* golf = nullptr;
 	XMFLOAT2 GolfPos = { 1000,200 };
 	bool GolfFlag = false;
 	float easeTimer = 0;
+	Circle golfCircle;
 };

@@ -55,17 +55,12 @@ void Player::Move()
 	}
 	else {
 		isWalk = false;
-	}/*
-	if (Input::GetInstance()->PushKey(DIK_W))
-	{
-		playerPos.y -= 2;
-		playerFlag = false;
 	}
-	if (Input::GetInstance()->PushKey(DIK_S))
+
+	if (Input::GetInstance()->PushKey(DIK_UPARROW))
 	{
-		playerPos.y += 2;
-		playerFlag = false;
-	}*/
+		eye--;
+	}
 	circle.center = playerPos;
 	circle.radius = 50;
 }
