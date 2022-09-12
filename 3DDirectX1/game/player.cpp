@@ -13,9 +13,16 @@ Player::~Player()
 }
 void Player::Initialize()
 {
-	Sprite::LoadTexture(2, L"Resources/character2.png");
+	Sprite::LoadTexture(2, L"Resources/player/walk.png");
+	Sprite::LoadTexture(3, L"Resources/player/stay.png");
 	//Sprite::LoadTexture(3, L"Resources/UI/sizeUI.png");
-	playerSprite = Sprite::CreateSprite(2, { 0,100 });
+	playerSprite_Walk = Sprite::CreateSprite(2, { 0,0 });
+	playerSprite_Walk->SetSize({ 128,128 });
+	playerSprite_Walk->SetTextureRect({ 0,0 }, { 48,48 });
+
+	playerSprite_Stay = Sprite::CreateSprite(3, { 0,0 });
+	playerSprite_Stay->SetSize({ 128,128 });
+	playerSprite_Stay->SetTextureRect({ 0,0 }, { 48,48 });
 	//sizeSprite = Sprite::CreateSprite(3, { 100,100 });
 
 
@@ -37,23 +44,19 @@ void Player::Move()
 		playerPos.x += 2;
 		playerFlag = false;
 		isRight = true;
+		isWalk = true;
 	}
-	if (Input::GetInstance()->PushKey(DIK_A))
+	else if (Input::GetInstance()->PushKey(DIK_A))
 	{
 		playerPos.x -= 2;
 		playerFlag = true;
 		isRight = false;
+		isWalk = true;
 	}
-	if (Input::GetInstance()->PushKey(DIK_W))
-	{
-		playerPos.y -= 2;
-		playerFlag = false;
+	else {
+		isWalk = false;
 	}
-	if (Input::GetInstance()->PushKey(DIK_S))
-	{
-		playerPos.y += 2;
-		playerFlag = false;
-	}
+
 	if (Input::GetInstance()->PushKey(DIK_UPARROW))
 	{
 		eye--;
@@ -105,10 +108,41 @@ void Player::Update()
 	{
 		bullet->Update();
 	}
-	playerSprite->SetAnchorPoint({ 0.5, 0.5 });
-	playerSprite->SetPosition(playerPos);
-	playerSprite->SetEye({ 0,0,eye });
-	playerSprite->SetIsFlipX(playerFlag);
+
+	walkAnima += 0.5f;
+
+	if (walkAnima >= 8)
+	{
+		walkNo++;
+		walkAnima = 0;
+
+		if (walkNo == 3)
+		{
+			walkNo = 0;
+		}
+	}
+
+	stayAnima += 0.5f;
+
+	if (stayAnima >= 8)
+	{
+		stayNo++;
+		stayAnima = 0;
+
+		if (stayNo == 2)
+		{
+			stayNo = 0;
+		}
+	}
+
+	playerSprite_Walk->SetTextureRect({ 0 + 48 * walkNo,0 }, { 48,48 });
+	playerSprite_Walk->SetAnchorPoint({ 0.5, 0.5 });
+	playerSprite_Stay->SetTextureRect({ 0 + 48 * stayNo,0 }, { 48,48 });
+	playerSprite_Stay->SetAnchorPoint({ 0.5, 0.5 });
+	playerSprite_Walk->SetPosition(playerPos);
+	playerSprite_Walk->SetIsFlipX(playerFlag);
+	playerSprite_Stay->SetPosition(playerPos);
+	playerSprite_Stay->SetIsFlipX(playerFlag);
 }
 
 
@@ -151,10 +185,17 @@ void Player::Draw()
 
 void Player::DrawSprite()
 {
-	playerSprite->Draw();
 	for (std::unique_ptr<PlayerBullet>& bullet : bullets_)
 	{
 		bullet->Draw();
+	}
+
+	if (isWalk)
+	{
+		playerSprite_Walk->Draw();
+	}
+	else {
+		playerSprite_Stay->Draw();
 	}
 	
 }

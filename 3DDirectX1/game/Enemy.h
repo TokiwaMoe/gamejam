@@ -39,13 +39,17 @@ public:
 	XMFLOAT2 GetGolfPos() { return GolfPos; }
 	float GetEaseTimer() { return easeTimer; }
 
-	float GetGrowTime() { return growTime; }
+	float GetGrowTime() { return growAnimation; }
 
 	int GetGrowRandX() { return growRandX; }
 	int GetGrowRandY() { return growRandY; }
+<<<<<<< HEAD
 	XMFLOAT2 GetGrowPos() { return growPos[0]; }
 	int SetHP(int hp) { return this->HP = hp; }
 
+=======
+	XMFLOAT2 GetGrowPos() { return growPos; }
+>>>>>>> master
 
 private:
 	void Move();//ˆÚ“®
@@ -61,9 +65,9 @@ private://•Ï”
 	int HP = 5;
 	//drop•Ï”
 	float lane_Width = 128;
-	Sprite* spCard[9];
-	XMFLOAT2 dropPos[9];
-	float lane[10] = { 0,lane_Width,lane_Width * 2,lane_Width * 3,lane_Width * 4, lane_Width * 5,lane_Width * 6,lane_Width * 7,lane_Width * 8,lane_Width * 9 };
+	Sprite* spCard[6];
+	XMFLOAT2 dropPos[6];
+	float lane[7] = { 0,lane_Width,lane_Width * 2,lane_Width * 3,lane_Width * 4, lane_Width * 5,lane_Width * 6 };
 	float dropRand;
 	bool randFlag = false;
 	bool dropFlag = false;
@@ -72,7 +76,7 @@ private://•Ï”
 	float gravity = 0;
 	bool behindFlag = false;
 	float behindTime = 0;
-	Circle dropCircle[9];
+	Circle dropCircle[6];
 	//ƒ[ƒ‹•Ï”
 	Sprite* pig = nullptr;
 
@@ -84,18 +88,22 @@ private://•Ï”
 	//UŒ‚‚Ìí—Ş‚ğŒˆ‚ß‚é‚½‚ß‚Ì‚à‚Ì
 	int AttackNo;
 	//Grow•Ï”
-	Sprite* spGrow[3];
-	float x = 177;
-	float y = 240;
-	float growPosX[4] = { 0,x,x * 2 };
+	Sprite* spGrow_Y;
+	Sprite* spGrow_X;
+	float x = 230;
+	float y = 150;
+	float growPosX[3] = { x,x * 2,x * 3 };
 	float growPosY[3] = { 0,y * 2,y };
 	int growRandX = 0;
 	int growRandY = 0;
 	float growRandTime = 0;
 	bool growRandFlag = false;
-	XMFLOAT2 growPos[3];
+	XMFLOAT2 growPos;
+	XMFLOAT2 growPos2 = { 0,720 };
 	bool growFlag = false;
 	float growTime = 0;
+	float growAnimation = 0;
+	float growNo = 0;
 	Circle growCircle[3];
 	//Golf•Ï”
 	Eas* eas;
