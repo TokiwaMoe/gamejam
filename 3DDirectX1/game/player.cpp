@@ -156,7 +156,7 @@ void Player::Attack()
 	{
 		XMFLOAT2 oldPosition = playerPos;
 		bulletCircle.center = oldPosition;
-		bulletCircle.radius = 20;
+		bulletCircle.radius = 10;
 		const float kBulletSpeed = 3.0f;
 		XMFLOAT2 velocity;
 
