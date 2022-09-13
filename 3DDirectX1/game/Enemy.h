@@ -44,8 +44,8 @@ public:
 	int GetGrowRandX() { return growRandX; }
 	int GetGrowRandY() { return growRandY; }
 
-	int SetHP(int hp) { return this->HP = hp; }
 	int GetHP() { return HP; }
+	int SetHP(int hp) { return this->HP = hp; }
 
 	XMFLOAT2 GetGrowPos() { return growPos; }
 	Circle GetEnemyCircle() { return enemyCircle; }
@@ -60,11 +60,11 @@ private:
 	void Drop();
 	void DropRand();
 	void Attack();
-	
+
 private://•Ï”
 	Sprite* spEnemy = nullptr;
 	XMFLOAT2 position = { 1200,490 };
-	int HP = 100;
+	int HP = 5;
 	Circle enemyCircle;
 	//drop•Ï”
 	float lane_Width = 128;
@@ -107,7 +107,7 @@ private://•Ï”
 	float growTime = 0;
 	float growAnimation = 0;
 	float growNo = 0;
-	Circle growCircle[2];
+	Circle growCircle[3];
 	//Golf•Ï”
 	Eas* eas;
 	Sprite* backGolf = nullptr;
