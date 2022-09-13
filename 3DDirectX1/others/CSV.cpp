@@ -1,7 +1,7 @@
 #include "CSV.h"
 #include <stdio.h>
 
-int CSV::LoadCSV(int map[MAP_HEIGHT][MAP_WIDTH], const char* FilePath, int LoadStopNumber)
+int LoadCSV(int map[MAP_HEIGHT][MAP_WIDTH], const char* FilePath, int LoadStopNumber)
 {
 	if (map == nullptr)
 	{//‚È‚©‚Á‚½‚ç–ß‚·

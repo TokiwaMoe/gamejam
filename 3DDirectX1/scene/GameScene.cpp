@@ -117,7 +117,8 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 	enemy = new Enemy;//newすればエラー吐かない
 	enemy->Initialize();
 	enemy->Init();
-	
+	mapchip = new MapChip;//newすればエラー吐かない
+	mapchip->Initialize();
 }
 
 void GameScene::Init()
@@ -235,6 +236,7 @@ void GameScene::DrawFront()
 	//前景
 	sprite->PreDraw(dxCommon->GetCmdList());
 	//sprite->Draw();
+	mapchip->Draw();
 	player->DrawSprite();
 	enemy->Draw();
 	DebugText::GetInstance()->Printf(100, 20, 3.0f, "%f", enemy->GetEaseTimer());
@@ -290,8 +292,8 @@ void GameScene::CheckAllCollision()
 		float enemy2BulletX = (posA.x + 255) - posB.x;
 		float enemy2BulletY = (posA.y + 32) - posB.y;
 		float enemy2Bullet = sqrtf(pow(enemy2BulletX, 2) + pow(enemy2BulletY, 2));
-		DebugText::GetInstance()->Printf(100, 300, 3.0f, "%f : 263", enemy2Bullet);
-		DebugText::GetInstance()->Printf(100, 340, 2.5f, "en : %f %f pb : %f %f", posA.x, posA.y, posB.x, posB.y);
+		//DebugText::GetInstance()->Printf(100, 300, 3.0f, "%f : 263", enemy2Bullet);
+		//DebugText::GetInstance()->Printf(100, 340, 2.5f, "en : %f %f pb : %f %f", posA.x, posA.y, posB.x, posB.y);
 		if (enemy2Bullet <= 255 + 8)
 		{
 			enemy->OnCollision();

@@ -17,6 +17,7 @@
 #include"player.h"
 #include"Enemy.h"
 #include"PlayerBullet.h"
+#include"MapChip.h"
 #include<memory>
 #include<list>
 
@@ -86,6 +87,7 @@ private: // メンバ変数
 
 	Player* player;
 	Enemy* enemy;
+	MapChip* mapchip;
 	std::list<std::unique_ptr<PlayerBullet>> playerBullet;
 	std::unique_ptr<PlayerBullet> newBullet;
 
