@@ -14,7 +14,7 @@ void Enemy::Initialize()
 {
 	Sprite::LoadTexture(4, L"Resources/fantasy_maou_devil.png");
 	spEnemy = Sprite::CreateSprite(4, position);
-	Sprite::LoadTexture(5, L"Resources/animal_pig_buta.png");
+	Sprite::LoadTexture(5, L"Resources/pig.png");
 	pig = Sprite::CreateSprite(5, pigPos);
 	Sprite::LoadTexture(6, L"Resources/hedgehog/golf.png");
 	golf = Sprite::CreateSprite(6, GolfPos);
