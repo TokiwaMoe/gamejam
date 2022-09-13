@@ -102,9 +102,8 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 	sprite = Sprite::CreateSprite(1, { 0,0 });
 
 
-	sound1 = Audio::SoundLoadWave("Resources/ショット.wav");
+	sound1 = Audio::SoundLoadWave("Resources/Sound/ゲージ回復2.wav");
 
-	//audio->SoundPlayWave(sound1);
 
 	//audio->SetBGMVolume(0.5f);
 	// カメラ注視点をセット
@@ -157,7 +156,7 @@ void GameScene::Update()
 	//camera->SetEye(cameraPos);
 	//camera->SetTarget(player->GetSpherePos());
 	camera->Update();
-
+#pragma region 当たり判定
 	if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetCircle())) {
 
 		//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
@@ -184,6 +183,12 @@ void GameScene::Update()
 
 		//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 	}
+#pragma endregion
+#pragma region 音
+	if (player->GetAudioFlag() == true) {
+		audio->SEPlayWave(sound1);
+	}
+#pragma endregion
 	particleMan->Update();
 	object3d2->SetPosition(playerPosition);
 	object3d2->SetRotation({ 0,90,0 });

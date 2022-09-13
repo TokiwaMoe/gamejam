@@ -7,6 +7,7 @@
 #include"PlayerBullet.h"
 #include<memory>
 #include<list>
+#include"Audio.h"
 /// <summary>
 /// プレイヤー関連のクラス
 /// </summary>
@@ -39,13 +40,14 @@ public:
 	int SetHP(int hp) { return this->HP = hp; }
 	XMFLOAT2 GetOldPos() { return oldPosition; }
 	XMFLOAT2 GetVelocity() { return velocity; }
+	bool GetAudioFlag() { return AudioFlag; }
 	//弾リストを取得
 	const std::list < std::unique_ptr<PlayerBullet>>& GetBullets() { return bullets_; }
 private://プレイヤーの動き系
 	void Move();//移動
 	void Jump();//ジャンプ
 
-
+	bool AudioFlag = false;
 	Sprite* playerSprite_Walk = nullptr;
 	Sprite* playerSprite_Stay = nullptr;
 	Sprite* sizeSprite = nullptr;
