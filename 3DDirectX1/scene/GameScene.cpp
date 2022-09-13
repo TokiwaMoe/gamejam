@@ -245,6 +245,7 @@ void GameScene::DrawFront()
 	DebugText::GetInstance()->Printf(100, 160, 3.0f, "time : %f", enemy->GetGrowTime());
 	DebugText::GetInstance()->Printf(100, 200, 3.0f, "x : %f", enemy->GetGolfPos().x);
 	DebugText::GetInstance()->Printf(100, 240, 3.0f, "y : %f", enemy->GetGolfPos().y);
+	DebugText::GetInstance()->Printf(100, 260, 3.0f, "%d", enemy->GetAttackNo());
 	DebugText::GetInstance()->Printf(100, 320, 3.0f, "playerHP : %d", player->GetHP());
 	DebugText::GetInstance()->Printf(100, 360, 3.0f, "enemyHP : %d", enemy->GetHP());
 

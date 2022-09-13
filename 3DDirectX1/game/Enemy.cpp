@@ -83,7 +83,7 @@ void Enemy::Init()
 		growCircle[i].radius = 200;
 	}
 	golfCircle.center = GolfPos;
-	golfCircle.radius = 200;
+	golfCircle.radius = 100;
 	enemyCircle.center = position;
 	enemyCircle.radius = 200;
 	srand(time(NULL));
