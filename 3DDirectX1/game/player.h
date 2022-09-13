@@ -27,7 +27,8 @@ public:
 	void Initialize();//一回だけの初期化
 	void Init();//シーンチェンジ時にもする初期化
 	void Update();
-	void OnCollision(const CollisionInfo& info);
+	//void OnCollision(const CollisionInfo& info);
+	void OnCollisionCall();
 	void Attack();
 	void Draw();
 	void DrawSprite();
@@ -36,7 +37,7 @@ public:
 	XMFLOAT2 GetPlayerPos() { return playerPos; }
 	Circle GetCircle() { return circle; }
 	Circle GetBulletCircle() { return bulletCircle; };
-	int SetHP(int hp) { return this->HP = hp; }
+	int GetHP() { return HP; }
 	XMFLOAT2 GetOldPos() { return oldPosition; }
 	XMFLOAT2 GetVelocity() { return velocity; }
 	//弾リストを取得
@@ -50,7 +51,6 @@ private://プレイヤーの動き系
 	Sprite* playerSprite_Stay = nullptr;
 	Sprite* sizeSprite = nullptr;
 	float eye;
-	int HP = 3;
 	//位置サイズ角度
 	XMFLOAT2 playerPos = { 0,0 };
 	bool playerFlag = false;
@@ -71,6 +71,8 @@ private://プレイヤーの動き系
 	bool isWalk = false;
 	XMFLOAT2 oldPosition = { 0,0 };
 	XMFLOAT2 velocity = { 0,0 };
+
+	int HP = 5;
 public:
 	std::list<std::unique_ptr<PlayerBullet>> bullets_;
 };

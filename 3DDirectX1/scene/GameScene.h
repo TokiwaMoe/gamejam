@@ -33,6 +33,12 @@ private:
 	using XMFLOAT3 = DirectX::XMFLOAT3;
 	using XMFLOAT4 = DirectX::XMFLOAT4;
 	using XMMATRIX = DirectX::XMMATRIX;
+
+public:
+	enum Scene
+	{
+		TITLE,GAME,END,CLEAR
+	};
 public: // メンバ関数
 
 

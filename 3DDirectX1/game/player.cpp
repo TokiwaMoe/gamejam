@@ -34,7 +34,7 @@ void Player::Init()
 	circle.center = playerPos;
 	circle.radius = 5;
 	playerPos = { 50,100 };
-
+	HP = 5;
 }
 
 
@@ -201,5 +201,10 @@ void Player::DrawSprite()
 		playerSprite_Stay->Draw();
 	}
 
+}
+
+void Player::OnCollisionCall()
+{
+	HP -= 1;
 }
 

@@ -74,17 +74,18 @@ void Enemy::Init()
 	{
 		dropCircle[i].center = dropPos[i];
 		dropCircle[i].radius = 60;
+
 	}
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		growCircle[i].center = growPos;
 		growCircle[i].center = growPos2;
-		growCircle[i].radius = 150;
+		growCircle[i].radius = 200;
 	}
 	golfCircle.center = GolfPos;
-	golfCircle.radius = 60;
+	golfCircle.radius = 200;
 	enemyCircle.center = position;
-	enemyCircle.radius = 100;
+	enemyCircle.radius = 200;
 	srand(time(NULL));
 	//AttackNo = 2;
 	AttackNo = rand() % 4;

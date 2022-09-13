@@ -159,29 +159,29 @@ void GameScene::Update()
 	camera->Update();
 
 	if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetCircle())) {
-
+		player->OnCollisionCall();
 		//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 	}
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetDropCircle(i))) {
-
+			player->OnCollisionCall();
 			//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 		}
 	}
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGrowCircle(i))) {
-
+			player->OnCollisionCall();
 			//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 		}
 	}
 	if (Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGolfCircle())) {
-
+		player->OnCollisionCall();
 		//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 	}
 	if (Collision::CheckCircle2Circle(player->GetBulletCircle(), enemy->GetEnemyCircle())) {
-
+		player->OnCollisionCall();
 		//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 	}
 	particleMan->Update();
@@ -245,8 +245,8 @@ void GameScene::DrawFront()
 	DebugText::GetInstance()->Printf(100, 160, 3.0f, "time : %f", enemy->GetGrowTime());
 	DebugText::GetInstance()->Printf(100, 200, 3.0f, "x : %f", enemy->GetGolfPos().x);
 	DebugText::GetInstance()->Printf(100, 240, 3.0f, "y : %f", enemy->GetGolfPos().y);
-	DebugText::GetInstance()->Printf(100, 320, 3.0f, "%d", enemy->GetAttackNo());
-	
+	DebugText::GetInstance()->Printf(100, 320, 3.0f, "playerHP : %d", player->GetHP());
+	DebugText::GetInstance()->Printf(100, 360, 3.0f, "enemyHP : %d", enemy->GetHP());
 
 	DebugText::GetInstance()->DrawAll(dxCommon->GetCmdList());
 	sprite->PostDraw();
