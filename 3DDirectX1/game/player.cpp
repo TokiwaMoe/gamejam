@@ -25,8 +25,7 @@ void Player::Initialize()
 	playerSprite_Stay->SetSize({ 128,128 });
 	playerSprite_Stay->SetTextureRect({ 0,0 }, { 48,48 });
 	//sizeSprite = Sprite::CreateSprite(3, { 100,100 });
-
-
+ 
 }
 
 void Player::Init()
@@ -155,6 +154,7 @@ void Player::Attack()
 	bulletTime += 0.3f;
 	bulletCircle.radius = 10;
 	bulletCircle.center = newBullet->GetPlayerBulletPos();
+	AudioFlag = false;
 	if (bulletTime >= maxBulletTime)
 	{
 		oldPosition = playerPos;
@@ -177,6 +177,7 @@ void Player::Attack()
 		bullets_.push_back(std::move(newBullet));
 
 		bulletTime = 0;
+		AudioFlag = true;
 	}
 
 }

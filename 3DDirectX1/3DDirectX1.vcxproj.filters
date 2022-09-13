@@ -195,6 +195,9 @@
     <ClCompile Include="game\PlayerBullet.cpp">
       <Filter>Game\player</Filter>
     </ClCompile>
+    <ClCompile Include="others\MapCollision.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shaders\FBX.hlsli">
@@ -429,6 +432,9 @@
     </ClInclude>
     <ClInclude Include="game\PlayerBullet.h">
       <Filter>Game\player</Filter>
+    </ClInclude>
+    <ClInclude Include="others\MapCollision.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
