@@ -278,23 +278,34 @@ void GameScene::CreateParticles()
 
 void GameScene::CheckAllCollision()
 {
-	XMFLOAT2 posA, posB;
+	XMFLOAT2 posA_1, posA_2, posB;
 
 	//自弾リストの取得
 	const std::list<std::unique_ptr<PlayerBullet>>& playerBullets = player->GetBullets();
 
-	posA = enemy->GetPosition();
+	posA_1 = enemy->GetPosition();
+	posA_2 = enemy->GetPosition();
 
 	for (const std::unique_ptr<PlayerBullet>& bullet : playerBullets)
 	{
 		posB = bullet->GetPlayerBulletPos();
 
-		float enemy2BulletX = (posA.x + 255) - posB.x;
-		float enemy2BulletY = (posA.y + 32) - posB.y;
+		float enemyBulletX = (posA_1.x + 180) - posB.x;
+		float enemyBulletY = (posA_1.y) - posB.y;
+		float enemyBullet = sqrtf(pow(enemyBulletX, 2) + pow(enemyBulletY, 2));
+		if (enemyBullet <= 260 + 8)
+		{
+			enemy->OnCollision();
+			bullet->OnCollision();
+			DebugText::GetInstance()->Printf(100, 380, 3.0f, "Hit");
+		}
+
+		float enemy2BulletX = (posA_2.x + 180) - posB.x;
+		float enemy2BulletY = (posA_2.y + 180) - posB.y;
 		float enemy2Bullet = sqrtf(pow(enemy2BulletX, 2) + pow(enemy2BulletY, 2));
 		//DebugText::GetInstance()->Printf(100, 300, 3.0f, "%f : 263", enemy2Bullet);
 		//DebugText::GetInstance()->Printf(100, 340, 2.5f, "en : %f %f pb : %f %f", posA.x, posA.y, posB.x, posB.y);
-		if (enemy2Bullet <= 255 + 8)
+		if (enemy2Bullet <= 260 + 8)
 		{
 			enemy->OnCollision();
 			bullet->OnCollision();

@@ -18,6 +18,12 @@ void Enemy::Initialize()
 	pig = Sprite::CreateSprite(5, pigPos);
 	Sprite::LoadTexture(6, L"Resources/hedgehog/golf.png");
 	golf = Sprite::CreateSprite(6, GolfPos);
+	golf->SetAnchorPoint({ 0.5, 0.5 });
+	Sprite::LoadTexture(7, L"Resources/golf.png");
+	enGolf = Sprite::CreateSprite(7, position);
+	enGolf->SetTextureRect({ 0,0 }, { 96,96 });
+	enGolf->SetAnchorPoint({ 0.5,0.5 });
+	enGolf->SetSize({ 400, 400 });
 	Sprite::LoadTexture(10, L"Resources/card/JOKER.png");
 	Sprite::LoadTexture(11, L"Resources/card/heart.png");
 	Sprite::LoadTexture(12, L"Resources/card/dia.png");
@@ -132,12 +138,32 @@ void Enemy::Move()
 
 void Enemy::Golf()
 {
+	enGolfAnime += 1.5f;
 
+	if (enGolfAnime >= 8)
+	{
+		enGolfNo++;
+		enGolfAnime = 0;
+
+		if (enGolfNo == 5)
+		{
+			GolfFlag = true;
+			easeTimer = 0;
+		}
+
+		if (enGolfNo >= 6)
+		{
+			enGolfNo = 7;
+			enGolfAnime = 9;
+		}
+	}
+	
+	
+	/*
 	if (AttackNo == 2 && GolfFlag == false)
 	{
-		GolfFlag = true;
-		easeTimer = 0;
-	}
+		
+	}*/
 
 	if (GolfFlag)
 	{
@@ -163,15 +189,18 @@ void Enemy::Golf()
 			if (GolfPos.x >= 1300)
 			{
 				GolfFlag = false;
-				GolfPos = { 1000,200 };
+				isBackAnime = false;
+				GolfPos = { 1000,350 };
 				AttackNo = rand() % 4;
+				enGolfNo = 0;
+				enGolfAnime = 0;
 			}
 		}
 		else
 		{
 			isBackAnime = false;
 			easeTimer += 0.1f;
-			GolfPos = eas->easeOut_Bounce({ 1000,200 }, { 0,450 }, easeTimer);
+			GolfPos = eas->easeOut_Bounce({ 1000,450 }, { 0,560 }, easeTimer);
 		}
 	}
 	golf->SetSize({ 100,100 });
@@ -179,6 +208,9 @@ void Enemy::Golf()
 	backGolf->SetTextureRect({ 100 * backNo,0 }, { 100,64 });
 	backGolf->SetSize({ 200, 128 });
 	backGolf->SetPosition(GolfPos);
+
+	enGolf->SetTextureRect({ 96 * enGolfNo,0 }, { 96,96 });
+	enGolf->SetPosition(position);
 }
 
 void Enemy::Roll()
@@ -356,7 +388,7 @@ void Enemy::OnCollision()
 
 void Enemy::Draw()
 {
-	spEnemy->Draw();
+	//spEnemy->Draw();
 	if (AttackNo == 1 && randFlag) {
 		for (int i = 0; i < 6; i++)
 		{
@@ -373,7 +405,11 @@ void Enemy::Draw()
 		}
 		else
 		{
-			golf->Draw();
+			if (GolfFlag)
+			{
+				golf->Draw();
+			}
+			
 		}
 		
 	}
@@ -385,6 +421,5 @@ void Enemy::Draw()
 			spGrow_X->Draw();
 		}
 	}
-	
+	enGolf->Draw();
 }
-

@@ -62,7 +62,7 @@ private:
 	
 private://•Ï”
 	Sprite* spEnemy = nullptr;
-	XMFLOAT2 position = { 700,500 };
+	XMFLOAT2 position = { 1200,490 };
 	int HP = 5;
 	Circle enemyCircle;
 	//drop•Ï”
@@ -84,7 +84,7 @@ private://•Ï”
 
 	//roll•Ï”
 
-	XMFLOAT2 pigPos = { 2000,500 };
+	XMFLOAT2 pigPos = { 2000,490 };
 	float pigRot = 0;
 	Circle circle;
 	//UŒ‚‚Ìí—Ş‚ğŒˆ‚ß‚é‚½‚ß‚Ì‚à‚Ì
@@ -111,7 +111,8 @@ private://•Ï”
 	Eas* eas;
 	Sprite* backGolf = nullptr;
 	Sprite* golf = nullptr;
-	XMFLOAT2 GolfPos = { 1000,200 };
+	Sprite* enGolf = nullptr;
+	XMFLOAT2 GolfPos = { 1000,600 };
 	bool GolfFlag = false;
 	float easeTimer = 0;
 	Circle golfCircle;
@@ -119,6 +120,9 @@ private://•Ï”
 	float backAnime = 0;
 	bool isBackAnime = false;
 	float backNo = 0;
+
+	float enGolfNo = 0;
+	float enGolfAnime = 0;
 
 	bool isAlive = false;
 };
