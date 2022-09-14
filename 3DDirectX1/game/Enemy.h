@@ -47,7 +47,8 @@ public:
 	int GetHP() { return HP; }
 	int SetHP(int hp) { return this->HP = hp; }
 
-	XMFLOAT2 GetGrowPos() { return growPos; }
+	XMFLOAT2 GetGrowPos() { return GolfPos; }
+	XMFLOAT2 GetGrowPos2() { return growPos2; }
 	Circle GetEnemyCircle() { return enemyCircle; }
 
 	const XMFLOAT2 GetPosition() { return position; }

@@ -90,20 +90,21 @@ void Player::Jump()
 	}
 	else if (jumpFlag == true) {
 		if (gFlag == false) {
-			if (playerPos.y >= oldPos.y - 150)
+			if (playerPos.y >= oldPos.y - 200)
 			{
 				playerPos.y -= jSpeed;
 				//jSpeed += 3;
 			}
-			if (playerPos.y <= oldPos.y - 150) { gFlag = true; }
+			if (playerPos.y <= oldPos.y - 200) { gFlag = true; }
 		}
 		else if (gFlag == true) {
-			if (playerPos.y <= oldPos.y - 150)
-			{
-				playerPos.y += jSpeed;
-				//jSpeed += 3;
-			}
-			if (playerPos.y >= oldPos.y - 150) { jumpFlag = false; playerPos.y = oldPos.y; }
+			playerPos.y += jSpeed;
+			//if (playerPos.y <= oldPos.y - 200)
+			//{
+			//	
+			//	//jSpeed += 3;
+			//}
+			if (playerPos.y <= oldPos.y) { jumpFlag = false; playerPos.y = oldPos.y; }
 		}
 	}
 

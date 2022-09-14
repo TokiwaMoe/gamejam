@@ -60,6 +60,7 @@ private://ƒvƒŒƒCƒ„[‚Ì“®‚«Œn
 	bool playerFlag = false;
 	bool jumpFlag = false;
 	bool gFlag = false;
+	const float gravity = 9.8;
 	float g = 9.8f / 60;
 	float jSpeed;
 	Circle circle;

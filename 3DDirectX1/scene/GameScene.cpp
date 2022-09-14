@@ -184,10 +184,6 @@ void GameScene::Update()
 			player->OnCollisionCall();
 			//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 		}
-		if (HitDrop[i] == false)
-		{
-			enemy->isDropHit[i] = true;
-		}
 	}
 	
 	for (int i = 0; i < 2; i++)
@@ -196,7 +192,7 @@ void GameScene::Update()
 		if (HitGrow[i] && enemy->isGrowHit[i] == true) {
 			enemy->isGrowHit[i] = false;
 			player->OnCollisionCall();
-			//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
+			
 		}
 		if(HitGrow[i] == false)
 		{
@@ -205,10 +201,10 @@ void GameScene::Update()
 	}
 
 	HitGolf = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGolfCircle());
-	if (HitGolf && enemy->isGolfHit == true) {
+	if (HitGolf) {
 		player->OnCollisionCall();
 		enemy->isGolfHit == false;
-		//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
+		DebugText::GetInstance()->Printf(100, 100, 3.0f, "Hit");
 	}
 	if (HitGolf == false)
 	{
@@ -307,13 +303,21 @@ void GameScene::DrawFront()
 	
 	DebugText::GetInstance()->Printf(100, 20, 3.0f, "%f", enemy->GetEaseTimer());
 	//DebugText::GetInstance()->Printf(100, 80, 3.0f, "%d", Alive[1]);
-	DebugText::GetInstance()->Printf(100,100, 3.0f, "WASD:MOVE");
-	DebugText::GetInstance()->Printf(100, 160, 3.0f, "time : %f", enemy->GetGrowTime());
-	DebugText::GetInstance()->Printf(100, 200, 3.0f, "x : %f", enemy->GetGolfPos().x);
-	DebugText::GetInstance()->Printf(100, 240, 3.0f, "y : %f", enemy->GetGolfPos().y);
-	DebugText::GetInstance()->Printf(100, 260, 3.0f, "%d", enemy->GetAttackNo());
-	DebugText::GetInstance()->Printf(100, 320, 3.0f, "playerHP : %d", player->GetHP());
-	DebugText::GetInstance()->Printf(100, 360, 3.0f, "enemyHP : %d", enemy->GetHP());
+	//DebugText::GetInstance()->Printf(100,100, 3.0f, "WASD:MOVE");
+	//DebugText::GetInstance()->Printf(100, 140, 2.0f, "0 : %f %f", enemy->GetCircle().center.x, enemy->GetCircle().center.y);
+	//DebugText::GetInstance()->Printf(100, 165, 2.0f, "1 : %f %f", enemy->GetDropCircle(0).center.x, enemy->GetDropCircle(0).center.y);
+	//DebugText::GetInstance()->Printf(100, 205, 2.0f, "1 : %f %f", enemy->GetDropCircle(1).center.x, enemy->GetDropCircle(1).center.y);
+	//DebugText::GetInstance()->Printf(100, 225, 2.0f, "1 : %f %f", enemy->GetDropCircle(2).center.x, enemy->GetDropCircle(2).center.y);
+	//DebugText::GetInstance()->Printf(100, 245, 2.0f, "1 : %f %f", enemy->GetDropCircle(3).center.x, enemy->GetDropCircle(3).center.y);
+	//DebugText::GetInstance()->Printf(100, 265, 2.0f, "1 : %f %f", enemy->GetDropCircle(4).center.x, enemy->GetDropCircle(4).center.y);
+	//DebugText::GetInstance()->Printf(100, 285, 2.0f, "1 : %f %f", enemy->GetDropCircle(5).center.x, enemy->GetDropCircle(5).center.y);
+	//DebugText::GetInstance()->Printf(100, 305, 2.0f, "2 : %f %f", enemy->GetGolfCircle().center.x, enemy->GetGolfCircle().center.y);
+	DebugText::GetInstance()->Printf(100, 325, 2.0f, "2 : %f %f", enemy->GetGolfCircle().center.x, enemy->GetGolfCircle().center.y);
+	DebugText::GetInstance()->Printf(100, 355, 2.0f, "2 : %f %f", enemy->GetGolfCircle().center.x, enemy->GetGolfCircle().center.y);
+	DebugText::GetInstance()->Printf(100, 255, 2.0f, "pos : %f %f", enemy->GetGrowPos().x, enemy->GetGrowPos().y);
+	//DebugText::GetInstance()->Printf(100, 295, 2.0f, "pos : %f %f", enemy->GetGrowPos2().x, enemy->GetGrowPos2().y);
+	DebugText::GetInstance()->Printf(100, 400, 3.0f, "playerHP : %d", player->GetHP());
+	DebugText::GetInstance()->Printf(100, 460, 3.0f, "enemyHP : %d", enemy->GetHP());
 
 	DebugText::GetInstance()->DrawAll(dxCommon->GetCmdList());
 	sprite->PostDraw();
@@ -365,7 +369,7 @@ void GameScene::CheckAllCollision()
 			HitFlag = true;
 			enemy->OnCollision();
 			bullet->OnCollision();
-			DebugText::GetInstance()->Printf(100, 380, 3.0f, "Hit");
+			//DebugText::GetInstance()->Printf(100, 380, 3.0f, "Hit");
 		}
 
 		float enemy2BulletX = (posA_2.x + 100) - posB.x;
@@ -377,7 +381,7 @@ void GameScene::CheckAllCollision()
 		{
 			HitFlag = true;
 			bullet->OnCollision();
-			DebugText::GetInstance()->Printf(100, 380, 3.0f, "Hit");
+			//DebugText::GetInstance()->Printf(100, 380, 3.0f, "Hit");
 		}
 
 		if (HitFlag)

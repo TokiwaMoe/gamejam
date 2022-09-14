@@ -103,16 +103,17 @@ void Enemy::Init()
 	{
 		growCircle[0].center = { growPos.x + 200, growPos.y + 200 };
 		growCircle[1].center = { growPos2.x + 200, growPos2.y + 200 };
-		growCircle[i].radius = 200;
+		growCircle[i].radius = 100;
 		isGrowHit[i] = true;
 	}
 	golfCircle.center = { GolfPos.x + 50, GolfPos.y + 50 };
 	golfCircle.radius = 50;
 	isGolfHit = true;
+
 	enemyCircle.center = position;
 	enemyCircle.radius = 200;
 	srand(time(NULL));
-	AttackNo = 3;
+	AttackNo = 2;
 	//AttackNo = rand() % 4;
 	eas = new Eas();
 	eas->Initialize();
@@ -151,12 +152,13 @@ void Enemy::Update()
 	}
 	for (int i = 0; i < 2; i++)
 	{
-		growCircle[0].center = { growPos.x - 200, growPos.y + 200 };
-		growCircle[1].center = { growPos2.x + 100, growPos2.y + 200 };
-		growCircle[i].radius = 200;
+		growCircle[0].center = { growPos.x - 100, growPos.y + 200 };
+		growCircle[1].center = { growPos2.x + 200, growPos2.y + 200 };
+		growCircle[0].radius = 100;
+		growCircle[1].radius = 100;
 		//isGrowHit[i] = true;
 	}
-	golfCircle.center = { GolfPos.x + 50, GolfPos.y + 50 };
+	golfCircle.center = { GolfPos.x + 100, GolfPos.y };
 	golfCircle.radius = 50;
 	//isGolfHit = true;
 	enemyCircle.center = position;
@@ -221,7 +223,8 @@ void Enemy::Golf()
 				GolfFlag = false;
 				isBackAnime = false;
 				GolfPos = { 1000,350 };
-				AttackNo = rand() % 4;
+				AttackNo = 2;
+				//AttackNo = rand() % 4;
 				enGolfNo = 0;
 				enGolfAnime = 0;
 			}
@@ -351,10 +354,10 @@ void Enemy::Grow()
 					growFlag = false;
 					behindTime = 0;
 					growTime = 0;
-					AttackNo = 3;
+					//AttackNo = 3;
 					enGrowNo = 0;
 					enGrowAnime = 0;
-					//AttackNo = rand() % 4;
+					AttackNo = rand() % 4;
 					growPos = { 0, 730 };
 					growPos2 = { 0, 730 };
 				}
@@ -402,6 +405,7 @@ void Enemy::Drop()
 			if (dropPos[i].y >= 730)
 			{
 				//AttackNo = 2;
+				isDropHit[i] = true;
 				AttackNo = rand() % 4;
 				dropPos[i] = { 0,730 };
 				dropFlag = false;
@@ -519,17 +523,14 @@ void Enemy::Draw()
 		}
 		
 	}
-	for (int i = 0; i < 3; i++)
+	if (AttackNo == 3)
 	{
 		if (stayFlag == false)
 		{
 			enGrow->Draw();
 		}
-		if (AttackNo == 3)
-		{
-			spGrow_Y->Draw();
-			spGrow_X->Draw();
-		}
+		spGrow_Y->Draw();
+		spGrow_X->Draw();
 	}
 	
 	EHP->Draw();
