@@ -107,7 +107,7 @@ private://•Ï”
 	float growTime = 0;
 	float growAnimation = 0;
 	float growNo = 0;
-	Circle growCircle[3];
+	Circle growCircle[2];
 	//Golf•Ï”
 	Eas* eas;
 	Sprite* backGolf = nullptr;
@@ -129,8 +129,8 @@ private://•Ï”
 
 public:
 	//“–‚½‚è”»’è•Ï”
-	bool isRollHit = true;
-	bool isGolfHit = true;
+	bool isRollHit;
+	bool isGolfHit;
 	bool isDropHit[6];
 	bool isGrowHit[2];
 };

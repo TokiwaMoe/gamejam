@@ -32,21 +32,22 @@ void Player::Init()
 {
 	circle.center = playerPos;
 	circle.radius = 5;
-	playerPos = { 50,650 };
+	playerPos = { 65,655 };
 	HP = 5;
 }
 
 
 void Player::Move()
 {
-	if (Input::GetInstance()->PushKey(DIK_D))
+	
+	if (Input::GetInstance()->PushKey(DIK_D) && playerPos.x <= 1280 - 64)
 	{
 		playerPos.x += 4;
 		playerFlag = false;
 		isRight = true;
 		isWalk = true;
 	}
-	else if (Input::GetInstance()->PushKey(DIK_A))
+	else if (Input::GetInstance()->PushKey(DIK_A) && playerPos.x >= 64)
 	{
 		playerPos.x -= 4;
 		playerFlag = true;
@@ -56,11 +57,15 @@ void Player::Move()
 	else {
 		isWalk = false;
 	}
-
 	if (Input::GetInstance()->PushKey(DIK_UPARROW))
 	{
-		playerPos.y += 2;
+		playerPos.y += 4;
 	}
+	if (Input::GetInstance()->PushKey(DIK_DOWN))
+	{
+		playerPos.y -= 4;
+	}
+	
 	circle.center = playerPos;
 	circle.radius = 50;
 }
@@ -68,30 +73,33 @@ void Player::Move()
 
 void Player::Jump()
 {
+	
 	if (jumpFlag == false) {
-		if (Input::GetInstance()->PushKey(DIK_SPACE))
+		if (Input::GetInstance()->TriggerKey(DIK_SPACE))
 		{
 			jumpFlag = true;
 			gFlag = false;
 			jSpeed = 0;
+			oldPos = playerPos;
+
 		}
 	}
 	else if (jumpFlag == true) {
 		if (gFlag == false) {
-			if (playerPos.y > 50)
+			if (playerPos.y >= oldPos.y - 150)
 			{
 				playerPos.y -= jSpeed;
 				jSpeed += g;
 			}
-			if (playerPos.y <= 50) { gFlag = true; }
+			if (playerPos.y <= oldPos.y - 150) { gFlag = true; }
 		}
 		else if (gFlag == true) {
-			if (playerPos.y < 100)
+			if (playerPos.y <= oldPos.y - 150)
 			{
 				playerPos.y += jSpeed;
 				jSpeed += g;
 			}
-			if (playerPos.y >= 100) { jumpFlag = false; playerPos.y = 100; }
+			if (playerPos.y >= oldPos.y - 150) { jumpFlag = false; playerPos.y = oldPos.y; }
 		}
 	}
 

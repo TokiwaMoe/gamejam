@@ -75,6 +75,7 @@ private://ƒvƒŒƒCƒ„[‚Ì“®‚«Œn
 	bool isWalk = false;
 	XMFLOAT2 oldPosition = { 0,0 };
 	XMFLOAT2 velocity = { 0,0 };
+	XMFLOAT2 oldPos = { 0,0 };
 
 	int HP = 5;
 	bool isHit = false;

@@ -179,13 +179,12 @@ void GameScene::Update()
 		HitDrop[i] = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetDropCircle(i));
 		if (HitDrop[i] && enemy->isDropHit[i] == true) {
 			enemy->isDropHit[i] = false;
-			HitDrop[i] = false;
 			player->OnCollisionCall();
 			//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 		}
-		else if (HitDrop[i] == false)
+		if (HitDrop[i] == false)
 		{
-			HitDrop[i] = true;
+			enemy->isDropHit[i] = true;
 		}
 	}
 	
@@ -195,23 +194,34 @@ void GameScene::Update()
 		if (HitGrow[i] && enemy->isGrowHit[i] == true) {
 			enemy->isGrowHit[i] = false;
 			player->OnCollisionCall();
-			HitGrow[i] = false;
 			//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 		}
+		if(HitGrow[i] == false)
+		{
+			enemy->isGrowHit[i] = true;
+		}
 	}
+
 	HitGolf = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGolfCircle());
 	if (HitGolf && enemy->isGolfHit == true) {
 		player->OnCollisionCall();
-		HitGolf = false;
 		enemy->isGolfHit == false;
 		//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 	}
-	HitGolf = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetCircle());
-	if (HitGolf && enemy->isRollHit == true) {
+	if (HitGolf == false)
+	{
+		enemy->isGolfHit = true;
+	}
+
+	HitRoll = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetCircle());
+	if (HitRoll && enemy->isRollHit == true) {
 		player->OnCollisionCall();
-		HitGolf = false;
 		enemy->isRollHit == false;
 		//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
+	}
+	if (HitRoll == false)
+	{
+		enemy->isRollHit = true;
 	}
 
 #pragma endregion

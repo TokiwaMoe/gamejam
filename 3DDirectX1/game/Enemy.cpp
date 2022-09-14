@@ -80,8 +80,8 @@ void Enemy::Init()
 	}
 	for (int i = 0; i < 2; i++)
 	{
-		growCircle[i].center = { growPos.x + 200, growPos.y + 200 };
-		growCircle[i].center = { growPos2.x + 200, growPos2.y + 200 };
+		growCircle[0].center = { growPos.x + 200, growPos.y + 200 };
+		growCircle[1].center = { growPos2.x + 200, growPos2.y + 200 };
 		growCircle[i].radius = 200;
 		isGrowHit[i] = true;
 	}
@@ -120,21 +120,26 @@ void Enemy::Update()
 
 	circle.center = pigPos;
 	circle.radius = 60;
+	//isRollHit = true;
 	for (int i = 0; i < 6; i++)
 	{
-		dropCircle[i].center = dropPos[i];
+		dropCircle[i].center = { dropPos[i].x + 45, dropPos[i].y + 66 };
 		dropCircle[i].radius = 60;
+		//isDropHit[i] = true;
+
 	}
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 2; i++)
 	{
-		growCircle[i].center = growPos;
-		growCircle[i].center = growPos2;
-		growCircle[i].radius = 150;
+		growCircle[0].center = { growPos.x - 200, growPos.y + 200 };
+		growCircle[1].center = { growPos2.x + 100, growPos2.y + 200 };
+		growCircle[i].radius = 200;
+		//isGrowHit[i] = true;
 	}
-	golfCircle.center = GolfPos;
-	golfCircle.radius = 60;
+	golfCircle.center = { GolfPos.x + 50, GolfPos.y + 50 };
+	golfCircle.radius = 50;
+	//isGolfHit = true;
 	enemyCircle.center = position;
-	enemyCircle.radius = 100;
+	enemyCircle.radius = 200;
 }
 
 void Enemy::Move()
@@ -163,13 +168,6 @@ void Enemy::Golf()
 			enGolfAnime = 9;
 		}
 	}
-	
-	
-	/*
-	if (AttackNo == 2 && GolfFlag == false)
-	{
-		
-	}*/
 
 	if (GolfFlag)
 	{
@@ -278,6 +276,8 @@ void Enemy::Grow()
 					growTime = 0;
 					//AttackNo = 2;
 					AttackNo = rand() % 4;
+					growPos = { 0, 730 };
+					growPos2 = { 0, 730 };
 				}
 			}
 			else {
@@ -321,6 +321,7 @@ void Enemy::Drop()
 			{
 				//AttackNo = 2;
 				AttackNo = rand() % 4;
+				dropPos[i] = { 0,730 };
 				dropFlag = false;
 				randFlag = false;
 				gravity = 0;
