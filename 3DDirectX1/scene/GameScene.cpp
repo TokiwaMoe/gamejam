@@ -103,7 +103,9 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 	Sprite::LoadTexture(41, L"Resources/gameover.png");
 	gameover = Sprite::CreateSprite(41, { 0,0 });
 	Sprite::LoadTexture(42, L"Resources/clear.png");
-	clear = Sprite::CreateSprite(42, { 0,0 });
+	clear = Sprite::CreateSprite(43, { 0,0 });
+	Sprite::LoadTexture(43, L"Resources/ope.png");
+	operation = Sprite::CreateSprite(43, { 1260 - 128,0 });
 
 	sprite = Sprite::CreateSprite(1, { 0,0 });
 
@@ -316,6 +318,7 @@ void GameScene::DrawFront()
 		mapchip->Draw();
 		enemy->Draw();
 		player->DrawSprite();
+		operation->Draw();
 	}
 	else if (SceneNo == CLEAR)
 	{

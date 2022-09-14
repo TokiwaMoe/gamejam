@@ -63,14 +63,14 @@ void Player::Move()
 	else {
 		isWalk = false;
 	}
-	if (Input::GetInstance()->PushKey(DIK_UPARROW))
+	/*if (Input::GetInstance()->PushKey(DIK_UPARROW))
 	{
 		playerPos.y += 4;
 	}
 	if (Input::GetInstance()->PushKey(DIK_DOWN))
 	{
 		playerPos.y -= 4;
-	}
+	}*/
 	
 	circle.center = playerPos;
 	circle.radius = 50;

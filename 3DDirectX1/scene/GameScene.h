@@ -101,6 +101,7 @@ private: // メンバ変数
 	Sprite* title = nullptr;
 	Sprite* gameover = nullptr;
 	Sprite* clear = nullptr;
+	Sprite* operation = nullptr;
 
 	const int debugTextTexNumber = 0;
 

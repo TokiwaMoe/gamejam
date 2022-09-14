@@ -85,6 +85,12 @@ void Enemy::Initialize()
 	enGrow->SetTextureRect({ 0,0 }, { 96,96 });
 	enGrow->SetAnchorPoint({ 0.5,0.5 });
 	enGrow->SetSize({ 400, 400 });
+
+	Sprite::LoadTexture(61, L"Resources/summon.png");
+	enDrop = Sprite::CreateSprite(61, position);
+	enDrop->SetTextureRect({ 0,0 }, { 96,96 });
+	enDrop->SetAnchorPoint({ 0.5,0.5 });
+	enDrop->SetSize({ 400, 400 });
 }
 
 void Enemy::Init()
@@ -405,12 +411,13 @@ void Enemy::Drop()
 			dropPos[i].y += gravity;
 			if (dropPos[i].y >= 730)
 			{
-				//AttackNo = 2;
+				AttackNo = 2;
 				isDropHit[i] = true;
-				AttackNo = rand() % 4;
+				//AttackNo = rand() % 4;
 				dropPos[i] = { 60,730 };
 				dropFlag = false;
 				randFlag = false;
+				stayFlag = true;
 				gravity = 0;
 			}
 		}
@@ -430,8 +437,10 @@ void Enemy::Drop()
 
 void Enemy::DropRand()
 {
+	
 	for (int i = 0; i < 6; i++)
 	{
+
 		if (randFlag)
 		{
 			endTime += 0.05;
@@ -455,17 +464,31 @@ void Enemy::DropRand()
 
 		}
 		else {
-			dropPos[i].y = 60;
-			timer += 0.05;
-			if (timer >= 50.0f)
+			
+			stayFlag = false;
+			enDropAnime += 2.0f;
+
+			if (enDropAnime >= 8)
 			{
-				randFlag = true;
-				dropRand = rand() % 7;
-				timer = 0;
+				enDropNo++;
+				enDropAnime = 0;
+
+				if (enDropNo >= 1)
+				{
+
+					enDropNo = 2;
+					enDropAnime = 9;
+					randFlag = true;
+					dropPos[i].y = 60;
+					dropRand = rand() % 7;
+				}
 			}
 		}
 
 		spCard[i]->SetPosition(dropPos[i]);
+		enDrop->SetTextureRect({ 96 * enDropNo,0 }, { 96,96 });
+		enDrop->SetAnchorPoint({ 0.5,0.5 });
+		enDrop->SetSize({ 400, 400 });
 	}
 }
 
@@ -534,7 +557,7 @@ void Enemy::Draw()
 		spGrow_Y->Draw();
 		spGrow_X->Draw();
 	}
-	
+	enDrop->Draw();
 	EHP->Draw();
 	EHPFrame->Draw();
 }

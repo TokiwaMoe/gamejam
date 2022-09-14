@@ -71,6 +71,9 @@ private://•Ï”
 	XMFLOAT2 HPSize = { 900,40 };
 	Circle enemyCircle;
 	//drop•Ï”
+	Sprite* enDrop = nullptr;
+	float enDropNo = 0;
+	float enDropAnime = 0;
 	float lane_Width = 128;
 	Sprite* spCard[6];
 	XMFLOAT2 dropPos[6];
