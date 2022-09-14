@@ -14,6 +14,6 @@ private:
 	using XMVECTOR = DirectX::XMVECTOR;
 public:
 	void Map2Player(class Player*player,class MapChip*mapchip);
-private:
-	XMFLOAT2 oldPos;
+	static XMFLOAT2 PushBack(XMFLOAT2 pos, XMFLOAT2 oldPos, float size, XMFLOAT2 BPos, float blockSize, const int up, const int down);
+
 };

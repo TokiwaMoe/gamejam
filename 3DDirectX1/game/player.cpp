@@ -36,7 +36,7 @@ void Player::Init()
 {
 	circle.center = playerPos;
 	circle.radius = 5;
-	playerPos = { 65,655 };
+	playerPos = { 65,655-32 };
 	HP = 5;
 }
 
@@ -79,7 +79,7 @@ void Player::Jump()
 {
 	
 	if (jumpFlag == false) {
-		if (Input::GetInstance()->TriggerKey(DIK_SPACE))
+		if (Input::GetInstance()->TriggerKey(DIK_W))
 		{
 			jumpFlag = true;
 			gFlag = false;

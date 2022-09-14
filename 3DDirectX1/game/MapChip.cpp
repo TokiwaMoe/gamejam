@@ -26,7 +26,7 @@ void MapChip::Draw()
 	for (int j = 0; j < 24; j++) {
 		for (int i = 0; i < 43; i++) {
 
-			if (map[j][i] == 1) {
+			if (map[j][i] == BLOCK) {
 				floor[j][i]->Draw();
 			}
 		}
