@@ -145,10 +145,18 @@ void GameScene::Init()
 
 void GameScene::Update()
 {
-
+	
 	if (Input::GetInstance()->TriggerKey(DIK_SPACE))
 	{
-		SceneNo = GAME;
+		if (SceneNo == TITLE)
+		{
+			SceneNo++;
+		}
+
+		if (SceneNo == CLEAR || SceneNo == END)
+		{
+			SceneNo = TITLE;
+		}
 	}
 	//光線方向初期値                  上奥
 	//static XMVECTOR lightDir = { 0, 4, 0, 0 };
@@ -184,6 +192,10 @@ void GameScene::Update()
 			player->OnCollisionCall();
 			//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 		}
+		if (HitDrop[i] == false)
+		{
+			enemy->isDropHit[i] = true;
+		}
 	}
 	
 	for (int i = 0; i < 2; i++)
@@ -217,11 +229,21 @@ void GameScene::Update()
 		enemy->isRollHit = false;
 		player->OnCollisionCall();
 		
-		DebugText::GetInstance()->Printf(100, 100, 3.0f, "Hit");
+		//DebugText::GetInstance()->Printf(100, 100, 3.0f, "Hit");
 	}
 	if (HitRoll == false)
 	{
 		enemy->isRollHit = true;
+	}
+
+	if (enemy->GetHP() == 0)
+	{
+		SceneNo = CLEAR;
+	}
+
+	if (player->GetHP() == 0)
+	{
+		SceneNo = END;
 	}
 
 #pragma endregion
@@ -251,6 +273,8 @@ void GameScene::Update()
 			bullet->Update();
 		}
 	}
+
+	
 }
 
 void GameScene::DrawBG()
@@ -303,7 +327,7 @@ void GameScene::DrawFront()
 	}
 	
 	
-	DebugText::GetInstance()->Printf(100, 20, 3.0f, "%f", enemy->GetEaseTimer());
+	//DebugText::GetInstance()->Printf(100, 20, 3.0f, "%f", enemy->GetEaseTimer());
 	//DebugText::GetInstance()->Printf(100, 80, 3.0f, "%d", Alive[1]);
 	//DebugText::GetInstance()->Printf(100,100, 3.0f, "WASD:MOVE");
 	//DebugText::GetInstance()->Printf(100, 140, 2.0f, "0 : %f %f", enemy->GetCircle().center.x, enemy->GetCircle().center.y);
@@ -314,12 +338,12 @@ void GameScene::DrawFront()
 	//DebugText::GetInstance()->Printf(100, 265, 2.0f, "1 : %f %f", enemy->GetDropCircle(4).center.x, enemy->GetDropCircle(4).center.y);
 	//DebugText::GetInstance()->Printf(100, 285, 2.0f, "1 : %f %f", enemy->GetDropCircle(5).center.x, enemy->GetDropCircle(5).center.y);
 	//DebugText::GetInstance()->Printf(100, 305, 2.0f, "2 : %f %f", enemy->GetGolfCircle().center.x, enemy->GetGolfCircle().center.y);
-	DebugText::GetInstance()->Printf(100, 325, 2.0f, "2 : %f %f", enemy->GetGolfCircle().center.x, enemy->GetGolfCircle().center.y);
-	DebugText::GetInstance()->Printf(100, 355, 2.0f, "2 : %f %f", enemy->GetGolfCircle().center.x, enemy->GetGolfCircle().center.y);
-	DebugText::GetInstance()->Printf(100, 255, 2.0f, "pos : %f %f", enemy->GetGrowPos().x, enemy->GetGrowPos().y);
-	//DebugText::GetInstance()->Printf(100, 295, 2.0f, "pos : %f %f", enemy->GetGrowPos2().x, enemy->GetGrowPos2().y);
-	DebugText::GetInstance()->Printf(100, 400, 3.0f, "playerHP : %d", player->GetHP());
-	DebugText::GetInstance()->Printf(100, 460, 3.0f, "enemyHP : %d", enemy->GetHP());
+	//DebugText::GetInstance()->Printf(100, 325, 2.0f, "2 : %f %f", enemy->GetGolfCircle().center.x, enemy->GetGolfCircle().center.y);
+	//DebugText::GetInstance()->Printf(100, 355, 2.0f, "2 : %f %f", enemy->GetGolfCircle().center.x, enemy->GetGolfCircle().center.y);
+	//DebugText::GetInstance()->Printf(100, 255, 2.0f, "pos : %f %f", enemy->GetGrowPos().x, enemy->GetGrowPos().y);
+	////DebugText::GetInstance()->Printf(100, 295, 2.0f, "pos : %f %f", enemy->GetGrowPos2().x, enemy->GetGrowPos2().y);
+	//DebugText::GetInstance()->Printf(100, 400, 3.0f, "playerHP : %d", player->GetHP());
+	//DebugText::GetInstance()->Printf(100, 460, 3.0f, "enemyHP : %d", enemy->GetHP());
 
 	DebugText::GetInstance()->DrawAll(dxCommon->GetCmdList());
 	sprite->PostDraw();

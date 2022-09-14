@@ -90,12 +90,12 @@ void Player::Jump()
 	}
 	else if (jumpFlag == true) {
 		if (gFlag == false) {
-			if (playerPos.y >= oldPos.y - 200)
+			if (playerPos.y >= oldPos.y - 250)
 			{
 				playerPos.y -= jSpeed;
 				//jSpeed += 3;
 			}
-			if (playerPos.y <= oldPos.y - 200) { gFlag = true; }
+			if (playerPos.y <= oldPos.y - 250) { gFlag = true; }
 		}
 		else if (gFlag == true) {
 			playerPos.y += jSpeed;

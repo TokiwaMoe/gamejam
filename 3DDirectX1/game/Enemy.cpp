@@ -67,10 +67,10 @@ void Enemy::Initialize()
 	backGolf->SetTextureRect({ 0,0 }, {100, 64});
 	backGolf->SetSize({ 200, 128 });
 	Sprite::LoadTexture(17, L"Resources/EnemyHPFrame.png");
-	EHPFrame = Sprite::CreateSprite(17, { 100, 0 });
+	EHPFrame = Sprite::CreateSprite(17, { 100, -10 });
 	EHPFrame->SetSize({ 1010,100 });
 	Sprite::LoadTexture(18, L"Resources/white1x1.png");
-	EHP = Sprite::CreateSprite(18, { 160, 30 });
+	EHP = Sprite::CreateSprite(18, { 160, 20 });
 	//EHP->SetSize(HPSize);
 	EHP->SetColor({ 0, 1, 0, 1 });
 
@@ -113,7 +113,7 @@ void Enemy::Init()
 	enemyCircle.center = position;
 	enemyCircle.radius = 200;
 	srand(time(NULL));
-	AttackNo = 0;
+	AttackNo = 1;
 	//AttackNo = rand() % 4;
 	eas = new Eas();
 	eas->Initialize();
@@ -146,7 +146,7 @@ void Enemy::Update()
 	for (int i = 0; i < 6; i++)
 	{
 		dropCircle[i].center = { dropPos[i].x + 45, dropPos[i].y + 66 };
-		dropCircle[i].radius = 60;
+		dropCircle[i].radius = 45;
 		//isDropHit[i] = true;
 
 	}
@@ -159,7 +159,7 @@ void Enemy::Update()
 		//isGrowHit[i] = true;
 	}
 	golfCircle.center = { GolfPos.x + 100, GolfPos.y };
-	golfCircle.radius = 50;
+	golfCircle.radius = 30;
 	//isGolfHit = true;
 	enemyCircle.center = position;
 	enemyCircle.radius = 200;
@@ -240,7 +240,7 @@ void Enemy::Golf()
 	golf->SetSize({ 100,100 });
 	golf->SetPosition(GolfPos);
 	backGolf->SetTextureRect({ 100 * backNo,0 }, { 100,64 });
-	backGolf->SetSize({ 200, 128 });
+	backGolf->SetSize({ 128, 128 });
 	backGolf->SetPosition(GolfPos);
 
 	enGolf->SetTextureRect({ 96 * enGolfNo,0 }, { 96,96 });
@@ -279,12 +279,12 @@ void Enemy::Roll()
 		}
 		else {
 			pigPos.x = 2000;
-			AttackNo = 0;
+			//AttackNo = 0;
 			pigRot = 0;
 			isRoll = false;
 			enRollAnime = 0;
 			enRollNo = 0;
-			//AttackNo = rand() % 4;
+			AttackNo = rand() % 4;
 		}
 	}
 	
@@ -408,7 +408,7 @@ void Enemy::Drop()
 				//AttackNo = 2;
 				isDropHit[i] = true;
 				AttackNo = rand() % 4;
-				dropPos[i] = { 0,730 };
+				dropPos[i] = { 60,730 };
 				dropFlag = false;
 				randFlag = false;
 				gravity = 0;
@@ -419,8 +419,8 @@ void Enemy::Drop()
 		{
 			timer = 0;
 			dropFlag = false;
-			//AttackNo = 2;
-			AttackNo = rand() % 4;
+			AttackNo = 1;
+			//AttackNo = rand() % 4;
 
 		}
 
@@ -455,7 +455,7 @@ void Enemy::DropRand()
 
 		}
 		else {
-			dropPos[i].y = 0;
+			dropPos[i].y = 60;
 			timer += 0.05;
 			if (timer >= 50.0f)
 			{
