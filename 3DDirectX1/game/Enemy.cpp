@@ -52,13 +52,13 @@ void Enemy::Initialize()
 	}
 
 	Sprite::LoadTexture(14, L"Resources/flower/flower_1.png");
-	spGrow_Y = Sprite::CreateSprite(14, { 0, 730 });
+	spGrow_Y = Sprite::CreateSprite(14, { -10, 730 });
 	spGrow_Y->SetTextureRect({ 0,0 }, { 144,144 });
 	spGrow_Y->SetSize({ 400, 400 });
 	spGrow_Y->SetRotation(70);
 
 	Sprite::LoadTexture(15, L"Resources/flower/flower_2.png");
-	spGrow_X = Sprite::CreateSprite(15, { 0, 730 });
+	spGrow_X = Sprite::CreateSprite(15, { -10, 730 });
 	spGrow_X->SetTextureRect({ 0,0 }, { 144,144 });
 	spGrow_X->SetSize({ 400, 400 });
 
@@ -73,12 +73,24 @@ void Enemy::Initialize()
 	EHP = Sprite::CreateSprite(18, { 160, 30 });
 	EHP->SetSize({ 890,40 });
 	EHP->SetColor({ 0, 1, 0, 1 });
+
+	Sprite::LoadTexture(19, L"Resources/buta.png");
+	enRoll = Sprite::CreateSprite(19, position);
+	enRoll->SetTextureRect({ 0,0 }, { 96,96 });
+	enRoll->SetAnchorPoint({ 0.5,0.5 });
+	enRoll->SetSize({ 400, 400 });
+
+	Sprite::LoadTexture(60, L"Resources/ono.png");
+	enGrow = Sprite::CreateSprite(60, position);
+	enGrow->SetTextureRect({ 0,0 }, { 96,96 });
+	enGrow->SetAnchorPoint({ 0.5,0.5 });
+	enGrow->SetSize({ 400, 400 });
 }
 
 void Enemy::Init()
 {
 	circle.center = pigPos;
-	circle.radius = 60;
+	circle.radius = 50;
 	isRollHit = true;
 	for (int i = 0; i < 6; i++)
 	{
@@ -100,8 +112,8 @@ void Enemy::Init()
 	enemyCircle.center = position;
 	enemyCircle.radius = 200;
 	srand(time(NULL));
-	//AttackNo = 2;
-	AttackNo = rand() % 4;
+	AttackNo = 3;
+	//AttackNo = rand() % 4;
 	eas = new Eas();
 	eas->Initialize();
 }
@@ -162,7 +174,7 @@ void Enemy::Golf()
 {
 	//isGolfHit = true;
 	stayFlag = false;
-	enGolfAnime += 1.5f;
+	enGolfAnime += 1.0f;
 
 	if (enGolfAnime >= 8)
 	{
@@ -218,7 +230,7 @@ void Enemy::Golf()
 		{
 			isBackAnime = false;
 			easeTimer += 0.1f;
-			GolfPos = eas->easeOut_Bounce({ 1000,450 }, { 0,560 }, easeTimer);
+			GolfPos = eas->easeOut_Bounce({ 1100,450 }, { 0,560 }, easeTimer);
 		}
 	}
 	golf->SetSize({ 100,100 });
@@ -233,25 +245,76 @@ void Enemy::Golf()
 
 void Enemy::Roll()
 {
+	stayFlag = false;
+	enRollAnime += 0.5f;
+
+	if (enRollAnime >= 8)
+	{
+		enRollNo++;
+		enRollAnime = 0;
+
+		if (enRollNo == 3)
+		{
+			isRoll = true;
+		}
+
+		if (enRollNo >= 7)
+		{
+			enRollNo = 8;
+			enRollAnime = 9;
+			stayFlag = true;
+			
+		}
+	}
+
+	if (isRoll)
+	{
+		if (pigPos.x > 0) {
+			pigPos.x -= 10;
+			pigRot -= 30;
+		}
+		else {
+			pigPos.x = 2000;
+			//AttackNo = 0;
+			pigRot = 0;
+			isRoll = false;
+			enRollAnime = 0;
+			enRollNo = 0;
+			AttackNo = rand() % 4;
+		}
+	}
+	
 	//isRollHit = true;
-	if (pigPos.x > 0) {
-		pigPos.x -= 10;
-		pigRot -= 30;
-	}
-	else {
-		pigPos.x = 2000;
-		//AttackNo = 2;
-		AttackNo = rand() % 4;
-	}
+	
 	pig->SetSize({ 100, 100 });
 	pig->SetAnchorPoint({ 0.5,0.5 });
 	pig->SetPosition(pigPos);
 	pig->SetRotation(pigRot);
+	enRoll->SetTextureRect({ 96 * enRollNo,0 }, { 96,96 });
+	enRoll->SetAnchorPoint({ 0.5,0.5 });
+	enRoll->SetSize({ 400, 400 });
 
 }
 
 void Enemy::Grow()
 {
+	stayFlag = false;
+	enGrowAnime += 1.0f;
+
+	if (enGrowAnime >= 8)
+	{
+		enGrowNo++;
+		enGrowAnime = 0;
+
+		if (enGrowNo >= 4)
+		{
+			enGrowNo = 4;
+			enGrowAnime = 9;
+			//stayFlag = true;
+			growFlag = true;
+		}
+	}
+
 	for (int i = 0; i < 2; i++)
 	{
 		//isGrowHit[i] = true;
@@ -263,9 +326,8 @@ void Enemy::Grow()
 		{
 			growRandY = rand() % 3;
 			growRandX = rand() % 3;
-			growPos = { 0, growPosY[growRandY] };
-			growPos2 = { growPosX[growRandX], 720 };
-			growFlag = true;
+			growPos = { -13, growPosY[growRandY] };
+			growPos2 = { growPosX[growRandX], 730 };
 		}
 
 		if (growFlag)
@@ -285,11 +347,14 @@ void Enemy::Grow()
 
 				if (growPos.x <= 0.0f && growPos2.y >= 720.0f)
 				{
+					stayFlag = true;
 					growFlag = false;
 					behindTime = 0;
 					growTime = 0;
-					//AttackNo = 2;
-					AttackNo = rand() % 4;
+					AttackNo = 3;
+					enGrowNo = 0;
+					enGrowAnime = 0;
+					//AttackNo = rand() % 4;
 					growPos = { 0, 730 };
 					growPos2 = { 0, 730 };
 				}
@@ -320,6 +385,9 @@ void Enemy::Grow()
 
 	spGrow_X->SetTextureRect({ 144 * growNo,0 }, { 144,144 });
 	spGrow_Y->SetTextureRect({ 144 * growNo,0 }, { 144,144 });
+	enGrow->SetTextureRect({ 96 * enGrowNo,0 }, { 96,96 });
+	enGrow->SetAnchorPoint({ 0.5,0.5 });
+	enGrow->SetSize({ 400, 400 });
 }
 
 void Enemy::Drop()
@@ -424,6 +492,11 @@ void Enemy::Draw()
 		}
 	}
 	if (AttackNo == 0) {
+		
+		if (stayFlag == false)
+		{
+			enRoll->Draw();
+		}
 		pig->Draw();
 	}
 	if (AttackNo == 2) {
@@ -448,6 +521,10 @@ void Enemy::Draw()
 	}
 	for (int i = 0; i < 3; i++)
 	{
+		if (stayFlag == false)
+		{
+			enGrow->Draw();
+		}
 		if (AttackNo == 3)
 		{
 			spGrow_Y->Draw();

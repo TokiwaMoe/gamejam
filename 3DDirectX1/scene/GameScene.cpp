@@ -292,8 +292,8 @@ void GameScene::DrawFront()
 	{
 		//sprite->Draw();
 		mapchip->Draw();
-		player->DrawSprite();
 		enemy->Draw();
+		player->DrawSprite();
 	}
 	else if (SceneNo == CLEAR)
 	{

@@ -36,7 +36,7 @@ void Player::Init()
 {
 	circle.center = playerPos;
 	circle.radius = 5;
-	playerPos = { 65,655 };
+	playerPos = { 65,627 };
 	HP = 5;
 }
 
@@ -83,7 +83,7 @@ void Player::Jump()
 		{
 			jumpFlag = true;
 			gFlag = false;
-			jSpeed = 0;
+			jSpeed = 5;
 			oldPos = playerPos;
 
 		}
@@ -93,7 +93,7 @@ void Player::Jump()
 			if (playerPos.y >= oldPos.y - 150)
 			{
 				playerPos.y -= jSpeed;
-				jSpeed += g;
+				//jSpeed += 3;
 			}
 			if (playerPos.y <= oldPos.y - 150) { gFlag = true; }
 		}
@@ -101,7 +101,7 @@ void Player::Jump()
 			if (playerPos.y <= oldPos.y - 150)
 			{
 				playerPos.y += jSpeed;
-				jSpeed += g;
+				//jSpeed += 3;
 			}
 			if (playerPos.y >= oldPos.y - 150) { jumpFlag = false; playerPos.y = oldPos.y; }
 		}

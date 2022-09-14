@@ -65,7 +65,7 @@ private://•Ï”
 	Sprite* spEnemy = nullptr;
 	Sprite* EHP = nullptr;
 	Sprite* EHPFrame = nullptr;
-	XMFLOAT2 position = { 1200,490 };
+	XMFLOAT2 position = { 1150,490 };
 	int HP = 150;
 	Circle enemyCircle;
 	//drop•Ï”
@@ -86,10 +86,13 @@ private://•Ï”
 	Sprite* pig = nullptr;
 
 	//roll•Ï”
-
-	XMFLOAT2 pigPos = { 2000,490 };
+	Sprite* enRoll = nullptr;
+	float enRollNo = 0;
+	float enRollAnime = 0;
+	XMFLOAT2 pigPos = { 2000,640 };
 	float pigRot = 0;
 	Circle circle;
+	bool isRoll = false;
 	//UŒ‚‚Ìí—Ş‚ğŒˆ‚ß‚é‚½‚ß‚Ì‚à‚Ì
 	int AttackNo;
 	//Grow•Ï”
@@ -110,6 +113,9 @@ private://•Ï”
 	float growAnimation = 0;
 	float growNo = 0;
 	Circle growCircle[2];
+	Sprite* enGrow = nullptr;
+	float enGrowNo = 0;
+	float enGrowAnime = 0;
 	//Golf•Ï”
 	Eas* eas;
 	Sprite* backGolf = nullptr;
