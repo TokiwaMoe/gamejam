@@ -67,6 +67,7 @@ private://•Ï”
 	Sprite* EHPFrame = nullptr;
 	XMFLOAT2 position = { 1150,490 };
 	int HP = 150;
+	XMFLOAT2 HPSize = { 900,40 };
 	Circle enemyCircle;
 	//drop•Ï”
 	float lane_Width = 128;
