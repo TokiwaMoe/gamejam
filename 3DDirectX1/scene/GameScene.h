@@ -97,6 +97,10 @@ private: // メンバ変数
 	std::list<std::unique_ptr<PlayerBullet>> playerBullet;
 	std::unique_ptr<PlayerBullet> newBullet;
 
+	Sprite* title = nullptr;
+	Sprite* gameover = nullptr;
+	Sprite* clear = nullptr;
+
 	const int debugTextTexNumber = 0;
 
 	XMFLOAT3 playerPosition = { 0.0f,0.0f,0.0f };
@@ -113,4 +117,6 @@ private: // メンバ変数
 	bool parentFlag = false;
 	float Tsize = 1;
 	float distance = 20.0f;//プレイヤーとカメラの距離
+	bool HitFlag = false;
+	int SceneNo = 0;
 };
