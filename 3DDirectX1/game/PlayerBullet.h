@@ -29,6 +29,7 @@ public:
 
 	//Getter
 	XMFLOAT2 GetPlayerBulletPos() { return playerBulletPos; }
+	bool GetIsAlive() { return isAlive; }
 
 private:
 	//ƒvƒŒƒCƒ„[‚Ì“®‚«Œn

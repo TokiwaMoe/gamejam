@@ -64,7 +64,7 @@ private:
 private://•Ï”
 	Sprite* spEnemy = nullptr;
 	XMFLOAT2 position = { 1200,490 };
-	int HP = 5;
+	int HP = 150;
 	Circle enemyCircle;
 	//drop•Ï”
 	float lane_Width = 128;
