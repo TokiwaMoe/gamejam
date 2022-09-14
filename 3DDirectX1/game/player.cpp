@@ -40,6 +40,7 @@ void Player::Init()
 	sphere.radius = 50;
 	playerPos = { 65,627 };
 	HP = 5;
+	isRight = true;
 }
 
 

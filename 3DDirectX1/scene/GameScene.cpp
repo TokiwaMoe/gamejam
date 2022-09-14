@@ -106,6 +106,7 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 	clear = Sprite::CreateSprite(43, { 0,0 });
 	Sprite::LoadTexture(43, L"Resources/ope.png");
 	operation = Sprite::CreateSprite(43, { 1260 - 128,0 });
+	operation->SetSize({ 128,128 });
 
 	sprite = Sprite::CreateSprite(1, { 0,0 });
 
@@ -153,6 +154,13 @@ void GameScene::Update()
 		if (SceneNo == TITLE)
 		{
 			SceneNo++;
+			player->Init();
+			enemy->Init();
+			const std::list<std::unique_ptr<PlayerBullet>>& playerBullets = player->GetBullets();
+			for (const std::unique_ptr<PlayerBullet>& bullet : playerBullets)
+			{
+				bullet->Init(player->GetPlayerPos(), player->GetVelocity());
+			}
 		}
 
 		if (SceneNo == CLEAR || SceneNo == END)

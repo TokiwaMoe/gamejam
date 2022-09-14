@@ -116,11 +116,14 @@ void Enemy::Init()
 	golfCircle.radius = 50;
 	//isGolfHit = true;
 
+	HP = 150;
+	HPSize = { 900,40 };
+
 	enemyCircle.center = position;
 	enemyCircle.radius = 200;
 	srand(time(NULL));
-	AttackNo = 1;
-	//AttackNo = rand() % 4;
+	//AttackNo = 1;
+	AttackNo = rand() % 4;
 	eas = new Eas();
 	eas->Initialize();
 }
@@ -411,14 +414,16 @@ void Enemy::Drop()
 			dropPos[i].y += gravity;
 			if (dropPos[i].y >= 730)
 			{
-				AttackNo = 2;
+				//AttackNo = 1;
 				isDropHit[i] = true;
-				//AttackNo = rand() % 4;
+				AttackNo = rand() % 4;
 				dropPos[i] = { 60,730 };
 				dropFlag = false;
 				randFlag = false;
 				stayFlag = true;
 				gravity = 0;
+				enDropNo = 0;
+				enDropAnime = 0;
 			}
 		}
 
@@ -426,8 +431,8 @@ void Enemy::Drop()
 		{
 			timer = 0;
 			dropFlag = false;
-			AttackNo = 1;
-			//AttackNo = rand() % 4;
+			//AttackNo = 1;
+			AttackNo = rand() % 4;
 
 		}
 
@@ -438,9 +443,9 @@ void Enemy::Drop()
 void Enemy::DropRand()
 {
 	
+
 	for (int i = 0; i < 6; i++)
 	{
-
 		if (randFlag)
 		{
 			endTime += 0.05;
@@ -464,9 +469,9 @@ void Enemy::DropRand()
 
 		}
 		else {
-			
+			dropPos[i].y = 60;
 			stayFlag = false;
-			enDropAnime += 2.0f;
+			enDropAnime += 1.0f;
 
 			if (enDropAnime >= 8)
 			{
@@ -479,7 +484,6 @@ void Enemy::DropRand()
 					enDropNo = 2;
 					enDropAnime = 9;
 					randFlag = true;
-					dropPos[i].y = 60;
 					dropRand = rand() % 7;
 				}
 			}
@@ -514,10 +518,18 @@ void Enemy::Draw()
 		spEnemy->Draw();
 	}
 	
-	if (AttackNo == 1 && randFlag) {
-		for (int i = 0; i < 6; i++)
+	if (AttackNo == 1) {
+		if (randFlag)
 		{
-			spCard[i]->Draw();
+			for (int i = 0; i < 6; i++)
+			{
+				spCard[i]->Draw();
+			}
+		}
+
+		if (stayFlag == false)
+		{
+			enDrop->Draw();
 		}
 	}
 	if (AttackNo == 0) {
@@ -557,7 +569,7 @@ void Enemy::Draw()
 		spGrow_Y->Draw();
 		spGrow_X->Draw();
 	}
-	enDrop->Draw();
+	
 	EHP->Draw();
 	EHPFrame->Draw();
 }
