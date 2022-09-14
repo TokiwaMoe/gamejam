@@ -13,7 +13,7 @@ private:
 	using XMMATRIX = DirectX::XMMATRIX;
 	using XMVECTOR = DirectX::XMVECTOR;
 public:
-	void Map2Player(class Player*player,class MapChip*mapchip);
+	static void Map2Player(class Player*player,class MapChip*mapchip);
 	static XMFLOAT2 PushBack(XMFLOAT2 pos, XMFLOAT2 oldPos, float size, XMFLOAT2 BPos, float blockSize, const int up, const int down);
 
 };

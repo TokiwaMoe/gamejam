@@ -231,5 +231,6 @@ void Player::DrawSprite()
 void Player::OnCollisionCall()
 {
 	HP -= 1;
+
 }
 

@@ -21,6 +21,7 @@
 #include"MapChip.h"
 #include<memory>
 #include<list>
+#include"MapCollision.h"
 
 class CollisionManager;
 class TouchableObject;

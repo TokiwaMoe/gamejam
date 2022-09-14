@@ -129,6 +129,7 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 	mapchip = new MapChip;//newすればエラー吐かない
 	mapchip->Initialize();
 	audio->SoundPlayWave(sound2);
+	audio->SetBGMVolume(0.4);
 }
 
 void GameScene::Init()
@@ -166,6 +167,8 @@ void GameScene::Update()
 		if (SceneNo == CLEAR || SceneNo == END)
 		{
 			SceneNo = TITLE;
+			audio->SoundPlayWave(sound2);
+			audio->SetBGMVolume(0.4);
 		}
 	}
 	//光線方向初期値                  上奥
@@ -245,15 +248,17 @@ void GameScene::Update()
 	{
 		enemy->isRollHit = true;
 	}
-
+	MapCollision::Map2Player(player, mapchip);
 	if (enemy->GetHP() == 0)
 	{
 		SceneNo = CLEAR;
+		audio->StopWave();
 	}
 
 	if (player->GetHP() == 0)
 	{
 		SceneNo = END;
+		audio->StopWave();
 	}
 
 #pragma endregion
