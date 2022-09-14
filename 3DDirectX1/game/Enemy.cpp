@@ -106,9 +106,9 @@ void Enemy::Init()
 		growCircle[i].radius = 100;
 		isGrowHit[i] = true;
 	}
-	golfCircle.center = { GolfPos.x + 50, GolfPos.y + 50 };
+	golfCircle.center = { GolfPos.x + 100, GolfPos.y };
 	golfCircle.radius = 50;
-	isGolfHit = true;
+	//isGolfHit = true;
 
 	enemyCircle.center = position;
 	enemyCircle.radius = 200;

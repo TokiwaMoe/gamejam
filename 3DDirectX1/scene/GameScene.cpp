@@ -201,15 +201,17 @@ void GameScene::Update()
 	}
 
 	HitGolf = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGolfCircle());
-	if (HitGolf) {
+	if (HitGolf && enemy->isGolfHit == true) {
+		enemy->isGolfHit = false;
 		player->OnCollisionCall();
-		enemy->isGolfHit == false;
 		DebugText::GetInstance()->Printf(100, 100, 3.0f, "Hit");
 	}
 	if (HitGolf == false)
 	{
 		enemy->isGolfHit = true;
 	}
+
+	
 
 	HitRoll = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetCircle());
 	if (HitRoll && enemy->isRollHit == true) {

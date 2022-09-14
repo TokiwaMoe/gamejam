@@ -141,7 +141,7 @@ private://•Ï”
 public:
 	//“–‚½‚è”»’è•Ï”
 	bool isRollHit;
-	bool isGolfHit;
+	bool isGolfHit = true;
 	bool isDropHit[6];
 	bool isGrowHit[2];
 };
