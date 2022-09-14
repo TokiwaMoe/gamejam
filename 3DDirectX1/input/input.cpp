@@ -390,6 +390,10 @@ bool Input::ConLeftInput()
 	{
 		isHit = true;
 	}
+	else
+	{
+		isHit = false;
+	}
 	return isHit;
 }
 float Input::GetLeftAngle()
