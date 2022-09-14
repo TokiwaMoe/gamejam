@@ -68,10 +68,10 @@ void Enemy::Initialize()
 	backGolf->SetSize({ 200, 128 });
 	Sprite::LoadTexture(17, L"Resources/EnemyHPFrame.png");
 	EHPFrame = Sprite::CreateSprite(17, { 100, 0 });
-	EHPFrame->SetSize({ 1000,100 });
+	EHPFrame->SetSize({ 1010,100 });
 	Sprite::LoadTexture(18, L"Resources/white1x1.png");
 	EHP = Sprite::CreateSprite(18, { 160, 30 });
-	EHP->SetSize({ 890,40 });
+	//EHP->SetSize(HPSize);
 	EHP->SetColor({ 0, 1, 0, 1 });
 
 	Sprite::LoadTexture(19, L"Resources/buta.png");
@@ -166,6 +166,7 @@ void Enemy::Update()
 
 	spEnemy->SetAnchorPoint({ 0.5,0.5 });
 	spEnemy->SetSize({ 400,400 });
+	EHP->SetSize(HPSize);
 }
 
 void Enemy::Move()
@@ -475,7 +476,8 @@ void Enemy::Attack()
 void Enemy::OnCollision()
 {
 	HP -= 1;
-
+	HPSize.x -= 6;
+	EHP->SetSize(HPSize);
 	if (HP <= 0)
 	{
 		isAlive = true;

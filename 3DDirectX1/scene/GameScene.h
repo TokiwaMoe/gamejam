@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿
+#pragma once
 
 
 #include"SafeDelete.h"
@@ -37,7 +38,7 @@ private:
 public:
 	enum Scene
 	{
-		TITLE,GAME,END,CLEAR
+		TITLE, GAME, END, CLEAR
 	};
 public: // メンバ関数
 
@@ -112,7 +113,7 @@ private: // メンバ変数
 	float a = 0;
 	float b = 0;
 	bool IsHit[3];
-	int HitCount=0;
+	int HitCount = 0;
 	bool Alive[3];
 	bool parentFlag = false;
 	float Tsize = 1;

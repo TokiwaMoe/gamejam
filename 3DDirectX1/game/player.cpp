@@ -79,7 +79,7 @@ void Player::Jump()
 {
 	
 	if (jumpFlag == false) {
-		if (Input::GetInstance()->TriggerKey(DIK_SPACE))
+		if (Input::GetInstance()->TriggerKey(DIK_W))
 		{
 			jumpFlag = true;
 			gFlag = false;

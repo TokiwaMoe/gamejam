@@ -2,6 +2,11 @@
 #include"Sprite.h"
 #include<DirectXMath.h>
 #include<string>
+enum OBJ
+{
+	NONE,
+	BLOCK
+};
 class MapChip
 {
 private:
@@ -15,10 +20,12 @@ private:
 	using XMMATRIX = DirectX::XMMATRIX;
 	using XMVECTOR = DirectX::XMVECTOR;
 public:
+
 	void Initialize();
 	void Init();
 	void Update();
 	void Draw();
+	float GetMapSize() { return mapSize; }
 private:
 	Sprite* floor[24][43];
 	int map[24][43] = {
