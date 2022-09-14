@@ -97,7 +97,7 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 	// デバッグテキスト初期化
 	DebugText::GetInstance()->Initialize(debugTextTexNumber);
 
-	Sprite::LoadTexture(1, L"Resources/background.png");
+	Sprite::LoadTexture(1, L"Resources/Back_ground.png");
 	Sprite::LoadTexture(40, L"Resources/title.png");
 	title = Sprite::CreateSprite(40, { 0,0 });
 	Sprite::LoadTexture(41, L"Resources/gameover.png");

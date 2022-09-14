@@ -16,7 +16,7 @@ void Player::Initialize()
 {
 	Sprite::LoadTexture(2, L"Resources/player/walk.png");
 	Sprite::LoadTexture(3, L"Resources/player/stay.png");
-	Sprite::LoadTexture(17, L"Resources/PlayerHP.png");
+	Sprite::LoadTexture(50, L"Resources/PlayerHP.png");
 	//Sprite::LoadTexture(3, L"Resources/UI/sizeUI.png");
 	playerSprite_Walk = Sprite::CreateSprite(2, { 0,0 });
 	playerSprite_Walk->SetSize({ 128,128 });
@@ -27,7 +27,7 @@ void Player::Initialize()
 	playerSprite_Stay->SetTextureRect({ 0,0 }, { 48,48 });
 	//sizeSprite = Sprite::CreateSprite(3, { 100,100 });
 	for (int i = 0; i < 5; i++) {
-		pHP[i] = Sprite::CreateSprite(17, { playerPos.x,playerPos.y - 20 });
+		pHP[i] = Sprite::CreateSprite(50, { playerPos.x,playerPos.y - 20 });
 	}
  
 }

@@ -62,8 +62,15 @@ void Enemy::Initialize()
 
 	Sprite::LoadTexture(16, L"Resources/hedgehog/hedgehog.png");
 	backGolf = Sprite::CreateSprite(16, GolfPos);
-	backGolf->SetTextureRect({ 0,0 }, {100, 64});
+	backGolf->SetTextureRect({ 0,0 }, { 100, 64 });
 	backGolf->SetSize({ 200, 128 });
+	Sprite::LoadTexture(17, L"Resources/EnemyHPFrame.png");
+	EHPFrame = Sprite::CreateSprite(17, { 100, 0 });
+	EHPFrame->SetSize({ 1000,100 });
+	Sprite::LoadTexture(18, L"Resources/white1x1.png");
+	EHP = Sprite::CreateSprite(18, { 160, 30 });
+	EHP->SetSize({ 890,40 });
+	EHP->SetColor({ 0, 1, 0, 1 });
 }
 
 void Enemy::Init()
@@ -423,4 +430,6 @@ void Enemy::Draw()
 		}
 	}
 	enGolf->Draw();
+	EHP->Draw();
+	EHPFrame->Draw();
 }

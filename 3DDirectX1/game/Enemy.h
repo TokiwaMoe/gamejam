@@ -63,6 +63,8 @@ private:
 
 private://ïœêî
 	Sprite* spEnemy = nullptr;
+	Sprite* EHP = nullptr;
+	Sprite* EHPFrame = nullptr;
 	XMFLOAT2 position = { 1200,490 };
 	int HP = 150;
 	Circle enemyCircle;
