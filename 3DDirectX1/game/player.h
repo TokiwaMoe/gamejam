@@ -40,10 +40,14 @@ public:
 	Circle GetBulletCircle() { return bulletCircle; };
 	int GetHP() { return HP; }
 	XMFLOAT2 GetOldPos() { return oldPosition; }
+	XMFLOAT2 GetOPos() { return oldPos; }
+	float GetPSize() { return size; }
+	XMFLOAT2 SetPlayerPos(XMFLOAT2 pos) { return this->playerPos = pos; }
 	XMFLOAT2 GetVelocity() { return velocity; }
 	bool GetAudioFlag() { return AudioFlag; }
 	bool GetIsHit() { return isHit; }
 	bool SetHit(bool hit) { return this->isHit = hit; }
+	Sphere GetSphere() { return sphere; }
 	//弾リストを取得
 	const std::list < std::unique_ptr<PlayerBullet>>& GetBullets() { return bullets_; }
 private://プレイヤーの動き系
@@ -57,6 +61,7 @@ private://プレイヤーの動き系
 	float eye;
 	//位置サイズ角度
 	XMFLOAT2 playerPos = { 0,0 };
+	float size = 128;
 	bool playerFlag = false;
 	bool jumpFlag = false;
 	bool gFlag = false;
@@ -81,6 +86,8 @@ private://プレイヤーの動き系
 
 	int HP = 5;
 	bool isHit = false;
+
+	Sphere sphere;
 public:
 	std::list<std::unique_ptr<PlayerBullet>> bullets_;
 };

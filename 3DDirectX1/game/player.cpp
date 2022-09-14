@@ -35,7 +35,9 @@ void Player::Initialize()
 void Player::Init()
 {
 	circle.center = playerPos;
-	circle.radius = 5;
+	circle.radius = 50;
+	sphere.center = { playerPos.x,playerPos.y,0,0 };
+	sphere.radius = 50;
 	playerPos = { 65,627 };
 	HP = 5;
 }
@@ -72,6 +74,8 @@ void Player::Move()
 	
 	circle.center = playerPos;
 	circle.radius = 50;
+	sphere.center = { playerPos.x,playerPos.y,0,0 };
+	sphere.radius = 50;
 }
 
 
