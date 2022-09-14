@@ -113,7 +113,7 @@ void Enemy::Init()
 	enemyCircle.center = position;
 	enemyCircle.radius = 200;
 	srand(time(NULL));
-	AttackNo = 2;
+	AttackNo = 0;
 	//AttackNo = rand() % 4;
 	eas = new Eas();
 	eas->Initialize();
@@ -224,8 +224,8 @@ void Enemy::Golf()
 				GolfFlag = false;
 				isBackAnime = false;
 				GolfPos = { 1000,350 };
-				AttackNo = 2;
-				//AttackNo = rand() % 4;
+				//AttackNo = 2;
+				AttackNo = rand() % 4;
 				enGolfNo = 0;
 				enGolfAnime = 0;
 			}
@@ -279,12 +279,12 @@ void Enemy::Roll()
 		}
 		else {
 			pigPos.x = 2000;
-			//AttackNo = 0;
+			AttackNo = 0;
 			pigRot = 0;
 			isRoll = false;
 			enRollAnime = 0;
 			enRollNo = 0;
-			AttackNo = rand() % 4;
+			//AttackNo = rand() % 4;
 		}
 	}
 	
