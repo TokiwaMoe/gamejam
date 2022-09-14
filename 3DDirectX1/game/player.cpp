@@ -206,12 +206,6 @@ void Player::DrawSprite()
 
 void Player::OnCollisionCall()
 {
-	
-	isHit = true;
-
-	if (isHit)
-	{
-		HP -= 1;
-	}
+	HP -= 1;
 }
 

@@ -124,4 +124,5 @@ private: // メンバ変数
 	bool HitDrop[6];
 	bool HitGrow[2];
 	bool HitGolf;
+	bool HitRoll;
 };

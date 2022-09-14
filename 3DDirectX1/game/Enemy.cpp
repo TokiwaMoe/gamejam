@@ -32,36 +32,36 @@ void Enemy::Initialize()
 	{
 		if (i == 0 || i == 5)
 		{
-			spCard[i] = Sprite::CreateSprite(11, dropPos[i]);
+			spCard[i] = Sprite::CreateSprite(11, {0, 730});
 		}
 		else if (i == 1 || i == 3)
 		{
-			spCard[i] = Sprite::CreateSprite(12, dropPos[i]);
+			spCard[i] = Sprite::CreateSprite(12, { 0, 730 });
 		}
 		else if (i == 2)
 		{
-			spCard[i] = Sprite::CreateSprite(10, dropPos[i]);
+			spCard[i] = Sprite::CreateSprite(10, { 0, 730 });
 		}
 		else if (i == 4)
 		{
-			spCard[i] = Sprite::CreateSprite(13, dropPos[i]);
+			spCard[i] = Sprite::CreateSprite(13, { 0, 730 });
 		}
 		spCard[i]->SetSize({ 91, 133 });
 	}
 
 	Sprite::LoadTexture(14, L"Resources/flower/flower_1.png");
-	spGrow_Y = Sprite::CreateSprite(14, growPos);
+	spGrow_Y = Sprite::CreateSprite(14, { 0, 730 });
 	spGrow_Y->SetTextureRect({ 0,0 }, { 144,144 });
 	spGrow_Y->SetSize({ 400, 400 });
 	spGrow_Y->SetRotation(70);
 
 	Sprite::LoadTexture(15, L"Resources/flower/flower_2.png");
-	spGrow_X = Sprite::CreateSprite(15, growPos);
+	spGrow_X = Sprite::CreateSprite(15, { 0, 730 });
 	spGrow_X->SetTextureRect({ 0,0 }, { 144,144 });
 	spGrow_X->SetSize({ 400, 400 });
 
 	Sprite::LoadTexture(16, L"Resources/hedgehog/hedgehog.png");
-	backGolf = Sprite::CreateSprite(16, GolfPos);
+	backGolf = Sprite::CreateSprite(16, { 0, 730 });
 	backGolf->SetTextureRect({ 0,0 }, {100, 64});
 	backGolf->SetSize({ 200, 128 });
 }
@@ -70,20 +70,24 @@ void Enemy::Init()
 {
 	circle.center = pigPos;
 	circle.radius = 60;
+	isRollHit = true;
 	for (int i = 0; i < 6; i++)
 	{
-		dropCircle[i].center = dropPos[i];
+		dropCircle[i].center = { dropPos[i].x + 45, dropPos[i].y + 66 };
 		dropCircle[i].radius = 60;
+		isDropHit[i] = true;
 
 	}
 	for (int i = 0; i < 2; i++)
 	{
-		growCircle[i].center = growPos;
-		growCircle[i].center = growPos2;
+		growCircle[i].center = { growPos.x + 200, growPos.y + 200 };
+		growCircle[i].center = { growPos2.x + 200, growPos2.y + 200 };
 		growCircle[i].radius = 200;
+		isGrowHit[i] = true;
 	}
-	golfCircle.center = GolfPos;
-	golfCircle.radius = 100;
+	golfCircle.center = { GolfPos.x + 50, GolfPos.y + 50 };
+	golfCircle.radius = 50;
+	isGolfHit = true;
 	enemyCircle.center = position;
 	enemyCircle.radius = 200;
 	srand(time(NULL));
@@ -139,6 +143,7 @@ void Enemy::Move()
 
 void Enemy::Golf()
 {
+	//isGolfHit = true;
 	enGolfAnime += 1.5f;
 
 	if (enGolfAnime >= 8)
@@ -216,6 +221,7 @@ void Enemy::Golf()
 
 void Enemy::Roll()
 {
+	//isRollHit = true;
 	if (pigPos.x > 0) {
 		pigPos.x -= 10;
 		pigRot -= 30;
@@ -234,8 +240,9 @@ void Enemy::Roll()
 
 void Enemy::Grow()
 {
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 2; i++)
 	{
+		//isGrowHit[i] = true;
 		if (AttackNo == 3 && growFlag == false) {
 			growRandFlag = true;
 		}
@@ -305,6 +312,7 @@ void Enemy::Drop()
 {
 	for (int i = 0; i < 6; i++)
 	{
+		//isDropHit[i] = true;
 		if (dropFlag)
 		{
 			gravity += 9.8f / 60.0f;

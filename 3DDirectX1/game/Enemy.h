@@ -126,4 +126,11 @@ private://•Ï”
 	float enGolfAnime = 0;
 
 	bool isAlive = false;
+
+public:
+	//“–‚½‚è”»’è•Ï”
+	bool isRollHit = true;
+	bool isGolfHit = true;
+	bool isDropHit[6];
+	bool isGrowHit[2];
 };
