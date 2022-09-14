@@ -16,6 +16,7 @@ void Player::Initialize()
 {
 	Sprite::LoadTexture(2, L"Resources/player/walk.png");
 	Sprite::LoadTexture(3, L"Resources/player/stay.png");
+	Sprite::LoadTexture(17, L"Resources/PlayerHP.png");
 	//Sprite::LoadTexture(3, L"Resources/UI/sizeUI.png");
 	playerSprite_Walk = Sprite::CreateSprite(2, { 0,0 });
 	playerSprite_Walk->SetSize({ 128,128 });
@@ -25,6 +26,9 @@ void Player::Initialize()
 	playerSprite_Stay->SetSize({ 128,128 });
 	playerSprite_Stay->SetTextureRect({ 0,0 }, { 48,48 });
 	//sizeSprite = Sprite::CreateSprite(3, { 100,100 });
+	for (int i = 0; i < 5; i++) {
+		pHP[i] = Sprite::CreateSprite(17, { playerPos.x,playerPos.y - 20 });
+	}
  
 }
 
@@ -143,6 +147,9 @@ void Player::Update()
 	playerSprite_Walk->SetIsFlipX(playerFlag);
 	playerSprite_Stay->SetPosition(playerPos);
 	playerSprite_Stay->SetIsFlipX(playerFlag);
+	for (int i = 0; i < 5; i++) {
+		pHP[i]->SetPosition({ playerPos.x-70+i*30,playerPos.y-70 });
+	}
 }
 
 
@@ -200,6 +207,9 @@ void Player::DrawSprite()
 	}
 	else {
 		playerSprite_Stay->Draw();
+	}
+	for (int i = 0; i < HP; i++) {
+		pHP[i]->Draw();
 	}
 
 }

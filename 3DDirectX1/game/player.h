@@ -73,7 +73,7 @@ private://ƒvƒŒƒCƒ„[‚Ì“®‚«Œn
 	bool isWalk = false;
 	XMFLOAT2 oldPosition = { 0,0 };
 	XMFLOAT2 velocity = { 0,0 };
-
+	Sprite* pHP[5];
 	int HP = 5;
 public:
 	std::list<std::unique_ptr<PlayerBullet>> bullets_;
