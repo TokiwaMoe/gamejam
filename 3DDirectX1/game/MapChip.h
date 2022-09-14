@@ -2,6 +2,7 @@
 #include"Sprite.h"
 #include<DirectXMath.h>
 #include<string>
+#include"Collision.h"
 enum OBJ
 {
 	NONE,
@@ -26,6 +27,9 @@ public:
 	void Update();
 	void Draw();
 	float GetMapSize() { return mapSize; }
+	Box GetBox(int j, int i);
+	int GetMap(int i, int j) { return map[i][j]; }
+	XMFLOAT2 GetPos(int i, int j);
 private:
 	Sprite* floor[24][43];
 	int map[24][43] = {

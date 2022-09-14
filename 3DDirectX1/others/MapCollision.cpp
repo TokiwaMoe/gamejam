@@ -2,6 +2,32 @@
 using namespace DirectX;
 void MapCollision::Map2Player(Player* player, MapChip* mapchip)
 {
+	if (player == nullptr || mapchip == nullptr) { return; }
+	//判定する箇所だけ行うため
+	int X = player->GetPlayerPos().x / mapchip->GetMapSize();
+	int Z = player->GetPlayerPos().x / (-mapchip->GetMapSize());
+
+	for (int j = (Z - 2); j < (Z + 2); j++)
+	{
+		for (int i = (X - 2); i < (X + 2); i++)
+		{
+			if (j < 0 || i < 0 || j >= 24 || i >= 43)
+			{
+				continue;
+			}
+			if (!(mapchip->GetMap(i, j) == NONE))//0以外当たり判定
+			{
+				//プレイヤー
+				bool HitFlag = Collision::CheckSphere2Box(player->GetSphere(), mapchip->GetBox(i, j));
+				if (HitFlag)
+				{
+					player->SetPlayerPos(PushBack(player->GetPlayerPos(), player->GetOPos(), player->GetPSize(),
+						mapchip->GetPos(i, j), mapchip->GetMapSize() / 2,
+						mapchip->GetMap(i, (j + 1) % 24), mapchip->GetMap(i, (j - 1) % 24)));
+				}
+			}
+		}
+	}
 }
 
 XMFLOAT2 MapCollision::PushBack(XMFLOAT2 pos, XMFLOAT2 oldPos, float size, XMFLOAT2 BPos, float blockSize, const int up, const int down)
