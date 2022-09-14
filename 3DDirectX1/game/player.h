@@ -42,6 +42,8 @@ public:
 	XMFLOAT2 GetOldPos() { return oldPosition; }
 	XMFLOAT2 GetVelocity() { return velocity; }
 	bool GetAudioFlag() { return AudioFlag; }
+	bool GetIsHit() { return isHit; }
+	bool SetHit(bool hit) { return this->isHit = hit; }
 	//弾リストを取得
 	const std::list < std::unique_ptr<PlayerBullet>>& GetBullets() { return bullets_; }
 private://プレイヤーの動き系
@@ -75,6 +77,7 @@ private://プレイヤーの動き系
 	XMFLOAT2 velocity = { 0,0 };
 
 	int HP = 5;
+	bool isHit = false;
 public:
 	std::list<std::unique_ptr<PlayerBullet>> bullets_;
 };

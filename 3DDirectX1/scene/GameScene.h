@@ -119,4 +119,9 @@ private: // メンバ変数
 	float distance = 20.0f;//プレイヤーとカメラの距離
 	bool HitFlag = false;
 	int SceneNo = 0;
+
+	//当たり判定変数
+	bool HitDrop[6];
+	bool HitGrow[2];
+	bool HitGolf;
 };

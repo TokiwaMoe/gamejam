@@ -32,7 +32,7 @@ void Player::Init()
 {
 	circle.center = playerPos;
 	circle.radius = 5;
-	playerPos = { 50,100 };
+	playerPos = { 50,650 };
 	HP = 5;
 }
 
@@ -41,14 +41,14 @@ void Player::Move()
 {
 	if (Input::GetInstance()->PushKey(DIK_D))
 	{
-		playerPos.x += 2;
+		playerPos.x += 4;
 		playerFlag = false;
 		isRight = true;
 		isWalk = true;
 	}
 	else if (Input::GetInstance()->PushKey(DIK_A))
 	{
-		playerPos.x -= 2;
+		playerPos.x -= 4;
 		playerFlag = true;
 		isRight = false;
 		isWalk = true;
@@ -206,6 +206,12 @@ void Player::DrawSprite()
 
 void Player::OnCollisionCall()
 {
-	HP -= 1;
+	
+	isHit = true;
+
+	if (isHit)
+	{
+		HP -= 1;
+	}
 }
 

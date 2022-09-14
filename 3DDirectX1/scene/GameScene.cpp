@@ -128,7 +128,16 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 
 void GameScene::Init()
 {
+	for (int i = 0; i < 6; i++)
+	{
+		HitDrop[i] = false;
+	}
 
+	for (int i = 0; i < 2; i++)
+	{
+		HitGrow[i] = false;
+	}
+	HitGolf = false;
 }
 
 void GameScene::Update()
@@ -163,30 +172,30 @@ void GameScene::Update()
 		enemy->Update();
 		//camera->FollowCamera({0,0,0}, XMFLOAT3{0,2,-distance}, 0, 0);
 
-
-	bool HitDrop[6];
+		
 	for (int i = 0; i < 6; i++)
 	{
 		HitDrop[i] = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetDropCircle(i));
-		if (HitDrop[i]) {
+		if (HitDrop[i] && player->GetIsHit() == false) {
 			player->OnCollisionCall();
 			HitDrop[i] = false;
+			//player->SetHit(false);
 			//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 		}
 	}
-	bool HitGrow[2];
+	
 	for (int i = 0; i < 2; i++)
 	{
 		HitGrow[i] = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGrowCircle(i));
-		if (HitGrow[i]) {
+		if (HitGrow[i] && player->GetIsHit() == false) {
 
 			player->OnCollisionCall();
 			HitGrow[i] = false;
 			//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 		}
 	}
-	bool HitGolf = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGolfCircle());
-	if (HitGolf) {
+	HitGolf = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGolfCircle());
+	if (HitGolf && player->GetIsHit() == false) {
 		player->OnCollisionCall();
 		HitGolf = false;
 		//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
