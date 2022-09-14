@@ -113,4 +113,6 @@ private: // メンバ変数
 	bool parentFlag = false;
 	float Tsize = 1;
 	float distance = 20.0f;//プレイヤーとカメラの距離
+
+	int SceneNo = 0;
 };

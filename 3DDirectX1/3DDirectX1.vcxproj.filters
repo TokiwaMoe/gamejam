@@ -153,18 +153,6 @@
     <ClCompile Include="2d\SpriteAnimation.cpp">
       <Filter>Library\2d</Filter>
     </ClCompile>
-    <ClCompile Include="scene\ClearScene.cpp">
-      <Filter>Game\scene</Filter>
-    </ClCompile>
-    <ClCompile Include="scene\TitleScene.cpp">
-      <Filter>Game\scene</Filter>
-    </ClCompile>
-    <ClCompile Include="scene\SceneManager.cpp">
-      <Filter>Game\scene</Filter>
-    </ClCompile>
-    <ClCompile Include="scene\SelectScene.cpp">
-      <Filter>Game\scene</Filter>
-    </ClCompile>
     <ClCompile Include="others\CollisionManager.cpp">
       <Filter>Library\others\collision</Filter>
     </ClCompile>
@@ -196,7 +184,7 @@
       <Filter>Game\player</Filter>
     </ClCompile>
     <ClCompile Include="others\MapCollision.cpp">
-      <Filter>Game</Filter>
+      <Filter>Game\mapchip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -375,18 +363,6 @@
     <ClInclude Include="2d\SpriteAnimation.h">
       <Filter>Library\2d</Filter>
     </ClInclude>
-    <ClInclude Include="scene\ClearScene.h">
-      <Filter>Game\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="scene\TitleScene.h">
-      <Filter>Game\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="scene\SceneManager.h">
-      <Filter>Game\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="scene\SelectScene.h">
-      <Filter>Game\scene</Filter>
-    </ClInclude>
     <ClInclude Include="others\BaseCollider.h">
       <Filter>Library\others\collision</Filter>
     </ClInclude>
@@ -434,7 +410,7 @@
       <Filter>Game\player</Filter>
     </ClInclude>
     <ClInclude Include="others\MapCollision.h">
-      <Filter>Game</Filter>
+      <Filter>Game\mapchip</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

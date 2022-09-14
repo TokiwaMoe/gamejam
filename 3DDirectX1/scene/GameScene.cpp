@@ -103,6 +103,7 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 
 
 	sound1 = Audio::SoundLoadWave("Resources/Sound/ゲージ回復2.wav");
+	sound2 = Audio::SoundLoadWave("Resources/Sound/picopiconostalgie.wav");
 
 
 	//audio->SetBGMVolume(0.5f);
@@ -118,6 +119,7 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 	enemy->Init();
 	mapchip = new MapChip;//newすればエラー吐かない
 	mapchip->Initialize();
+	audio->SoundPlayWave(sound2);
 }
 
 void GameScene::Init()
