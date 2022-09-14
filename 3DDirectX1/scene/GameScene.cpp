@@ -130,7 +130,17 @@ void GameScene::Initialize(DXCommon* dxCommon, Audio* audio)
 
 void GameScene::Init()
 {
+	for (int i = 0; i < 6; i++)
+	{
+		HitDrop[i] = false;
+	}
 
+	for (int i = 0; i < 2; i++)
+	{
+		HitGrow[i] = false;
+	}
+	HitGolf = false;
+	HitRoll = false;
 }
 
 void GameScene::Update()
@@ -165,33 +175,55 @@ void GameScene::Update()
 		enemy->Update();
 		//camera->FollowCamera({0,0,0}, XMFLOAT3{0,2,-distance}, 0, 0);
 
-
-	bool HitDrop[6];
+		
 	for (int i = 0; i < 6; i++)
 	{
 		HitDrop[i] = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetDropCircle(i));
-		if (HitDrop[i]) {
+		if (HitDrop[i] && enemy->isDropHit[i] == true) {
+			enemy->isDropHit[i] = false;
 			player->OnCollisionCall();
-			HitDrop[i] = false;
 			//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 		}
+		if (HitDrop[i] == false)
+		{
+			enemy->isDropHit[i] = true;
+		}
 	}
-	bool HitGrow[2];
+	
 	for (int i = 0; i < 2; i++)
 	{
 		HitGrow[i] = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGrowCircle(i));
-		if (HitGrow[i]) {
-
+		if (HitGrow[i] && enemy->isGrowHit[i] == true) {
+			enemy->isGrowHit[i] = false;
 			player->OnCollisionCall();
-			HitGrow[i] = false;
 			//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
 		}
+		if(HitGrow[i] == false)
+		{
+			enemy->isGrowHit[i] = true;
+		}
 	}
-	bool HitGolf = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGolfCircle());
-	if (HitGolf) {
+
+	HitGolf = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetGolfCircle());
+	if (HitGolf && enemy->isGolfHit == true) {
 		player->OnCollisionCall();
-		HitGolf = false;
+		enemy->isGolfHit == false;
 		//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
+	}
+	if (HitGolf == false)
+	{
+		enemy->isGolfHit = true;
+	}
+
+	HitRoll = Collision::CheckCircle2Circle(player->GetCircle(), enemy->GetCircle());
+	if (HitRoll && enemy->isRollHit == true) {
+		player->OnCollisionCall();
+		enemy->isRollHit == false;
+		//DebugText::GetInstance()->Printf(100, 260, 3.0f, "Hit");
+	}
+	if (HitRoll == false)
+	{
+		enemy->isRollHit = true;
 	}
 
 #pragma endregion
