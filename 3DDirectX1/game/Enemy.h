@@ -128,6 +128,7 @@ private://•Ï”
 	float enGolfAnime = 0;
 
 	bool isAlive = false;
+	bool stayFlag = true;
 
 public:
 	//“–‚½‚è”»’è•Ï”

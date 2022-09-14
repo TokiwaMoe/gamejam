@@ -12,8 +12,10 @@ Enemy::~Enemy()
 
 void Enemy::Initialize()
 {
-	Sprite::LoadTexture(4, L"Resources/fantasy_maou_devil.png");
+	Sprite::LoadTexture(4, L"Resources/stay.png");
 	spEnemy = Sprite::CreateSprite(4, position);
+	spEnemy->SetAnchorPoint({ 0.5,0.5 });
+	spEnemy->SetSize({ 400,400 });
 	Sprite::LoadTexture(5, L"Resources/pig.png");
 	pig = Sprite::CreateSprite(5, pigPos);
 	Sprite::LoadTexture(6, L"Resources/hedgehog/golf.png");
@@ -147,6 +149,9 @@ void Enemy::Update()
 	//isGolfHit = true;
 	enemyCircle.center = position;
 	enemyCircle.radius = 200;
+
+	spEnemy->SetAnchorPoint({ 0.5,0.5 });
+	spEnemy->SetSize({ 400,400 });
 }
 
 void Enemy::Move()
@@ -156,6 +161,7 @@ void Enemy::Move()
 void Enemy::Golf()
 {
 	//isGolfHit = true;
+	stayFlag = false;
 	enGolfAnime += 1.5f;
 
 	if (enGolfAnime >= 8)
@@ -171,6 +177,7 @@ void Enemy::Golf()
 
 		if (enGolfNo >= 6)
 		{
+			stayFlag = true;
 			enGolfNo = 7;
 			enGolfAnime = 9;
 		}
@@ -405,7 +412,11 @@ void Enemy::OnCollision()
 
 void Enemy::Draw()
 {
-	//spEnemy->Draw();
+	if (stayFlag)
+	{
+		spEnemy->Draw();
+	}
+	
 	if (AttackNo == 1 && randFlag) {
 		for (int i = 0; i < 6; i++)
 		{
@@ -416,6 +427,11 @@ void Enemy::Draw()
 		pig->Draw();
 	}
 	if (AttackNo == 2) {
+		if (stayFlag == false)
+		{
+			enGolf->Draw();
+		}
+		
 		if (isBackAnime)
 		{
 			backGolf->Draw();
@@ -438,7 +454,7 @@ void Enemy::Draw()
 			spGrow_X->Draw();
 		}
 	}
-	enGolf->Draw();
+	
 	EHP->Draw();
 	EHPFrame->Draw();
 }
