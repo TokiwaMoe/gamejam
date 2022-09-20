@@ -412,5 +412,12 @@
     <ClInclude Include="others\MapCollision.h">
       <Filter>Game\mapchip</Filter>
     </ClInclude>
+    <ClInclude Include="resource1.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DirectXEngine1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\gamicon.ico" />
   </ItemGroup>
 </Project>

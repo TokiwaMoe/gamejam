@@ -5,9 +5,9 @@ void MapCollision::Map2Player(Player* player, MapChip* mapchip)
 	if (player == nullptr || mapchip == nullptr) { return; }
 	//”»’è‚·‚é‰ÓŠ‚¾‚¯s‚¤‚½‚ß
 	int X = player->GetPlayerPos().x / mapchip->GetMapSize();
-	int Z = player->GetPlayerPos().x / (-mapchip->GetMapSize());
+	int Y = player->GetPlayerPos().y / (-mapchip->GetMapSize());
 
-	for (int j = (Z - 2); j < (Z + 2); j++)
+	for (int j = (Y - 2); j < (Y + 2); j++)
 	{
 		for (int i = (X - 2); i < (X + 2); i++)
 		{

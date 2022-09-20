@@ -373,7 +373,14 @@
     <ClInclude Include="others\SphereCollider.h" />
     <ClInclude Include="others\TouchableObject.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="scene\GameScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DirectXEngine1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\gamicon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

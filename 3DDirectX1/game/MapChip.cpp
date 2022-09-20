@@ -38,13 +38,13 @@ Box MapChip::GetBox(int j, int i)
 	Box box;
 	box.maxPosition = XMVectorSet(
 		pos.x + i * mapSize + mapSize / 2,
-		0,
 		pos.y + j * (-mapSize) + mapSize / 2,
+		0,
 		1);
 	box.minPosition = XMVectorSet(
 		pos.x + i * mapSize - mapSize / 2,
-		0,
 		pos.y + j * (-mapSize) - mapSize / 2,
+		0,
 		1);
 	return box;
 }
